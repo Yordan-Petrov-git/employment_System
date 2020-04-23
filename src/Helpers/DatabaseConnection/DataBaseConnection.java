@@ -13,9 +13,9 @@ public class DataBaseConnection {
     //Conenction class login
     private static final String serverName = "localhost";//SQL DB name of the server
     private static final String username = "root";//SQL DB  username
-    private static final String dataBaseName = "";//SQL Database name
+    private static final String dataBaseName = "employment_system";//SQL Database name
     private static final Integer portNumber = 3306;//SQL DB server port number //Defaut port number XAMPP APACHE SERVER
-    private static final String password = "";//SQL DB server user login password
+   // private static final String password = "";//SQL DB server user login password
 
 
     public static Connection getConnection() {
@@ -30,7 +30,7 @@ public class DataBaseConnection {
         datasource.setUser(username);
         datasource.setDatabaseName(dataBaseName);
         datasource.setPortNumber(portNumber);
-        datasource.setPassword(password);
+       // datasource.setPassword(password);
 
 
         try {
