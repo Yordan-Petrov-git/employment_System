@@ -31,7 +31,7 @@ public class JobOffer {
             , String description, String netSalary
             , Boolean isOfferActive
             , String jobType) {
-
+//without logo
         setJobTitle(jobTitle);
         setCity(city);
         setPosition(position);

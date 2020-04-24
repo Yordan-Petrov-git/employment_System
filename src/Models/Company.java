@@ -32,14 +32,13 @@ public class Company extends SuperclassUser {
     }
 
 
-
     public Company(String username, String password, String salt, String passPhrase
             , String companyName, String phoneNumber
             , String logo
             , String address, String city
             , String eik
             , String description) {
- //Without webpage
+
         super(username, password, salt, passPhrase);
         setCompanyName(companyName);
         setPhoneNumber(phoneNumber);
@@ -56,8 +55,6 @@ public class Company extends SuperclassUser {
             , String eik
             , String description) {
 
-     //Without webpage and logo
-
         super(username, password, salt, passPhrase);
         setCompanyName(companyName);
         setPhoneNumber(phoneNumber);
@@ -66,6 +63,9 @@ public class Company extends SuperclassUser {
         setEik(eik);
         setDescription(description);
     }
+
+
+
 
     public String getCompanyName() {
         return this.companyName;

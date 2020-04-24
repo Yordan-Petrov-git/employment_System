@@ -22,7 +22,6 @@ public class User extends SuperclassUser {
         setEmailAddress(emailAddress);
         setAccountType(accountType);
         setPicture(picture);
-
     }
 
 
@@ -30,7 +29,7 @@ public class User extends SuperclassUser {
             , String firstName, String familyName
             , String phoneNumber, String emailAddress
             , String accountType) {
-
+//without picture
         super(username, password, salt, passPhrase);
         setFirstName(firstName);
         setFamilyName(familyName);
