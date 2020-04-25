@@ -2,18 +2,28 @@ package Models;
 
 public class SuperclassUser {
 
+
+    private String id;
     private String username;
     private String password;
     private String salt;
     private String passPhrase;
 
-    public SuperclassUser(String username, String password, String salt, String passPhrase) {
+    public SuperclassUser(String id, String username, String password, String salt, String passPhrase) {
+        setId(id);
         setUsername(username);
         setPassword(password);
         setSalt(salt);
         setPassPhrase(passPhrase);
     }
 
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return this.username;

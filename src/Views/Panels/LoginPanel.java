@@ -1,4 +1,10 @@
 package Views.Panels;
 
-public class LoginPanel {
+
+import javax.swing.*;
+
+public class LoginPanel extends JPanel {
+
+
+
 }

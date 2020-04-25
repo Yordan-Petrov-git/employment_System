@@ -2,6 +2,7 @@ package Models;
 
 public class JobOffer {
 
+    private String id;
     private String jobTitle;
     private String city;
     private String position;
@@ -11,12 +12,13 @@ public class JobOffer {
     private String jobType;
     private String logo;
 
-    public JobOffer(String jobTitle, String city, String position
+    public JobOffer(String id, String jobTitle, String city, String position
             , String description, String netSalary
             , Boolean isOfferActive
             , String jobType
             , String logo) {
 
+        setId(id);
         setJobTitle(jobTitle);
         setCity(city);
         setPosition(position);
@@ -27,11 +29,12 @@ public class JobOffer {
         setLogo(logo);
     }
 
-    public JobOffer(String jobTitle, String city, String position
+    public JobOffer(String id, String jobTitle, String city, String position
             , String description, String netSalary
             , Boolean isOfferActive
             , String jobType) {
 //without logo
+        setId(id);
         setJobTitle(jobTitle);
         setCity(city);
         setPosition(position);
@@ -39,6 +42,14 @@ public class JobOffer {
         setNetSalary(netSalary);
         setOfferActive(isOfferActive);
         setJobType(jobType);
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getJobTitle() {
