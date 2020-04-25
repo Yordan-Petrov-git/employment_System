@@ -10,7 +10,7 @@ public class User extends SuperclassUser {
     private String picture;
 
 
-    public User(String id, String username, String password,
+    public User(long id, String username, String password,
                 String salt, String passPhrase,
                 String firstName, String familyName, String phoneNumber,
                 String emailAddress, String accountType, String picture) {
@@ -23,7 +23,7 @@ public class User extends SuperclassUser {
         this.picture = picture;
     }
 
-    public User(String id, String username, String password,
+    public User(long id, String username, String password,
                 String salt, String passPhrase, String firstName,
                 String familyName, String phoneNumber, String emailAddress,
                 String accountType) {

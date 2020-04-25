@@ -12,59 +12,40 @@ public class Company extends SuperclassUser {
     private String webPage;
     private String description;
 
-    public Company(String username, String password, String salt, String passPhrase
-            , String companyName, String phoneNumber
-            , String logo
-            , String address, String city
-            , String eik
-            , String webPage
-            , String description) {
-
-        super(username, password, salt, passPhrase);
-        setCompanyName(companyName);
-        setPhoneNumber(phoneNumber);
-        setLogo(logo);
-        setAddress(address);
-        setCity(city);
-        setEik(eik);
-        setWebPage(webPage);
-        setDescription(description);
+    public Company(long id, String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String logo, String address, String city, String eik, String description) {
+        super(id, username, password, salt, passPhrase);
+        this.companyName = companyName;
+        this.phoneNumber = phoneNumber;
+        this.logo = logo;
+        this.address = address;
+        this.city = city;
+        this.eik = eik;
+        this.description = description;
     }
 
 
-    public Company(String username, String password, String salt, String passPhrase
-            , String companyName, String phoneNumber
-            , String logo
-            , String address, String city
-            , String eik
-            , String description) {
-
-        super(username, password, salt, passPhrase);
-        setCompanyName(companyName);
-        setPhoneNumber(phoneNumber);
-        setLogo(logo);
-        setAddress(address);
-        setCity(city);
-        setEik(eik);
-        setDescription(description);
-    }
-
-    public Company(String username, String password, String salt, String passPhrase
-            , String companyName, String phoneNumber
-            , String address, String city
-            , String eik
-            , String description) {
-
-        super(username, password, salt, passPhrase);
-        setCompanyName(companyName);
-        setPhoneNumber(phoneNumber);
-        setAddress(address);
-        setCity(city);
-        setEik(eik);
-        setDescription(description);
+    public Company(long id, String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String address, String city, String eik, String description) {
+        super(id, username, password, salt, passPhrase);
+        this.companyName = companyName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.city = city;
+        this.eik = eik;
+        this.description = description;
     }
 
 
+    public Company(long id, String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String logo, String address, String city, String eik, String webPage, String description) {
+        super(id, username, password, salt, passPhrase);
+        this.companyName = companyName;
+        this.phoneNumber = phoneNumber;
+        this.logo = logo;
+        this.address = address;
+        this.city = city;
+        this.eik = eik;
+        this.webPage = webPage;
+        this.description = description;
+    }
 
 
     public String getCompanyName() {

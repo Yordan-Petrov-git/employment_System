@@ -3,13 +3,13 @@ package Models;
 public class SuperclassUser {
 
 
-    private String id;
+    private long id;
     private String username;
     private String password;
     private String salt;
     private String passPhrase;
 
-    public SuperclassUser(String id, String username, String password, String salt, String passPhrase) {
+    public SuperclassUser(long id, String username, String password, String salt, String passPhrase) {
         setId(id);
         setUsername(username);
         setPassword(password);
@@ -17,11 +17,11 @@ public class SuperclassUser {
         setPassPhrase(passPhrase);
     }
 
-    public String getId() {
+    public long getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
