@@ -38,8 +38,8 @@ public class MainFrame extends JFrame {
 
 
       //  router.showLoginPanel(this);
-       // router.showRegistrationPanel(this);
-        router.showManageProfilePanel(this);
+       router.showRegistrationPanel(this);
+       // router.showManageProfilePanel(this);
     }
 
 

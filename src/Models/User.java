@@ -10,11 +10,11 @@ public class User extends SuperclassUser {
     private String picture;
 
 
-    public User(long id, String username, String password,
+    public User(String username, String password,
                 String salt, String passPhrase,
                 String firstName, String familyName, String phoneNumber,
                 String emailAddress, String accountType, String picture) {
-        super(id, username, password, salt, passPhrase);
+        super(username, password, salt, passPhrase);
         this.firstName = firstName;
         this.familyName = familyName;
         this.phoneNumber = phoneNumber;
@@ -23,11 +23,11 @@ public class User extends SuperclassUser {
         this.picture = picture;
     }
 
-    public User(long id, String username, String password,
+    public User(String username, String password,
                 String salt, String passPhrase, String firstName,
                 String familyName, String phoneNumber, String emailAddress,
                 String accountType) {
-        super(id, username, password, salt, passPhrase);
+        super(username, password, salt, passPhrase);
         this.firstName = firstName;
         this.familyName = familyName;
         this.phoneNumber = phoneNumber;
@@ -35,6 +35,15 @@ public class User extends SuperclassUser {
         this.accountType = accountType;
     }
 
+    public User(String username, String password,
+                String salt, String passPhrase, String firstName,
+                String familyName, String phoneNumber, String emailAddress) {
+        super(username, password, salt, passPhrase);
+        this.firstName = firstName;
+        this.familyName = familyName;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+    }
 
     public String getFirstName() {
         return this.firstName;
