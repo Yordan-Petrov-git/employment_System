@@ -34,16 +34,28 @@ public class LoginPanel extends JPanel {
         });
         add(jButtonShowPassword);
 
-        jButtonLogin = new JButton("Sign in");
+        jButtonLogin = new JButton("Login");
         jButtonLogin.addActionListener(e -> {
             // login
-            jFrame.loginDataProvider.loginUser(jTextFieldUsername.getText(), String.valueOf(jPasswordField.getPassword()));
+
+            LoginUser();
+
         });
         add(jButtonLogin);
 
     }
 
+    public void LoginUser() {
 
+        String query = "SELECT e.`user_id`,d.`username_user`,d.`password_user`,d.`password_salt_user` \n" +
+                "FROM `users` AS e \n" +
+                "INNER JOIN `login_credentials_users` AS d\n" +
+                "ON e.`user_id` = d.`user_id`\n" +
+                "WHERE d.`username_user` = ?\n" +
+                "LIMIT 1;\n;";
+
+        jFrame.loginDataProvider.loginUser(jTextFieldUsername.getText(), String.valueOf(jPasswordField.getPassword()), query);
+    }
 }
 
 

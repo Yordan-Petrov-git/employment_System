@@ -3,6 +3,7 @@ package Views.Panels;
 import Views.MainFrame;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class RegisterNewAccountPanel extends JPanel {
 
@@ -15,22 +16,25 @@ public class RegisterNewAccountPanel extends JPanel {
     private JTextField jTextFieldPassphrase;
     private JTextField jTextFieldPhone;
     private JTextField jTextFieldEmail;
-
     private JToggleButton jButtonShowPassword;
+
+
+    private JButton jButtonAddPicture;
+    private JComboBox jComboBoxAccountType;
     private JButton jButtonCreateAccount;
+
 
     public MainFrame jFrame;
 
 
     public RegisterNewAccountPanel(MainFrame jFrame) {
         this.jFrame = jFrame;
+        jFrame.setSize(1300, 100);
 
-//-------------------------------------------------------------
-        //Labels
+
         jLabelTitle = new JLabel("Registration");
         add(jLabelTitle);
-//-------------------------------------------------------------
-        //TextFields
+
         jTextFieldName = new JTextField("Name");
         add(jTextFieldName);
         jTextFieldFamilyName = new JTextField("Family name");
@@ -47,13 +51,20 @@ public class RegisterNewAccountPanel extends JPanel {
         add(jTextFieldPhone);
         jTextFieldEmail = new JTextField("Email address");
         add(jTextFieldEmail);
-//-----------------------------------------------------------------------\
-        //Buttons
+
+
         jButtonShowPassword = new JToggleButton("");
         add(jButtonShowPassword);
+
+        jButtonAddPicture = new JButton("Add picture");
+        add(jButtonAddPicture);
+
+        String[] sizesList = {"Users", "Companies"};
+        jComboBoxAccountType = new JComboBox(sizesList);
+        add(jComboBoxAccountType);
+
         jButtonCreateAccount = new JButton("Register User");
         add(jButtonCreateAccount);
-
 
 
     }

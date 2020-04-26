@@ -1,27 +1,24 @@
 package Views;
 
-
-
 import DataProvider.LoginDataProvider;
-import Views.Panels.LoginPanel;
-import Views.Panels.RegisterNewAccountPanel;
+import Router.Router;
 
 import javax.swing.*;
 import java.awt.*;
 
-
 public class MainFrame extends JFrame {
 
+    // public JTable table;
+    public LoginDataProvider loginDataProvider = new LoginDataProvider();
+    public Router router = new Router();
 
-   // public JTable table;
-   public LoginDataProvider loginDataProvider = new LoginDataProvider();
-   // public Router router = new Router();
     public MainFrame() {
+
         super("JobHunter");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         // Centers the form
-        this.setLocationRelativeTo(null);
         setSize(800, 600);
+        this.setLocationRelativeTo(null);
         setLayout(new FlowLayout());
 
 
@@ -40,22 +37,10 @@ public class MainFrame extends JFrame {
 //        dataProvider.loadSandwichesFromDatabase();
 
 
-       // router.showLoginPanel();
-       showLoginPanel();
-       // showRegistrationPanel();
+      //  router.showLoginPanel(this);
+       // router.showRegistrationPanel(this);
+        router.showManageProfilePanel(this);
     }
 
-    public void showLoginPanel() {
-        //Shows login panel for the bar system
-        LoginPanel loginPanel = new LoginPanel(this);
-        loginPanel.setSize(600,800);
-        add(loginPanel);
-    }
 
-    public void showRegistrationPanel() {
-        //Shows login panel for the bar system
-        RegisterNewAccountPanel registerNewAccount = new RegisterNewAccountPanel(this);
-        registerNewAccount.setSize(600,800);
-        add(registerNewAccount);
-    }
 }
