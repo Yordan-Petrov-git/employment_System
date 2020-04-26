@@ -2,7 +2,7 @@ package Helpers.Validators;
 
 public class PasswordValidator {
 
-    public static boolean validation_Password(final String passwordArg) {
+    public static boolean validationPassword(final String passwordArg) {
         //Regular expression to validate password returns bool
         boolean result = false;
         try {

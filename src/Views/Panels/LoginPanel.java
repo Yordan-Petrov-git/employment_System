@@ -1,6 +1,9 @@
 package Views.Panels;
 
 
+import Helpers.DatabaseConnection.DataBaseConnection;
+import Helpers.Validators.PasswordValidator;
+import Helpers.Validators.Validators;
 import Views.MainFrame;
 
 import javax.swing.*;
@@ -44,22 +47,23 @@ public class LoginPanel extends JPanel {
 
     public void login(String username, String password) {
         //Method that shows menu jPanel to chose an action : make new order , add to ex
+//TODO VALIDATE HASHED PASSWORD AND THE SALT GET THEM FRO SQL
+        DataBaseConnection.getConnection();
+        if (true) {
 
-        if (Validators.validatePassword(password) && Validators.validateUserName(username)) {
-
-            for (Waiter waiter : JFrameMain.waiter) {
-                if (username.equals(waiter.getWaiterUsername()) && password.equals(waiter.getWaiterPassword())) {
-                    JFrameMain.currentWaiter = waiter;
-                    jFrame.showMenuPanel();
-                    break;
-                } else {
-                    JOptionPane.showMessageDialog(
-                            null
-                            , "Invalid login credentials"
-                            , "Error"
-                            , JOptionPane.ERROR_MESSAGE);
-                }
-            }
+//            for (Waiter waiter : JFrameMain.waiter) {
+//                if (username.equals(waiter.getWaiterUsername()) && password.equals(waiter.getWaiterPassword())) {
+//                    JFrameMain.currentWaiter = waiter;
+//                    jFrame.showMenuPanel();
+//                    break;
+//                } else {
+//                    JOptionPane.showMessageDialog(
+//                            null
+//                            , "Invalid login credentials"
+//                            , "Error"
+//                            , JOptionPane.ERROR_MESSAGE);
+//                }
+//            }
 
         } else {
             JOptionPane.showMessageDialog(
@@ -71,15 +75,5 @@ public class LoginPanel extends JPanel {
 
     }
 }
-© 2020GitHub,Inc.
-        Terms
-        Privacy
-        Security
-        Status
-        Help
-        Contact GitHub
-        Pricing
-        API
-        Training
-        Blog
-        About
+
+
