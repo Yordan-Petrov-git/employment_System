@@ -48,7 +48,7 @@ public class Validators {
     }
 
 
-    public static boolean getPhoneNumberVer(String number) {
+    public static boolean validatePhoneNumber(String number) {
         //Checks  Bulgarian phoen numbers to valdiate the correct length with regular expressions
         String numberRegex = "[0-9]{10}";
         Pattern numberPat = Pattern.compile(numberRegex, Pattern.CASE_INSENSITIVE);

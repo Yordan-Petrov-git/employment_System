@@ -1,20 +1,21 @@
 package Views;
 
-import DataProvider.DataProvider;
+
+
+import DataProvider.LoginDataProvider;
 import Views.Panels.LoginPanel;
+import Views.Panels.RegisterNewAccountPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class MainFrame extends JFrame {
 
 
    // public JTable table;
-    public DataProvider dataProvider = new DataProvider();
-
+   public LoginDataProvider loginDataProvider = new LoginDataProvider();
+   // public Router router = new Router();
     public MainFrame() {
         super("JobHunter");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -39,8 +40,11 @@ public class MainFrame extends JFrame {
 //        dataProvider.loadSandwichesFromDatabase();
 
 
-        showLoginPanel();
+       // router.showLoginPanel();
+       showLoginPanel();
+       // showRegistrationPanel();
     }
+
     public void showLoginPanel() {
         //Shows login panel for the bar system
         LoginPanel loginPanel = new LoginPanel(this);
@@ -48,4 +52,10 @@ public class MainFrame extends JFrame {
         add(loginPanel);
     }
 
+    public void showRegistrationPanel() {
+        //Shows login panel for the bar system
+        RegisterNewAccountPanel registerNewAccount = new RegisterNewAccountPanel(this);
+        registerNewAccount.setSize(600,800);
+        add(registerNewAccount);
+    }
 }
