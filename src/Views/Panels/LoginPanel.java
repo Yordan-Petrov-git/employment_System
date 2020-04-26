@@ -1,79 +1,53 @@
 package Views.Panels;
 
-
-import Helpers.DatabaseConnection.DataBaseConnection;
-import Helpers.Validators.PasswordValidator;
-import Helpers.Validators.Validators;
 import Views.MainFrame;
-
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoginPanel extends JPanel {
 
     private JLabel jLabelLoginTop;
+    private JToggleButton jButtonShowPassword;
     private JButton jButtonLogin;
     private JTextField jTextFieldUsername;
-    private JTextField jTextFieldPassword;
+    private JPasswordField jPasswordField;
     public MainFrame jFrame;
 
 
     public LoginPanel(MainFrame jFrame) {
         this.jFrame = jFrame;
 
-        jLabelLoginTop = new JLabel("Enter your credentials");
+        jLabelLoginTop = new JLabel("Enter your login information");
         add(jLabelLoginTop);
 
         jTextFieldUsername = new JTextField("Username");
         add(jTextFieldUsername);
 
-        jTextFieldPassword = new JTextField("Password");
-        add(jTextFieldPassword);
+        jPasswordField = new JPasswordField("Password");
+        add(jPasswordField);
 
-        jButtonLogin = new JButton("Sign in");
-        jButtonLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = jTextFieldUsername.getText().trim();
-                String password = jTextFieldPassword.getText().trim();
-                login(username, password);
+        jButtonShowPassword = new JToggleButton("");
+        jButtonShowPassword.addActionListener(e -> {
+            // reveal password
+            if (jButtonShowPassword.isSelected()) {//If button is presed
+                //jButtonShowPassword.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Pass onn.png")).getImage().getScaledInstance(25, 30, Image.SCALE_SMOOTH)));
+                jPasswordField.setEchoChar((char) 0);//Sets cahrecter tovisible
+            } else {//If button is presed again
+                jPasswordField.setEchoChar('*');//Sets cahrecter to invisible defaut
+              //  jButtonShowPassword.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pass off.png")).getImage().getScaledInstance(25, 30, Image.SCALE_SMOOTH)));
             }
         });
+        add(jButtonShowPassword);
 
+        jButtonLogin = new JButton("Sign in");
+        jButtonLogin.addActionListener(e -> {
+            // get the username & password
+            jFrame.dataProvider.login(jTextFieldUsername.getText(), String.valueOf(jPasswordField.getPassword()));
+        });
         add(jButtonLogin);
 
     }
 
-    public void login(String username, String password) {
-        //Method that shows menu jPanel to chose an action : make new order , add to ex
-//TODO VALIDATE HASHED PASSWORD AND THE SALT GET THEM FRO SQL
-        DataBaseConnection.getConnection();
-        if (true) {
 
-//            for (Waiter waiter : JFrameMain.waiter) {
-//                if (username.equals(waiter.getWaiterUsername()) && password.equals(waiter.getWaiterPassword())) {
-//                    JFrameMain.currentWaiter = waiter;
-//                    jFrame.showMenuPanel();
-//                    break;
-//                } else {
-//                    JOptionPane.showMessageDialog(
-//                            null
-//                            , "Invalid login credentials"
-//                            , "Error"
-//                            , JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-
-        } else {
-            JOptionPane.showMessageDialog(
-                    null
-                    , "Invalid input"
-                    , "Error"
-                    , JOptionPane.ERROR_MESSAGE);
-        }
-
-    }
 }
 
 

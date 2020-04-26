@@ -1,6 +1,7 @@
 package Views;
 
 import DataProvider.DataProvider;
+import Views.Panels.LoginPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,22 +11,22 @@ import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
 
-    public JTextField nameField;
-    public JTextField priceField;
-    public JComboBox sizeComboBox;
-    public JButton createButton;
-    public JButton removeButton;
-    public JTable table;
+
+   // public JTable table;
     public DataProvider dataProvider = new DataProvider();
 
     public MainFrame() {
         super("JobHunter");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        // Centers the form
+        this.setLocationRelativeTo(null);
         setSize(800, 600);
         setLayout(new FlowLayout());
 
 
-//
+//                 Todo  :  add table headers for table with ads
+        //
+        //
 //        table = new JTable();
 //        JScrollPane pane = new JScrollPane();
 //        String[] collumnIdentifiers = {"Name", "Size", "Price"};
@@ -36,7 +37,15 @@ public class MainFrame extends JFrame {
 //        add(pane);
 //
 //        dataProvider.loadSandwichesFromDatabase();
-    }
 
+
+        showLoginPanel();
+    }
+    public void showLoginPanel() {
+        //Shows login panel for the bar system
+        LoginPanel loginPanel = new LoginPanel(this);
+        loginPanel.setSize(600,800);
+        add(loginPanel);
+    }
 
 }
