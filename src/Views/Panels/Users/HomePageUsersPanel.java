@@ -9,5 +9,7 @@ public class HomePageUsersPanel extends JPanel {
     public MainFrame jFrame;
 private JTable tableJobOffers = new JTable();
 
-
+    public HomePageUsersPanel(MainFrame jFrame) {
+        this.jFrame = jFrame;
+    }
 }
