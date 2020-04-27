@@ -37,7 +37,7 @@ public class MainFrame extends JFrame {
 //        dataProvider.loadSandwichesFromDatabase();
 
 
-      //  router.showLoginPanel(this);
+       //router.showLoginPanel(this);
        router.showRegistrationPanel(this);
        // router.showManageProfilePanel(this);
     }

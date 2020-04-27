@@ -1,5 +1,6 @@
 package Views.Panels;
 
+import DataProvider.LoginDataProvider;
 import Helpers.UtilityGui.GuiUtils;
 import Views.MainFrame;
 
@@ -45,16 +46,10 @@ public class LoginPanel extends JPanel {
 
     }
 
-    public void LoginUser() {
+    private void LoginUser() {
 
-        String query = "SELECT e.`user_id`,d.`username_user`,d.`password_user`,d.`password_salt_user` \n" +
-                "FROM `users` AS e \n" +
-                "INNER JOIN `login_credentials_users` AS d\n" +
-                "ON e.`user_id` = d.`user_id`\n" +
-                "WHERE d.`username_user` = ?\n" +
-                "LIMIT 1;\n;";
+        LoginDataProvider.logonUser(jTextFieldUsername.getText(), String.valueOf(jPasswordField.getPassword()));
 
-        jFrame.loginDataProvider.loginUser(jTextFieldUsername.getText(), String.valueOf(jPasswordField.getPassword()), query);
     }
 }
 
