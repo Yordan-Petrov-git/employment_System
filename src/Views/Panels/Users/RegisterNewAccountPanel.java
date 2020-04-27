@@ -1,4 +1,4 @@
-package Views.Panels;
+package Views.Panels.Users;
 
 import DataProvider.DataProviderCreateNewUser;
 import Helpers.ImageUtils.UtilsImages;
@@ -107,8 +107,8 @@ public class RegisterNewAccountPanel extends JPanel {
         String imagePath = null;
         JFileChooser chooser = new JFileChooser();//File choser
         chooser.setCurrentDirectory(new File(System.getProperty("user.home")));//Opens home directory in current user
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter("*.images", "jpg", "png");//file extention filter
-        chooser.addChoosableFileFilter(fnef);//Sets the filter
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "jpg", "png");//file extention filter
+        chooser.addChoosableFileFilter(filter);//Sets the filter
         int ans = chooser.showSaveDialog(null);
         if (ans == JFileChooser.APPROVE_OPTION) {//if image chosen closes with yes
             File selectedPhoto = chooser.getSelectedFile();

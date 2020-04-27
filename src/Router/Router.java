@@ -2,7 +2,7 @@ package Router;
 
 import Views.MainFrame;
 import Views.Panels.LoginPanel;
-import Views.Panels.RegisterNewAccountPanel;
+import Views.Panels.Users.RegisterNewAccountPanel;
 import Views.Panels.Users.ManageProfile;
 
 import javax.swing.*;
