@@ -1,18 +1,10 @@
 package DataProvider;
 
 import Helpers.PasswordUtils.PasswordUtility;
-
-import Models.User;
-
 import javax.swing.*;
-import java.security.PublicKey;
 import java.sql.*;
 
 public class LoginDataProvider extends DataProvider {
-
-
-
-
 
 
     public static void logonUser(String username, String password) {
