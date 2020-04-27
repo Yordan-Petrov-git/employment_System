@@ -2,6 +2,7 @@ package Views.Panels;
 
 import DataProvider.LoginDataProvider;
 import Helpers.UtilityGui.GuiUtils;
+import Models.User;
 import Views.MainFrame;
 
 import javax.swing.*;
@@ -14,6 +15,18 @@ public class LoginPanel extends JPanel {
     private JTextField jTextFieldUsername;
     private JPasswordField jPasswordField;
     public MainFrame jFrame;
+
+
+    private User currentUser;
+
+    public  User getCurrentUser() {
+        return this.currentUser;
+    }
+
+    public  void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
 
     public LoginPanel(MainFrame jFrame) {
         this.jFrame = jFrame;

@@ -1,25 +1,16 @@
 package Views.Panels;
 
-import DataProvider.DataProvider;
 import DataProvider.DataProviderCreateNewUser;
 import Helpers.ImageUtils.UtilsImages;
 import Helpers.PasswordUtils.PasswordUtility;
 import Helpers.UtilityGui.GuiUtils;
-import Helpers.Validators.PasswordValidator;
-import Helpers.Validators.Validators;
 import Views.MainFrame;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class RegisterNewAccountPanel extends JPanel {
 
@@ -100,41 +91,16 @@ public class RegisterNewAccountPanel extends JPanel {
 
         jButtonCreateAccount = new JButton("Register User");
         jButtonCreateAccount.addActionListener(e -> {
-
-            // makeAccount();
-
+            createUser();
             try {
-                createAccount();
+                DataProviderCreateNewUser.addUserToDataBase();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         });
         add(jButtonCreateAccount);
 
-
     }
-
-    public void createAccount() throws SQLException {
-
-
-
-
-        String salt = PasswordUtility.generateSalt(512).get();//Generates secure random salt
-        String password = String.valueOf(JPasswordFieldPassword.getPassword());//Gets the strign value of the first password field
-        String key = PasswordUtility.hashPassword(password, salt).get();//Generates hashed key based on the passsword in the firs password field adn the generated secure random salt
-        String firstName = jTextFieldName.getText();
-        String familyName = jTextFieldFamilyName.getText();
-        String username = jTextFieldUsername.getText();
-        String phone = jTextFieldPhone.getText();
-        String email = jTextFieldEmail.getText();
-        String passphrase = jTextFieldPassphrase.getText();
-
-
-        DataProviderCreateNewUser.logonUser(firstName,familyName,email,phone,username,key,salt,passphrase);
-
-    }
-
 
     public void addPhoto() {
         String imagePath = null;
@@ -159,7 +125,7 @@ public class RegisterNewAccountPanel extends JPanel {
     }
 
 
-    public void creatUser() {
+    public void createUser() {
 
         String salt = PasswordUtility.generateSalt(512).get();//Generates secure random salt
         String password = String.valueOf(JPasswordFieldPassword.getPassword());//Gets the strign value of the first password field
@@ -174,7 +140,6 @@ public class RegisterNewAccountPanel extends JPanel {
         DataProviderCreateNewUser.initializeNewUserNoAccountType(username,
                 key, salt, passphrase, firstName, familyName,
                 phone, email);
-
 
     }
 

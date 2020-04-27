@@ -3,20 +3,23 @@ package DataProvider;
 import Helpers.PasswordUtils.PasswordUtility;
 import Models.User;
 
-import javax.swing.*;
+
 import java.sql.*;
 
-public class DataProviderCreateNewUser {
+public class DataProviderCreateNewUser extends DataProvider{
 
-    private User currentUser;
+    public static User currentUser;
 
-    public User getCurrentUser() {
-        return this.currentUser;
+    public static User getCurrentUser() {
+        return currentUser;
     }
 
     public static void setCurrentUser(User currentUser) {
-        currentUser = currentUser;
+        DataProviderCreateNewUser.currentUser = currentUser;
     }
+
+
+
 
     public static void initializeNewUser(String username, String password, String salt
             , String passPhrase, String firstName, String familyName, String phoneNumber
@@ -24,8 +27,8 @@ public class DataProviderCreateNewUser {
 
         User user = new User(username, password, salt, passPhrase, firstName, familyName, phoneNumber
                 , emailAddress, accountType, picture);
-        
-        setCurrentUser(user);
+
+
     }
 
     public static void initializeNewUserNoPicture(String username, String password, String salt
@@ -35,7 +38,7 @@ public class DataProviderCreateNewUser {
         User user = new User(username, password, salt, passPhrase, firstName, familyName, phoneNumber
                 , emailAddress, accountType);
 
-        setCurrentUser(user);
+
     }
 
     public static void initializeNewUserNoAccountType(String username, String password, String salt
@@ -43,13 +46,13 @@ public class DataProviderCreateNewUser {
             , String emailAddress) {
 
         User user = new User(username, password, salt, passPhrase, firstName, familyName, phoneNumber
-                , emailAddress);
+                ,emailAddress);
 
         setCurrentUser(user);
     }
 
 
-    public static void logonUser(String firstName
+    public static void registerNewUser(String firstName
             , String familyName
             , String email
             , String phone
@@ -80,5 +83,21 @@ public class DataProviderCreateNewUser {
         }
     }
 
+
+
+    public static void addUserToDataBase() throws SQLException {
+
+        String salt = getCurrentUser().getSalt();
+        String key = getCurrentUser().getPassword();
+        String firstName = getCurrentUser().getFirstName();
+        String familyName = getCurrentUser().getFamilyName();
+        String username = getCurrentUser().getUsername();
+        String phone = getCurrentUser().getPhoneNumber();
+        String email = getCurrentUser().getEmailAddress();
+        String passphrase = getCurrentUser().getPassPhrase();
+
+        registerNewUser(firstName,familyName,email,phone,username,key,salt,passphrase);
+
+    }
 
 }
