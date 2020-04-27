@@ -6,12 +6,12 @@ import Models.User;
 
 import java.sql.*;
 
-public class DataProviderCreateNewUser extends DataProvider{
+public class DataProviderCreateNewUser extends DataProvider {
 
     public static User currentUser;
 
     public static User getCurrentUser() {
-        return currentUser;
+        return DataProviderCreateNewUser.currentUser;
     }
 
     public static void setCurrentUser(User currentUser) {
@@ -44,7 +44,7 @@ public class DataProviderCreateNewUser extends DataProvider{
             , String emailAddress) {
 
         User user = new User(username, password, salt, passPhrase, firstName, familyName, phoneNumber
-                ,emailAddress);
+                , emailAddress);
 
         setCurrentUser(user);
     }
@@ -82,7 +82,6 @@ public class DataProviderCreateNewUser extends DataProvider{
     }
 
 
-
     public static void addUserToDataBase() throws SQLException {
 
         String salt = getCurrentUser().getSalt();
@@ -94,12 +93,12 @@ public class DataProviderCreateNewUser extends DataProvider{
         String email = getCurrentUser().getEmailAddress();
         String passphrase = getCurrentUser().getPassPhrase();
 
-        registerNewUser(firstName,familyName,email,phone,username,key,salt,passphrase);
+        registerNewUser(firstName, familyName, email, phone, username, key, salt, passphrase);
 
     }
 
     public static void removeCurrentUser() {
-      setCurrentUser(null);
+        setCurrentUser(null);
     }
 }
 

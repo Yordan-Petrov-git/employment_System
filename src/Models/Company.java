@@ -12,8 +12,8 @@ public class Company extends SuperclassUser {
     private String webPage;
     private String description;
 
-    public Company( String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String logo, String address, String city, String eik, String description) {
-        super( username, password, salt, passPhrase);
+    public Company(String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String logo, String address, String city, String eik, String description) {
+        super(username, password, salt, passPhrase);
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
         this.logo = logo;
@@ -24,8 +24,8 @@ public class Company extends SuperclassUser {
     }
 
 
-    public Company( String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String address, String city, String eik, String description) {
-        super( username, password, salt, passPhrase);
+    public Company(String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String address, String city, String eik, String description) {
+        super(username, password, salt, passPhrase);
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -35,8 +35,8 @@ public class Company extends SuperclassUser {
     }
 
 
-    public Company( String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String logo, String address, String city, String eik, String webPage, String description) {
-        super( username, password, salt, passPhrase);
+    public Company(String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String logo, String address, String city, String eik, String webPage, String description) {
+        super(username, password, salt, passPhrase);
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
         this.logo = logo;
@@ -47,6 +47,11 @@ public class Company extends SuperclassUser {
         this.description = description;
     }
 
+    public Company(String username, String password
+            , String salt, String passPhrase, String companyName) {
+        super(username, password, salt, passPhrase);
+        this.companyName = companyName;
+    }
 
     public String getCompanyName() {
         return this.companyName;
