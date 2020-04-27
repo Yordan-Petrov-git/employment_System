@@ -91,12 +91,13 @@ public class RegisterNewAccountPanel extends JPanel {
 
         jButtonCreateAccount = new JButton("Register User");
         jButtonCreateAccount.addActionListener(e -> {
-            createUser();
+            createUser();//create new instance of class user
             try {
-                DataProviderCreateNewUser.addUserToDataBase();
+                DataProviderCreateNewUser.addUserToDataBase();//adds user to the database
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+            DataProviderCreateNewUser.removeCurrentUser();//deletes current user
         });
         add(jButtonCreateAccount);
 

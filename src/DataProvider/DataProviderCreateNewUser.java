@@ -19,8 +19,6 @@ public class DataProviderCreateNewUser extends DataProvider{
     }
 
 
-
-
     public static void initializeNewUser(String username, String password, String salt
             , String passPhrase, String firstName, String familyName, String phoneNumber
             , String emailAddress, String accountType, String picture) {
@@ -100,4 +98,8 @@ public class DataProviderCreateNewUser extends DataProvider{
 
     }
 
+    public static void removeCurrentUser() {
+      setCurrentUser(null);
+    }
 }
+
