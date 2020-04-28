@@ -15,12 +15,12 @@ public class User extends SuperclassUser {
                 String firstName, String familyName, String phoneNumber,
                 String emailAddress, String accountType, String picture) {
         super(username, password, salt, passPhrase);
-        this.firstName = firstName;
-        this.familyName = familyName;
-        this.phoneNumber = phoneNumber;
-        this.emailAddress = emailAddress;
-        this.accountType = accountType;
-        this.picture = picture;
+        setFirstName(firstName);
+        setFamilyName(familyName);
+        setPhoneNumber(phoneNumber);
+        setEmailAddress(emailAddress);
+        setAccountType(accountType);
+        setPicture(picture);
     }
 
     public User(String username, String password,
@@ -28,21 +28,26 @@ public class User extends SuperclassUser {
                 String familyName, String phoneNumber, String emailAddress,
                 String accountType) {
         super(username, password, salt, passPhrase);
-        this.firstName = firstName;
-        this.familyName = familyName;
-        this.phoneNumber = phoneNumber;
-        this.emailAddress = emailAddress;
-        this.accountType = accountType;
+        setFirstName(firstName);
+        setFamilyName(familyName);
+        setPhoneNumber(phoneNumber);
+        setEmailAddress(emailAddress);
+        setAccountType(accountType);
+
+
+
     }
 
     public User(String username, String password,
                 String salt, String passPhrase, String firstName,
                 String familyName, String phoneNumber, String emailAddress) {
         super(username, password, salt, passPhrase);
-        this.firstName = firstName;
-        this.familyName = familyName;
-        this.phoneNumber = phoneNumber;
-        this.emailAddress = emailAddress;
+        setFirstName(firstName);
+        setFamilyName(familyName);
+        setPhoneNumber(phoneNumber);
+        setEmailAddress(emailAddress);
+
+
     }
 
     public String getFirstName() {

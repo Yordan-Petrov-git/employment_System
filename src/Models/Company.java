@@ -14,43 +14,40 @@ public class Company extends SuperclassUser {
 
     public Company(String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String logo, String address, String city, String eik, String description) {
         super(username, password, salt, passPhrase);
-        this.companyName = companyName;
-        this.phoneNumber = phoneNumber;
-        this.logo = logo;
-        this.address = address;
-        this.city = city;
-        this.eik = eik;
-        this.description = description;
+        setCompanyName(companyName);
+        setCompanyName(phoneNumber);
+        setCompanyName(logo);
+        setCompanyName(address);
+        setCompanyName(eik);
+        setCompanyName(description);
     }
 
 
     public Company(String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String address, String city, String eik, String description) {
         super(username, password, salt, passPhrase);
-        this.companyName = companyName;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.city = city;
-        this.eik = eik;
-        this.description = description;
+        setCompanyName(companyName);
+        setCompanyName(phoneNumber);
+        setCompanyName(address);
+        setCompanyName(eik);
+        setCompanyName(description);
     }
 
 
     public Company(String username, String password, String salt, String passPhrase, String companyName, String phoneNumber, String logo, String address, String city, String eik, String webPage, String description) {
         super(username, password, salt, passPhrase);
-        this.companyName = companyName;
-        this.phoneNumber = phoneNumber;
-        this.logo = logo;
-        this.address = address;
-        this.city = city;
-        this.eik = eik;
-        this.webPage = webPage;
-        this.description = description;
+        setCompanyName(companyName);
+        setCompanyName(phoneNumber);
+        setCompanyName(logo);
+        setCompanyName(address);
+        setCompanyName(eik);
+        setCompanyName(webPage);
+        setCompanyName(description);
     }
 
     public Company(String username, String password
             , String salt, String passPhrase, String companyName) {
         super(username, password, salt, passPhrase);
-        this.companyName = companyName;
+        setCompanyName(companyName);
     }
 
     public String getCompanyName() {

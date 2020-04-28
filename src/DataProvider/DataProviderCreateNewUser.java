@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class DataProviderCreateNewUser extends DataProvider {
 
-    public static User currentUser;
+    private static User currentUser;
 
     public static User getCurrentUser() {
         return DataProviderCreateNewUser.currentUser;

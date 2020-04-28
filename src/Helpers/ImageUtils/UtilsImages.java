@@ -1,6 +1,7 @@
 package Helpers.ImageUtils;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
 
@@ -36,5 +37,27 @@ public class UtilsImages {
         return picture;
     }
 
+
+
+    public static void addPhoto(JLabel label) {
+        String imagePath = null;
+        JFileChooser chooser = new JFileChooser();//File choser
+        chooser.setCurrentDirectory(new File(System.getProperty("user.home")));//Opens home directory in current user
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.images", "jpg", "png");//file extention filter
+        chooser.addChoosableFileFilter(filter);//Sets the filter
+        int ans = chooser.showSaveDialog(null);
+        if (ans == JFileChooser.APPROVE_OPTION) {//if image chosen closes with yes
+            File selectedPhoto = chooser.getSelectedFile();
+            String path = selectedPhoto.getAbsolutePath();// sets chosen file's path
+            if (UtilsImages.limitImageSize(path)) {//Limit image
+                label.setIcon(UtilsImages.resizeImage(path, null, label));//Resizes selected iamge to fit in jlabel
+                //  imagePath = path;
+            } else {//if photo is larger
+                JOptionPane.showMessageDialog(null, "Photo larger than 1 mb please select different photo", "Selected photo size is too large", 2);
+            }
+        } else {//Image  exited or closed
+            System.out.println("Photo Not Selected ");
+        }
+    }
 
 }

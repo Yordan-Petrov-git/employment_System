@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class DataProviderCreateNewCompany extends DataProvider {
 
-    public static Company currentCompany;
+    private static Company currentCompany;
 
     public static Company getCurrentCompany() {
         return DataProviderCreateNewCompany.currentCompany;
@@ -24,12 +24,10 @@ public class DataProviderCreateNewCompany extends DataProvider {
 
         Company company = new Company(username, password, salt, passPhrase, companyName);
 
+        setCurrentCompany(company);
     }
 
 
-    public static void removeCurrentCompany() {
-        setCurrentCompany(null);
-    }
 
     public static void registerNewCompany(String companyName
             , String username
@@ -55,15 +53,19 @@ public class DataProviderCreateNewCompany extends DataProvider {
             System.out.println(ex.getMessage());
         }
     }
-    public static void addCompanyToDataBase() throws SQLException {
+    public static void addCompanyToDataBase() {
 
-        String salt = getCurrentCompany().getSalt();
-        String key = getCurrentCompany().getPassword();
         String companyName = getCurrentCompany().getCompanyName();
         String username = getCurrentCompany().getUsername();
+        String key = getCurrentCompany().getPassword();
+        String salt = getCurrentCompany().getSalt();
         String passphrase = getCurrentCompany().getPassPhrase();
 
         registerNewCompany(companyName,username,key,salt,passphrase);
 
+    }
+
+    public static void removeCurrentCompany() {
+        setCurrentCompany(null);
     }
 }
