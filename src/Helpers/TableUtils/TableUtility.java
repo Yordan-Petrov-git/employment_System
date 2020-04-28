@@ -27,6 +27,7 @@ public class TableUtility {
             header.setResizingColumn(column);
             column.setWidth(width + jTableToResize.getIntercellSpacing().width);
         }
+        //return jTableToResize;
     }
 
 }

@@ -2,8 +2,10 @@ package Router;
 
 import Views.Home;
 import Views.MainFrame;
+import Views.Panels.Company.HomePageCompanyPanel;
 import Views.Panels.Company.RegisterNewCompany;
 import Views.Panels.LoginPanel;
+import Views.Panels.Users.HomePageUsersPanel;
 import Views.Panels.Users.RegisterNewAccountPanel;
 import Views.Panels.Users.ManageProfile;
 
@@ -57,4 +59,20 @@ public class Router extends JPanel {
         mainFrame.add(homePage);
         mainFrame.getContentPane().validate();
     }
+    public void showHomepageUserPanel(MainFrame mainFrame) {
+        //Shows login panel for the bar system
+        HomePageUsersPanel homePage = new HomePageUsersPanel(mainFrame);
+        homePage.setSize(800, 600);
+        mainFrame.add(homePage);
+        mainFrame.getContentPane().validate();
+    }
+
+    public void showHomePageCompanyPanel(MainFrame mainFrame) {
+        //Shows login panel for the bar system
+        HomePageCompanyPanel homePage = new HomePageCompanyPanel(mainFrame);
+        homePage.setSize(800, 600);
+        mainFrame.add(homePage);
+        mainFrame.getContentPane().validate();
+    }
+
 }

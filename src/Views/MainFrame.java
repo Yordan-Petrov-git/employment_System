@@ -1,32 +1,30 @@
 package Views;
 
+import DataProvider.DataProviderTableJobOffers;
 import DataProvider.LoginDataProvider;
+import Helpers.TableUtils.TableUtility;
 import Router.Router;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
 
-    // public JTable table;
-    public LoginDataProvider loginDataProvider = new LoginDataProvider();
-    public Router router = new Router();
+    public static LoginDataProvider loginDataProvider = new LoginDataProvider();
+    public static DataProviderTableJobOffers dataProviderTableJobOffers = new DataProviderTableJobOffers();
+    public static Router router = new Router();
+    public static LoginEnum loginAs;
 
     public MainFrame() {
 
         super("JobHunter");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        // Centers the form
         setSize(800, 600);
         this.setLocationRelativeTo(null);
         setLayout(new FlowLayout());
 
-
-       //router.showRegistrationPanel(this);
-       // router.showManageProfilePanel(this);
-       // router.showRegistrationPanelCompany(this);
+       //router.showManageProfilePanel(this);
+       //router.showRegistrationPanelCompany(this);
         router.showHomepagePanel(this);
     }
-
 
 }

@@ -7,13 +7,10 @@ import Helpers.UtilityGui.GuiUtils;
 import Views.MainFrame;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.io.File;
 import java.sql.SQLException;
 
 public class RegisterNewAccountPanel extends JPanel {
-
 
     private JLabel jLabelTitle;
     private JLabel jLabelPicture;
@@ -26,29 +23,22 @@ public class RegisterNewAccountPanel extends JPanel {
     private JTextField jTextFieldPhone;
     private JTextField jTextFieldEmail;
     private JToggleButton jButtonShowPassword;
-
-
     private JButton jButtonAddPicture;
     private JComboBox jComboBoxAccountType;
     private JButton jButtonCreateAccount;
-
-
     public MainFrame jFrame;
-
 
     public RegisterNewAccountPanel(MainFrame jFrame) {
         this.jFrame = jFrame;
         jFrame.setSize(1300, 100);
-
+        jFrame.setLocationRelativeTo(null);
 
         jLabelTitle = new JLabel("Registration");
         add(jLabelTitle);
 
-
         jLabelPicture = new JLabel("");
         jLabelPicture.setPreferredSize(new Dimension(60, 60));
         add(jLabelPicture);
-
 
         jTextFieldName = new JTextField("Name");
         add(jTextFieldName);
@@ -94,18 +84,25 @@ public class RegisterNewAccountPanel extends JPanel {
 
         jButtonCreateAccount = new JButton("Register User");
         jButtonCreateAccount.addActionListener(e -> {
+
             createUser();//create new instance of class user
+
             try {
+
                 DataProviderCreateNewUser.addUserToDataBase();//adds user to the database
+
             } catch (SQLException throwables) {
+
                 throwables.printStackTrace();
+
             }
+
             DataProviderCreateNewUser.removeCurrentUser();//deletes current user
         });
+
         add(jButtonCreateAccount);
 
     }
-
 
     public void createUser() {
 
@@ -124,6 +121,5 @@ public class RegisterNewAccountPanel extends JPanel {
                 phone, email);
 
     }
-
 
 }

@@ -1,27 +1,24 @@
 package Views;
-
-import DataProvider.DataProviderCreateNewUser;
-import Helpers.ImageUtils.UtilsImages;
-import Helpers.PasswordUtils.PasswordUtility;
-import Helpers.UtilityGui.GuiUtils;
-import Router.Router;
-
+import Helpers.TableUtils.TableUtility;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.io.File;
-import java.sql.SQLException;
+
 
 public class Home extends JPanel {
 
 
+    private static MainFrame jFrame;
     private JLabel jLabelTitle;
     private JButton jButtonLoginAsUser;
     private JButton jButtonLoginAsCompany;
     private JTable jTableJobOffers;
-    public Router router = new Router();
-    public MainFrame jFrame;
+
+    private JButton jButtonLast;
+    private JButton jButtonNext;
+    private JButton jButtonPrevious;
+    private JButton jButtonFirst;
+
+
 
     public Home(MainFrame jFrame) {
         this.jFrame = jFrame;
@@ -34,22 +31,20 @@ public class Home extends JPanel {
 
         jTableJobOffers = new JTable();
         JScrollPane pane = new JScrollPane();
-        String[] columnIdentifiers = {"", "", "","", "", ""};
-
-//        dataProvider.model = new DefaultTableModel();
-//        dataProvider.model.setColumnIdentifiers(columnIdentifiers);
-//
-//        jTableJobOffers.setModel(dataProvider.model);
+        String[] columnIdentifiers = {"Company","Title","City","Salary","DateAdded"};
+        MainFrame.dataProviderTableJobOffers.model = new DefaultTableModel();
+        MainFrame.dataProviderTableJobOffers.model.setColumnIdentifiers(columnIdentifiers);
+        jTableJobOffers.setModel(MainFrame.dataProviderTableJobOffers.model);
         pane.setViewportView(jTableJobOffers);
-
+        TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
-
 
         jButtonLoginAsUser = new JButton("Login as User");
         jButtonLoginAsUser.addActionListener(e -> {
 
-            router.removePanel(jFrame);
-            router.showLoginPanel(jFrame);
+
+            MainFrame.loginAs = LoginEnum.LOGIN_AS_USER;
+            showLogin();
 
 
         });
@@ -58,13 +53,26 @@ public class Home extends JPanel {
         jButtonLoginAsCompany = new JButton("Login as Company");
         jButtonLoginAsCompany.addActionListener(e -> {
 
-            router.removePanel(jFrame);
-            //   router.showLoginPanel(jFrame);
+            MainFrame.loginAs = LoginEnum.LOGIN_AS_COMPANY;
+            showLogin();
 
         });
         add(jButtonLoginAsCompany);
 
     }
 
+
+    public static void showLogin() {
+
+        MainFrame.router.removePanel(jFrame);
+        MainFrame.router.showLoginPanel(jFrame);
+
+    }
+
+
+
+
+
+   // int index = jTableJobOffers.getSelectedRow();
 
 }

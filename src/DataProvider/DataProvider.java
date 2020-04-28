@@ -34,7 +34,6 @@ public class DataProvider {
         datasource.setPortNumber(portNumber);
         //datasource.setPassword(password);
 
-
         try {
             connection = datasource.getConnection();
 
