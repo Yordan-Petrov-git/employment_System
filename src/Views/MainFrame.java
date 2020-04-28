@@ -14,6 +14,7 @@ public class MainFrame extends JFrame {
     public static Router router = new Router();
     public static LoginEnum loginAs;
 
+
     public MainFrame() {
 
         super("JobHunter");

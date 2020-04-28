@@ -46,9 +46,9 @@ public class User extends SuperclassUser {
         setFamilyName(familyName);
         setPhoneNumber(phoneNumber);
         setEmailAddress(emailAddress);
-
-
     }
+
+
 
     public String getFirstName() {
         return this.firstName;

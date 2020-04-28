@@ -95,6 +95,8 @@ public class DataProviderCreateNewUser extends DataProvider {
 
     }
 
+
+
     public static void removeCurrentUser() {
         setCurrentUser(null);
     }
