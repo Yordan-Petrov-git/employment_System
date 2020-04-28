@@ -2,6 +2,7 @@ package DataProvider;
 
 import Models.JobOffer;
 
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,9 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataProviderTableJobOffers extends DataProvider{
+public class DataProviderTableJobOffers extends AbstractTableModel {
 
-    private PreparedStatement preparedStatement;
+    private static PreparedStatement preparedStatement;
+
 
     public DefaultTableModel model;
 
@@ -27,18 +29,18 @@ public class DataProviderTableJobOffers extends DataProvider{
 //            model.addRow(row);
        }
 
-    public int count() {
+    public static int count() {
         //Counts SQL table all rows
         int counter = 0;
         try {
-            getConnection().setAutoCommit(false);
-            preparedStatement = getConnection().prepareStatement("SELECT count(job_offer_id) from job_offers");
+          //  DataProvider.getConnection().setAutoCommit(false);
+            preparedStatement = DataProvider.getConnection().prepareStatement("SELECT count(job_offer_id) from job_offers");
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 counter = rs.getInt("count(job_offer_id)");
             }
-            getConnection().commit();
-            getConnection().setAutoCommit(true);
+          //  DataProvider.getConnection().commit();
+           // DataProvider.getConnection().setAutoCommit(true);
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -47,7 +49,7 @@ public class DataProviderTableJobOffers extends DataProvider{
     }
 
 
-    public List<JobOffer> findAll(int page, int pageSize) {
+    public static List<JobOffer> findAll(int page, int pageSize) {
         //Table rows paging
         List<JobOffer> listJobOffers = new ArrayList<JobOffer>();
 
@@ -56,9 +58,9 @@ public class DataProviderTableJobOffers extends DataProvider{
         }
 
         try {
-            getConnection().setAutoCommit(false);
+           // DataProvider.getConnection().setAutoCommit(false);
             //SQL DB Query for table paging
-            preparedStatement = getConnection().prepareCall("{ call show_all_job_offers() }");
+            preparedStatement = DataProvider.getConnection().prepareCall("{call show_all_job_offers(?,?)}");
             preparedStatement.setInt(1, pageSize * (page - 1));
             preparedStatement.setInt(2, pageSize);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -74,15 +76,88 @@ public class DataProviderTableJobOffers extends DataProvider{
                         resultSet.getString("net_salary_for_offer"),resultSet.getString("type"));
                 listJobOffers.add(jobOffer);
             }
-            getConnection().commit();
-            getConnection().setAutoCommit(true);
+            //DataProvider.getConnection().commit();
+           // DataProvider.getConnection().setAutoCommit(true);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        //finally {
+        finally {
             return listJobOffers;
-       // }
+        }
 
     }
+        private final String HEADER[] = {"№->", "Title", "City", "Description", "Salary","JobType","Company"};
+
+        public void setList(List<JobOffer> listProduct) {
+            this.listProduct = listProduct;
+        }
+
+        public void save(JobOffer product) {
+            listProduct.add(product);
+            fireTableRowsInserted(getRowCount() - 1, getRowCount() - 1);
+        }
+
+        public void edit(int index, JobOffer product) {
+            listProduct.set(index, product);
+            fireTableRowsUpdated(index, index);
+        }
+
+        public void delete(int index) {
+            listProduct.remove(index);
+            fireTableRowsDeleted(index, index);
+        }
+
+        public JobOffer findOne(int index) {
+            return listProduct.get(index);
+        }
+
+        public int getRowCount() {
+            return listProduct.size();
+        }
+
+        public int getColumnCount() {
+            return HEADER.length;
+        }
+
+        public String getColumnName(int column) {
+            return HEADER[column];
+        }
+
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            JobOffer jobOffer = listProduct.get(rowIndex);
+
+            switch (columnIndex) {
+                case 0:
+                    return rowIndex + 1;//Row number counter for the table
+
+                case 1:
+                    return jobOffer.getJobTitle();
+
+                case 2:
+                    return jobOffer.getCity();
+
+                case 3:
+                    return jobOffer.getDescription();
+
+                case 4:
+                    return jobOffer.getNetSalary();
+
+                case 5:
+                    return jobOffer.getJobType();
+
+//                case 6:
+//                    return jobOffer.getCompany();
+
+
+                default:
+                    return null;//Defaut state null
+            }
+        }
+
+        public void addRow(Object[] row) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+
 
 }

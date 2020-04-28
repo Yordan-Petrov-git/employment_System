@@ -1,6 +1,6 @@
 package Views;
 
-import DataProvider.DataProvider;
+import DataProvider.DataProviderTableJobOffers;
 import Helpers.TableUtils.TableUtility;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -17,24 +17,26 @@ public class Home extends JPanel {
     private JButton jButtonLoginAsCompany;
     private JTable jTableJobOffers;
 
+    private JLabel jLabelStatusHalaman;
+    private JLabel jLabelTotalData;
+
     private JButton jButtonLast;
     private JButton jButtonNext;
     private JButton jButtonPrevious;
     private JButton jButtonFirst;
 
     public Integer page = 1;
-    public Integer rowCountPerPage = 5;
+    public Integer rowCountPerPage = 10;
     public Integer totalPage = 1;
     public Integer totalData = 0;
     public JComboBox<String> jComboBoxPage;
 
+    public  DataProviderTableJobOffers productTableModel;
 
     public Home(MainFrame jFrame) {
         Home.jFrame = jFrame;
 
         jFrame.setSize(800, 600);
-
-
 
         jLabelTitle = new JLabel("Homepage");
         add(jLabelTitle);
@@ -43,9 +45,9 @@ public class Home extends JPanel {
         jTableJobOffers = new JTable();
         JScrollPane pane = new JScrollPane();
         String[] columnIdentifiers = {"Company","Title","City","Salary","DateAdded"};
-        MainFrame.dataProviderTableJobOffers.model = new DefaultTableModel();
-        MainFrame.dataProviderTableJobOffers.model.setColumnIdentifiers(columnIdentifiers);
-        jTableJobOffers.setModel(MainFrame.dataProviderTableJobOffers.model);
+        MainFrame.dataProviderTableJobOfferss.model = new DefaultTableModel();
+        MainFrame.dataProviderTableJobOfferss.model.setColumnIdentifiers(columnIdentifiers);
+        jTableJobOffers.setModel(MainFrame.dataProviderTableJobOfferss.model);
         pane.setViewportView(jTableJobOffers);
         TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
@@ -56,11 +58,6 @@ public class Home extends JPanel {
         jComboBoxPage.addItem("30");
         jComboBoxPage.addItem("40");
         jComboBoxPage.addItem("50");
-        jComboBoxPage.addItem("60");
-        jComboBoxPage.addItem("70");
-        jComboBoxPage.addItem("80");
-        jComboBoxPage.addItem("90");
-        jComboBoxPage.addItem("100");
         add(jComboBoxPage);
 
         jComboBoxPage.addItemListener(new ItemListener() {
@@ -69,7 +66,52 @@ public class Home extends JPanel {
                 initPagination();////Shows specific amaunt of rows in the jtable on combobox selection
             }
         });
-        initPagination();//Shows first paged rows in the jtable
+       //Shows first paged rows in the jtable
+
+
+        jLabelStatusHalaman = new JLabel("");
+        add(jLabelStatusHalaman);
+
+        jLabelTotalData = new JLabel("");
+        add(jLabelTotalData);
+
+
+        jButtonLast = new JButton("last");
+        jButtonLast.addActionListener(e -> {
+            page = totalPage;
+            initPagination();
+        });
+        add(jButtonLast);
+        jButtonLast.setEnabled(true);
+
+        jButtonNext = new JButton("next");
+        jButtonNext.addActionListener(e -> {
+            if (page < totalPage) {
+                page++;//Page counter increment
+                initPagination();//Update table rows with paging
+            }
+        });
+        add(jButtonNext);
+        jButtonNext.setEnabled(true);
+
+        jButtonPrevious= new JButton("previous");
+        jButtonPrevious.addActionListener(e -> {
+            if (page > 1) {
+                page--;//Page counter decrement
+                initPagination();//Update table rows with paging
+            }
+        });
+        add(jButtonPrevious);
+        jButtonPrevious.setEnabled(true);
+
+        jButtonFirst= new JButton("first");
+        jButtonFirst.addActionListener(e -> {
+            page = 1;//Sets page counter to first page
+            initPagination();//Update table rows with paging
+        });
+        add(jButtonFirst);
+        jButtonFirst.setEnabled(true);
+
 
 
         jButtonLoginAsUser = new JButton("Login as User");
@@ -91,7 +133,7 @@ public class Home extends JPanel {
 
         });
         add(jButtonLoginAsCompany);
-
+        initPagination();
     }
 
 
@@ -135,36 +177,16 @@ public class Home extends JPanel {
             page = 1;
         }
         //New instance of table for client table model
-        productTableModel = new ClientsTableModel();
+        productTableModel = new DataProviderTableJobOffers();
         //Popialte table
-        productTableModel.setList(findAll(page, rowCountPerPage));
+        productTableModel.setList(DataProviderTableJobOffers.findAll(page, rowCountPerPage));
         //Set model
-        jTblClients.setModel(productTableModel);
-        jLabelStatusHalaman.setText("Page " + page + " for " + totalPage);//Page position count
-        jLabelTotalData.setText(("Row count " + totalData));//Row count
+        jTableJobOffers.setModel(productTableModel);
+       // jLabelStatusHalaman.setText("Page " + page + " for " + totalPage);//Page position count
+       // jLabelTotalData.setText(("Row count " + totalData));//Row count
         //Resizes jtables columns
-        ResizeForJTables.autoResizeColumn(jTblClients);
+        TableUtility.autoResizeColumn(jTableJobOffers);
     }
-
-//    public int count() {
-//        //Counts SQL table all rows
-//        int counter = 0;
-//        try {
-//            DataProvider.setAutoCommit(false);
-//            preparedStatement = connct.prepareStatement("SELECT count(id) from clientdetails");
-//            ResultSet rs = preparedStatement.executeQuery();
-//            while (rs.next()) {
-//                counter = rs.getInt("count(id)");
-//            }
-//            connct.commit();
-//            connct.setAutoCommit(true);
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        } finally {
-//            return counter;
-//        }
-//    }
-
 
    // int index = jTableJobOffers.getSelectedRow();
 

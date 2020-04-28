@@ -2,7 +2,6 @@ package Views.Panels.Users;
 
 import Helpers.TableUtils.TableUtility;
 import Views.MainFrame;
-import com.mysql.cj.xdevapi.Table;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -21,9 +20,9 @@ private JTable tableJobOffers = new JTable();
         jTableJobOffers = new JTable();
         JScrollPane pane = new JScrollPane();
         String[] columnIdentifiers = {"Company","Title","City","Salary","DateAdded"};
-        MainFrame.dataProviderTableJobOffers.model = new DefaultTableModel();
-        MainFrame.dataProviderTableJobOffers.model.setColumnIdentifiers(columnIdentifiers);
-        jTableJobOffers.setModel(MainFrame.dataProviderTableJobOffers.model);
+        MainFrame.dataProviderTableJobOfferss.model = new DefaultTableModel();
+        MainFrame.dataProviderTableJobOfferss.model.setColumnIdentifiers(columnIdentifiers);
+        jTableJobOffers.setModel(MainFrame.dataProviderTableJobOfferss.model);
         pane.setViewportView(jTableJobOffers);
         TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
