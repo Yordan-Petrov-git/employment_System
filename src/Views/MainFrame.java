@@ -22,25 +22,10 @@ public class MainFrame extends JFrame {
         setLayout(new FlowLayout());
 
 
-//                 Todo  :  add table headers for table with ads
-        //
-        //
-//        table = new JTable();
-//        JScrollPane pane = new JScrollPane();
-//        String[] collumnIdentifiers = {"Name", "Size", "Price"};
-//        dataProvider.model = new DefaultTableModel();
-//        dataProvider.model.setColumnIdentifiers(collumnIdentifiers);
-//        table.setModel(dataProvider.model);
-//        pane.setViewportView(table);
-//        add(pane);
-//
-//        dataProvider.loadSandwichesFromDatabase();
-
-
-       //router.showLoginPanel(this);
        //router.showRegistrationPanel(this);
        // router.showManageProfilePanel(this);
-        router.showRegistrationPanelCompany(this);
+       // router.showRegistrationPanelCompany(this);
+        router.showHomepagePanel(this);
     }
 
 

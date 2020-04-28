@@ -2,6 +2,9 @@ package Models;
 
 public class SuperclassUser {
 
+
+
+    private long id;
     private String username;
     private String password;
     private String salt;
@@ -16,6 +19,13 @@ public class SuperclassUser {
     }
 
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return this.username;

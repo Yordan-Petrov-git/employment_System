@@ -58,8 +58,8 @@ public class RegisterNewCompany extends JPanel {
 
 
         jButtonShowPassword = new JToggleButton("");
+        jButtonShowPassword.setIcon(new ImageIcon(new javax.swing.ImageIcon(GuiUtils.class.getResource("/Icons/pass_off.png")).getImage().getScaledInstance(25, 30, Image.SCALE_SMOOTH)));
         jButtonShowPassword.addActionListener(e -> {
-
             GuiUtils.showPassword(jButtonShowPassword, JPasswordFieldPassword);
             GuiUtils.showPassword(jButtonShowPassword, JPasswordFieldPasswordRetypePassword);
         });

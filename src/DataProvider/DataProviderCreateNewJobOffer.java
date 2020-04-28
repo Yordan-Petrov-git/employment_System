@@ -2,13 +2,17 @@ package DataProvider;
 
 import Models.JobOffer;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 public class DataProviderCreateNewJobOffer extends DataProvider {
 
 
-    public static JobOffer currentJobOffer;
+    private static JobOffer currentJobOffer;
 
     public static JobOffer getCurrentJobOffer() {
-        return currentJobOffer;
+        return DataProviderCreateNewJobOffer.currentJobOffer;
     }
 
     public static void setCurrentJobOffer(JobOffer currentUser) {
@@ -25,7 +29,49 @@ public class DataProviderCreateNewJobOffer extends DataProvider {
                 , netSalary
                 , isOfferActive
                 , jobType);
+
+        setCurrentJobOffer(jobOffer);
     }
+
+    public static void registerJobOffer(Integer companyId, String jobTitle, String city, String position
+            , String description, String netSalary
+            , String jobType) {
+
+        String query = "{ call insert_new_job_offer(?,?,?,?,?,?,?) }";
+
+
+        try (Connection conn = DataProvider.getConnection();
+
+             CallableStatement cstmt = conn.prepareCall(query)) {
+
+            cstmt.setInt(1, companyId);
+            cstmt.setString(2, jobTitle);
+            cstmt.setString(3, city);
+            cstmt.setString(4, position);
+            cstmt.setString(5, description);
+            cstmt.setString(6, netSalary);
+            cstmt.setString(7, jobType);
+            cstmt.execute();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void addJobOfferToDataBase() {
+
+                long companyId = getCurrentJobOffer().getId();
+                String jobTitle = getCurrentJobOffer().getJobTitle();
+                String city = getCurrentJobOffer().getCity();
+                String position = getCurrentJobOffer().getPosition();
+                String description = getCurrentJobOffer().getDescription();
+                String netSalary = getCurrentJobOffer().getNetSalary();
+                String jobType = getCurrentJobOffer().getJobType();
+
+        DataProviderCreateNewJobOffer.registerJobOffer((int)companyId,jobTitle,city,position,description,netSalary,jobType);
+
+    }
+
 
     public static void removeCurrentJobOffer() {
         setCurrentJobOffer(null);

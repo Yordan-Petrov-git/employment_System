@@ -2,7 +2,7 @@ package Models;
 
 public class JobOffer {
 
-
+    private long id;
     private String jobTitle;
     private String city;
     private String position;
@@ -44,6 +44,25 @@ public class JobOffer {
     }
 
 
+    public JobOffer( String jobTitle, String city, String position
+            , String description, String netSalary
+            , String jobType) {
+//without logo and status
+        setJobTitle(jobTitle);
+        setCity(city);
+        setPosition(position);
+        setDescription(description);
+        setNetSalary(netSalary);
+        setJobType(jobType);
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getJobTitle() {
         return this.jobTitle;

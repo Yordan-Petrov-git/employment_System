@@ -1,5 +1,6 @@
 package Views.Panels.Users;
 
+import Helpers.UtilityGui.GuiUtils;
 import Views.MainFrame;
 
 
@@ -11,9 +12,9 @@ public class ManageProfile extends JPanel {
     private JLabel jLabelTitle;
     private JTextField jTextFieldName;
     private JTextField jTextFieldFamilyName;
-   // private JTextField jTextFieldUsername;
-    private JPasswordField jTextFieldPassword;
-    private JPasswordField jTextFieldRetypePassword;
+    // private JTextField jTextFieldUsername;
+    private JPasswordField JPasswordFieldPassword;
+    private JPasswordField JPasswordFieldPasswordRetypePassword;
     private JTextField jTextFieldPassphrase;
     private JTextField jTextFieldPhone;
     private JTextField jTextFieldEmail;
@@ -25,6 +26,7 @@ public class ManageProfile extends JPanel {
 
 
     public ManageProfile(MainFrame jFrame) {
+
         this.jFrame = jFrame;
         jFrame.setSize(1300, 100);
         jLabelTitle = new JLabel("Manage user account");
@@ -33,10 +35,10 @@ public class ManageProfile extends JPanel {
         add(jTextFieldName);
         jTextFieldFamilyName = new JTextField("Family name");
         add(jTextFieldFamilyName);
-        jTextFieldPassword = new JPasswordField("Password");
-        add(jTextFieldPassword);
-        jTextFieldRetypePassword = new JPasswordField("Retype Password");
-        add(jTextFieldRetypePassword);
+        JPasswordFieldPassword = new JPasswordField("Password");
+        add(JPasswordFieldPassword);
+        JPasswordFieldPasswordRetypePassword = new JPasswordField("Retype Password");
+        add(JPasswordFieldPasswordRetypePassword);
         jTextFieldPassphrase = new JTextField("Passphrase");
         add(jTextFieldPassphrase);
         jTextFieldPhone = new JTextField("Phone number");
@@ -47,6 +49,15 @@ public class ManageProfile extends JPanel {
         add(jButtonShowPassword);
         jButtonAddPicture = new JButton("Change picture");
         add(jButtonAddPicture);
+
+        jButtonShowPassword = new JToggleButton("");
+        jButtonShowPassword.addActionListener(e -> {
+
+            GuiUtils.showPassword(jButtonShowPassword, JPasswordFieldPassword);
+            GuiUtils.showPassword(jButtonShowPassword, JPasswordFieldPasswordRetypePassword);
+        });
+        add(jButtonShowPassword);
+
         jButtonCreateAccount = new JButton("Edit account info");
         add(jButtonCreateAccount);
 
