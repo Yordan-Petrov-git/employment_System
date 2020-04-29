@@ -81,7 +81,6 @@ public class DataProviderCreateNewUser extends DataProvider {
         }
     }
 
-
     public static void addUserToDataBase() throws SQLException {
 
         String salt = getCurrentUser().getSalt();
@@ -101,7 +100,6 @@ public class DataProviderCreateNewUser extends DataProvider {
         }
 
     }
-
 
 
     public static void removeCurrentUser() {
