@@ -27,6 +27,18 @@ private JTable tableJobOffers = new JTable();
         TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
 
+
+
+        jButtonLogout = new JButton("Edit Account");
+        jButtonLogout.addActionListener(e -> {
+
+            MainFrame.router.removePanel(jFrame);
+            MainFrame.router.showManageUserAccount(jFrame);
+
+        });
+        add(jButtonLogout);
+
+
         jButtonLogout = new JButton("Logout");
         jButtonLogout.addActionListener(e -> {
 

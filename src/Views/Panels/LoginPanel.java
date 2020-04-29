@@ -16,6 +16,7 @@ public class LoginPanel extends JPanel {
     private JTextField jTextFieldUsername;
     private JPasswordField jPasswordField;
     private JButton jButtonRegister;
+    private JButton jButtonBack;
     public MainFrame jFrame;
 
 
@@ -72,6 +73,15 @@ public class LoginPanel extends JPanel {
 
         });
         add(jButtonRegister);
+
+        jButtonBack = new JButton("Back");
+        jButtonBack.addActionListener(e -> {
+
+            MainFrame.router.removePanel(jFrame);
+            MainFrame.router.showHomepagePanel(jFrame);
+
+        });
+        add(jButtonBack);
 
     }
 

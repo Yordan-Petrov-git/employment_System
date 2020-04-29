@@ -19,22 +19,12 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
 
     List<JobOffer> listProduct = new ArrayList<JobOffer>();
 
-    public void updateTableData() {
-        model.setRowCount(0);
-//        for (Sandwich sandwitch : this.sandwiches) {
-//            Object[] row = new Object[3];
-//            row[0] = sandwitch.name;
-//            row[1] = sandwitch.size;
-//            row[2] = sandwitch.price;
-//            model.addRow(row);
-       }
-
     public static int count() {
         //Counts SQL table all rows
         int counter = 0;
         try {
-          //  DataProvider.getConnection().setAutoCommit(false);
-            preparedStatement = DataProvider.getConnection().prepareStatement("SELECT count(job_offer_id) from job_offers");
+          //  DataProvider.getConnection().setAutoCommit(false);  //count_job_offers
+            preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers()}");
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 counter = rs.getInt("count(job_offer_id)");
@@ -43,14 +33,13 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
            // DataProvider.getConnection().setAutoCommit(true);
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } finally {
-            return counter;
         }
+            return counter;
+
     }
 
-
     public static List<JobOffer> findAll(int page, int pageSize) {
-        //Table rows paging
+
         List<JobOffer> listJobOffers = new ArrayList<JobOffer>();
 
         if (count() == 0) {
@@ -68,12 +57,11 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
 
             // ---------------for later user-------------
             //resultSet.getString("date_added_offer")
-            //resultSet.getString("name_company")
 
             while (resultSet.next()) {
                 jobOffer = new JobOffer((resultSet.getString("company_job_offer_title")),resultSet.getString("city_offer"),
                         resultSet.getString("position_job_offer"),  resultSet.getString("description_job_offer"),
-                        resultSet.getString("net_salary_for_offer"),resultSet.getString("type"));
+                        resultSet.getString("net_salary_for_offer"),resultSet.getString("type"), resultSet.getString("name_company"));
                 listJobOffers.add(jobOffer);
             }
             //DataProvider.getConnection().commit();
@@ -81,11 +69,12 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        finally {
+
             return listJobOffers;
-        }
 
     }
+
+
         private final String HEADER[] = {"№->", "Title", "City", "Description", "Salary","JobType","Company"};
 
         public void setList(List<JobOffer> listProduct) {
@@ -145,8 +134,8 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
                 case 5:
                     return jobOffer.getJobType();
 
-//                case 6:
-//                    return jobOffer.getCompany();
+                case 6:
+                    return jobOffer.getCompany();
 
 
                 default:

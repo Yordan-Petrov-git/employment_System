@@ -42,18 +42,25 @@ public class RegisterNewAccountPanel extends JPanel {
 
         jTextFieldName = new JTextField("Name");
         add(jTextFieldName);
+
         jTextFieldFamilyName = new JTextField("Family name");
         add(jTextFieldFamilyName);
+
         jTextFieldUsername = new JTextField("Username");
         add(jTextFieldUsername);
+
         JPasswordFieldPassword = new JPasswordField("Password");
         add(JPasswordFieldPassword);
+
         JPasswordFieldPasswordRetypePassword = new JPasswordField("Retype Password");
         add(JPasswordFieldPasswordRetypePassword);
+
         jTextFieldPassphrase = new JTextField("Passphrase");
         add(jTextFieldPassphrase);
+
         jTextFieldPhone = new JTextField("Phone number");
         add(jTextFieldPhone);
+
         jTextFieldEmail = new JTextField("Email address");
         add(jTextFieldEmail);
 
@@ -99,7 +106,6 @@ public class RegisterNewAccountPanel extends JPanel {
 
             DataProviderCreateNewUser.removeCurrentUser();//deletes current user
         });
-
         add(jButtonCreateAccount);
 
     }

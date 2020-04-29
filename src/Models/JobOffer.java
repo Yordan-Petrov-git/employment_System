@@ -11,8 +11,9 @@ public class JobOffer {
     private Boolean isOfferActive;
     private String jobType;
     private String logo;
+    private String company;
 
-    public JobOffer( String jobTitle, String city, String position
+    public JobOffer(String jobTitle, String city, String position
             , String description, String netSalary
             , Boolean isOfferActive
             , String jobType
@@ -29,7 +30,7 @@ public class JobOffer {
         setLogo(logo);
     }
 
-    public JobOffer( String jobTitle, String city, String position
+    public JobOffer(String jobTitle, String city, String position
             , String description, String netSalary
             , Boolean isOfferActive
             , String jobType) {
@@ -44,7 +45,7 @@ public class JobOffer {
     }
 
 
-    public JobOffer( String jobTitle, String city, String position
+    public JobOffer(String jobTitle, String city, String position
             , String description, String netSalary
             , String jobType) {
 //without logo and status
@@ -54,6 +55,20 @@ public class JobOffer {
         setDescription(description);
         setNetSalary(netSalary);
         setJobType(jobType);
+    }
+
+
+    public JobOffer(String jobTitle, String city, String position
+            , String description, String netSalary
+            , String jobType,String company) {
+//Constructor for homepage table with job offers
+        setJobTitle(jobTitle);
+        setCity(city);
+        setPosition(position);
+        setDescription(description);
+        setNetSalary(netSalary);
+        setJobType(jobType);
+        setCompany(company);
     }
 
     public long getId() {
@@ -128,5 +143,11 @@ public class JobOffer {
         this.logo = logo;
     }
 
+    public String getCompany() {
+        return this.company;
+    }
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
 }
