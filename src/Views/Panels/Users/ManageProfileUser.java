@@ -21,6 +21,7 @@ public class ManageProfileUser extends JPanel {
     private JToggleButton jButtonShowPassword;
     private JButton jButtonAddPicture;
     private JButton jButtonCreateAccount;
+    private JButton jButtonBack;
     private JLabel jLabelPicture;
     public MainFrame jFrame;
 
@@ -72,6 +73,13 @@ public class ManageProfileUser extends JPanel {
         });
         add(jButtonCreateAccount);
 
+        jButtonBack = new JButton("Back");
+        jButtonBack.addActionListener(e -> {
+
+
+
+        });
+        add(jButtonBack);
 
     }
 }

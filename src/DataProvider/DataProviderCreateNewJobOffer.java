@@ -58,6 +58,28 @@ public class DataProviderCreateNewJobOffer extends DataProvider {
         }
     }
 
+
+    public static void applyForJobOffer(Integer offerId,Integer userId,String mLetter,String yExperience) {
+
+        String query = "{ call insert_application_for_job_offer(?,?,?,?) }";
+
+
+        try (Connection conn = DataProvider.getConnection();
+
+             CallableStatement cstmt = conn.prepareCall(query)) {
+
+            cstmt.setInt(1,offerId);
+            cstmt.setInt(2, userId);
+            cstmt.setString(3, mLetter);
+            cstmt.setString(4, yExperience);
+            cstmt.execute();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+
     public static void addJobOfferToDataBase() {
 
                 long companyId = getCurrentJobOffer().getId();

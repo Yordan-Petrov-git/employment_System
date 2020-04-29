@@ -28,6 +28,7 @@ public class RegisterNewCompany extends JPanel {
 
     private JButton jButtonAddPicture;
     private JButton jButtonCreateAccount;
+    private JButton jButtonBack;
 
     public MainFrame jFrame;
 
@@ -81,6 +82,14 @@ public class RegisterNewCompany extends JPanel {
             DataProviderCreateNewCompany.removeCurrentCompany();//deletes current user
         });
         add(jButtonCreateAccount);
+
+        jButtonBack = new JButton("Back");
+        jButtonBack.addActionListener(e -> {
+
+
+
+        });
+        add(jButtonBack);
 
     }
 

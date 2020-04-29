@@ -5,11 +5,13 @@ import Views.MainFrame;
 import Views.Panels.Company.HomePageCompanyPanel;
 import Views.Panels.Company.RegisterNewCompany;
 import Views.Panels.LoginPanel;
+import Views.Panels.Users.ApplyForOffer;
 import Views.Panels.Users.HomePageUsersPanel;
 import Views.Panels.Users.RegisterNewAccountPanel;
 import Views.Panels.Users.ManageProfileUser;
 
 import javax.swing.*;
+import java.awt.desktop.AppEvent;
 
 
 public class Router extends JPanel {
@@ -92,6 +94,15 @@ public class Router extends JPanel {
         mainFrame.add(manageProfileUser);
         mainFrame.getContentPane().validate();
        // mainFrame.resetPagingCounters();
+    }
+
+    public void applyForOffer(MainFrame mainFrame) {
+        //Homepage company
+        ApplyForOffer applyForOffer = new ApplyForOffer(mainFrame);
+        applyForOffer.setSize(800, 600);
+        mainFrame.add(applyForOffer);
+        mainFrame.getContentPane().validate();
+        // mainFrame.resetPagingCounters();
     }
 
 }

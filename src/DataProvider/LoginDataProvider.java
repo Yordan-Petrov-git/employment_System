@@ -108,7 +108,7 @@ public class LoginDataProvider extends DataProvider {
 
             resultSet = stmt.executeQuery();
             if (resultSet.next()) {
-                String compId = resultSet.getString("user_id");
+                String userId = resultSet.getString("user_id");
                 String usernameUser = resultSet.getString("username_user");
                 String fName = resultSet.getString("first_name_user");
                 String lName = resultSet.getString("family_name_user");
@@ -117,7 +117,7 @@ public class LoginDataProvider extends DataProvider {
 
                 DataProviderCreateNewUser
                         .setNewUserForCurrentLoggedUserInfo
-                                (Long.parseLong(compId),usernameUser,fName,lName,phone,email);
+                                (Long.parseLong(userId),usernameUser,fName,lName,phone,email);
             }
 
 

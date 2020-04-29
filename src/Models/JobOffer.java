@@ -70,7 +70,25 @@ public class JobOffer {
         setJobType(jobType);
         setCompany(company);
     }
+    public JobOffer(String jobTitle, String city, String position
+            , String description, String netSalary
+            , String jobType,String company,long id) {
+//Constructor for homepage table with job offers
+        setJobTitle(jobTitle);
+        setCity(city);
+        setPosition(position);
+        setDescription(description);
+        setNetSalary(netSalary);
+        setJobType(jobType);
+        setCompany(company);
+        setId(id);
+    }
 
+    public JobOffer() {
+    }
+    public JobOffer(long id) {
+        setId(id);
+    }
     public long getId() {
         return id;
     }

@@ -1,5 +1,6 @@
 package Views.Panels.Company;
 
+import DataProvider.DataProviderCreateNewUser;
 import Helpers.TableUtils.TableUtility;
 import Views.MainFrame;
 
@@ -10,11 +11,16 @@ public class HomePageCompanyPanel extends JPanel {
     public MainFrame jFrame;
     public JButton jButtonLogOut;
     public JButton jButtonViewApplication;
+    public JButton jButtonManageApplication;
+    public JButton jButtonDeleteSelectedApplication;
     public JTable jTableJobOffers;
 
 
     public HomePageCompanyPanel(MainFrame jFrame) {
         this.jFrame = jFrame;
+
+        //TODO ADD TABLE WITH JOB OFFERS FOR THE SPECIFIC LOGGED IN COMPANY BY ID OT WHTEVER IDENTIFIER
+
 
         jTableJobOffers = new JTable();
         JScrollPane pane = new JScrollPane();
@@ -26,11 +32,32 @@ public class HomePageCompanyPanel extends JPanel {
         jButtonViewApplication = new JButton("Check application");
         jButtonViewApplication.addActionListener(e -> {
 
+            //TODO ADD  WAY TO CHECK offers ON SPECIFIC ROW OF THE TABLE
         });
         add(jButtonViewApplication);
 
+
+        jButtonManageApplication = new JButton("Manage offers");
+        jButtonManageApplication.addActionListener(e -> {
+
+            //TODO ADD  WAY TO CHECK offers ON SPECIFIC ROW OF THE TABLE
+        });
+        add(jButtonManageApplication);
+
+        jButtonDeleteSelectedApplication = new JButton("Delete selected offer");
+        jButtonDeleteSelectedApplication.addActionListener(e -> {
+
+            //TODO ADD  WAY TO DELETE SELECTED offers FORM THE TABLE AND THE DATABASE
+            //FAST GUESS INIT PAGINATION AND DELETE OFFER BY ID with stored procedure only offer id cascade will take the rest out
+        });
+        add(jButtonDeleteSelectedApplication);
+
         jButtonLogOut = new JButton("Logout");
         jButtonLogOut.addActionListener(e -> {
+
+           // DataProviderCreateNewUser.removeCurrentCompany();
+            MainFrame.router.removePanel(jFrame);
+            MainFrame.router.showHomepagePanel(jFrame);
 
         });
         add(jButtonLogOut);

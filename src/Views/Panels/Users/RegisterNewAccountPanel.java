@@ -26,7 +26,12 @@ public class RegisterNewAccountPanel extends JPanel {
     private JButton jButtonAddPicture;
     private JComboBox jComboBoxAccountType;
     private JButton jButtonCreateAccount;
+    private JButton jButtonBack;
     public MainFrame jFrame;
+
+
+
+
 
     public RegisterNewAccountPanel(MainFrame jFrame) {
         this.jFrame = jFrame;
@@ -107,6 +112,15 @@ public class RegisterNewAccountPanel extends JPanel {
             DataProviderCreateNewUser.removeCurrentUser();//deletes current user
         });
         add(jButtonCreateAccount);
+
+
+        jButtonBack = new JButton("Back");
+        jButtonBack.addActionListener(e -> {
+
+
+
+        });
+        add(jButtonBack);
 
     }
 

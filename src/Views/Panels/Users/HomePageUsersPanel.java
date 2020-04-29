@@ -1,8 +1,10 @@
 package Views.Panels.Users;
 
+import DataProvider.DataProviderCreateNewJobOffer;
 import DataProvider.DataProviderCreateNewUser;
 import DataProvider.DataProviderTableJobOffers;
 import Helpers.TableUtils.TableUtility;
+import Models.JobOffer;
 import Views.MainFrame;
 
 import javax.swing.*;
@@ -27,6 +29,11 @@ public class HomePageUsersPanel extends JPanel {
     public DataProviderTableJobOffers productTableModel;
 
     public JComboBox<String> jComboBoxPage;
+
+    public static int index;
+    public static int id;
+    public static int userID;
+
 
     private JTable tableJobOffers = new JTable();
 
@@ -59,6 +66,12 @@ public class HomePageUsersPanel extends JPanel {
         jButtonApply = new JButton("Apply");
         jButtonApply.addActionListener(e -> {
 
+            index = this.jTableJobOffers.getSelectedRow();
+            id = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
+            userID = (int) DataProviderCreateNewUser.getCurrentUser().getId();
+
+            MainFrame.router.removePanel(jFrame);
+            MainFrame.router.applyForOffer(jFrame);
 
         });
         add(jButtonApply);
@@ -165,4 +178,6 @@ public class HomePageUsersPanel extends JPanel {
                 , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
                 , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
     }
+
+
 }

@@ -58,10 +58,11 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
             // ---------------for later user-------------
             //resultSet.getString("date_added_offer")
 
+
             while (resultSet.next()) {
                 jobOffer = new JobOffer((resultSet.getString("company_job_offer_title")),resultSet.getString("city_offer"),
                         resultSet.getString("position_job_offer"),  resultSet.getString("description_job_offer"),
-                        resultSet.getString("net_salary_for_offer"),resultSet.getString("type"), resultSet.getString("name_company"));
+                        resultSet.getString("net_salary_for_offer"),resultSet.getString("type"), resultSet.getString("name_company"),resultSet.getInt("job_offer_id") );
                 listJobOffers.add(jobOffer);
             }
             //DataProvider.getConnection().commit();
@@ -75,7 +76,7 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
     }
 
 
-        private final String HEADER[] = {"№->", "Title", "City", "Description", "Salary","JobType","Company"};
+        private final String HEADER[] = {"№->", "Title", "City", "Description", "Salary","JobType","Company","id"};
 
         public void setList(List<JobOffer> listProduct) {
             this.listProduct = listProduct;
@@ -137,6 +138,8 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
                 case 6:
                     return jobOffer.getCompany();
 
+                case 7:
+                    return jobOffer.getId();
 
                 default:
                     return null;//Defaut state null
