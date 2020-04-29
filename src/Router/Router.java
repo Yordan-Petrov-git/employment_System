@@ -17,7 +17,7 @@ import javax.swing.*;
 public class Router extends JPanel {
 
     public void showLoginPanel(MainFrame mainFrame) {
-       //Login panel
+        //Login panel
         LoginPanel loginPanel = new LoginPanel(mainFrame);
         loginPanel.setSize(800, 600);
         mainFrame.add(loginPanel);
@@ -32,7 +32,7 @@ public class Router extends JPanel {
     }
 
     public void showRegistrationPanel(MainFrame mainFrame) {
-     //Registration panel user
+        //Registration panel user
         RegisterNewAccountPanel registerNewAccount = new RegisterNewAccountPanel(mainFrame);
         registerNewAccount.setSize(800, 600);
         mainFrame.add(registerNewAccount);
@@ -41,7 +41,7 @@ public class Router extends JPanel {
     }
 
     public void showRegistrationPanelCompany(MainFrame mainFrame) {
-      //Registration panel company
+        //Registration panel company
         RegisterNewCompany registerNewCompany = new RegisterNewCompany(mainFrame);
         registerNewCompany.setSize(800, 600);
         mainFrame.add(registerNewCompany);
@@ -49,34 +49,35 @@ public class Router extends JPanel {
         mainFrame.resetPagingCounters();
     }
 
-    public void showManageProfilePanel(MainFrame mainFrame) {
-     //Mange profile user
-        ManageProfileUser manageProfile = new ManageProfileUser(mainFrame);
-        manageProfile.setSize(800, 600);
-        mainFrame.add(manageProfile);
+    public void showManageUserProfilePanel(MainFrame mainFrame) {
+        //Mange profile user
+        ManageProfileUser manageUserProfile = new ManageProfileUser(mainFrame);
+        manageUserProfile.setSize(800, 600);
+        mainFrame.add(manageUserProfile);
         mainFrame.getContentPane().validate();
         mainFrame.resetPagingCounters();
     }
 
-    public void showManageProfile(MainFrame mainFrame) {
-        //Mange profile user
-        ManageProfileCompany manageProfile = new ManageProfileCompany(mainFrame);
-        manageProfile.setSize(800, 600);
-        mainFrame.add(manageProfile);
+    public void showManageProfilePanel(MainFrame mainFrame) {
+        //Mange profile Company
+        ManageProfileCompany manageCompanyProfile = new ManageProfileCompany(mainFrame);
+        manageCompanyProfile.setSize(800, 600);
+        mainFrame.add(manageCompanyProfile);
         mainFrame.getContentPane().validate();
         mainFrame.resetPagingCounters();
     }
 
     public void showHomepagePanel(MainFrame mainFrame) {
-      //Homepage
+        //Homepage
         Home homePage = new Home(mainFrame);
         homePage.setSize(800, 600);
         mainFrame.add(homePage);
         mainFrame.getContentPane().validate();
 
     }
+
     public void showHomepageUserPanel(MainFrame mainFrame) {
-     //Homepage user
+        //Homepage user
         HomePageUsersPanel homePage = new HomePageUsersPanel(mainFrame);
         homePage.setSize(800, 600);
         mainFrame.add(homePage);
@@ -94,14 +95,6 @@ public class Router extends JPanel {
     }
 
 
-    public void showManageUserAccount(MainFrame mainFrame) {
-        //Homepage company
-        ManageProfileUser manageProfileUser = new ManageProfileUser(mainFrame);
-        manageProfileUser.setSize(800, 600);
-        mainFrame.add(manageProfileUser);
-        mainFrame.getContentPane().validate();
-        mainFrame.resetPagingCounters();
-    }
 
     public void applyForOffer(MainFrame mainFrame) {
         //Homepage company
@@ -109,7 +102,7 @@ public class Router extends JPanel {
         applyForOffer.setSize(800, 600);
         mainFrame.add(applyForOffer);
         mainFrame.getContentPane().validate();
-         mainFrame.resetPagingCounters();
+        mainFrame.resetPagingCounters();
     }
 
 

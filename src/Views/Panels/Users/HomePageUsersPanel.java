@@ -154,12 +154,12 @@ public class HomePageUsersPanel extends JPanel {
                     , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
         });
         add(jButtonFirst);
-
+    //------------------------------------------------------------------------------
         jButtonLogout = new JButton("Edit Account");
         jButtonLogout.addActionListener(e -> {
 
             MainFrame.router.removePanel(jFrame);
-            MainFrame.router.showManageUserAccount(jFrame);
+            MainFrame.router.showManageUserProfilePanel(jFrame);
 
         });
         add(jButtonLogout);

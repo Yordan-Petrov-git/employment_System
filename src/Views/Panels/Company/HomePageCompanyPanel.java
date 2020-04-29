@@ -28,6 +28,8 @@ public class HomePageCompanyPanel extends JPanel {
     private JButton jButtonPrevious;
     private JButton jButtonFirst;
 
+    private JButton jButtonManageProfile;
+
     public JComboBox<String> jComboBoxPage;
 
     public DataProviderTableJobOffers productTableModel;
@@ -129,11 +131,12 @@ public class HomePageCompanyPanel extends JPanel {
         jButtonManageApplication = new JButton("Manage offers");
         jButtonManageApplication.addActionListener(e -> {
 
+
             //TODO ADD  WAY TO CHECK offers ON SPECIFIC ROW OF THE TABLE
         });
         add(jButtonManageApplication);
 
-        jButtonDeleteSelectedApplication = new JButton("Delete selected offer");
+        jButtonDeleteSelectedApplication = new JButton("Delete offer");
         jButtonDeleteSelectedApplication.addActionListener(e -> {
 
             //TODO ADD  WAY TO DELETE SELECTED offers FORM THE TABLE AND THE DATABASE
@@ -141,7 +144,7 @@ public class HomePageCompanyPanel extends JPanel {
         });
         add(jButtonDeleteSelectedApplication);
 
-        jButtonCreateNewJobOffer = new JButton("Create New Job Offer");
+        jButtonCreateNewJobOffer = new JButton("Create Offer");
         jButtonCreateNewJobOffer.addActionListener(e -> {
 
             MainFrame.router.removePanel(jFrame);
@@ -149,6 +152,18 @@ public class HomePageCompanyPanel extends JPanel {
 
         });
         add(jButtonCreateNewJobOffer);
+
+
+
+
+        jButtonManageProfile  = new JButton("Edit profile");
+        jButtonManageProfile .addActionListener(e -> {
+
+            MainFrame.router.removePanel(jFrame);
+            MainFrame.router.showManageProfilePanel(jFrame);
+
+        });
+        add(jButtonManageProfile);
 
         jButtonLogOut = new JButton("Logout");
         jButtonLogOut.addActionListener(e -> {
