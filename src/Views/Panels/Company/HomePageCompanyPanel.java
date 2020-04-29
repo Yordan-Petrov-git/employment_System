@@ -1,5 +1,7 @@
 package Views.Panels.Company;
 
+import DataProvider.DataProviderCreateNewCompany;
+import DataProvider.DataProviderCreateNewJobOffer;
 import DataProvider.DataProviderCreateNewUser;
 import DataProvider.DataProviderTableJobOffers;
 import Helpers.TableUtils.TableUtility;
@@ -34,6 +36,9 @@ public class HomePageCompanyPanel extends JPanel {
 
     public DataProviderTableJobOffers productTableModel;
 
+    int id = (int)DataProviderCreateNewCompany.getCurrentCompany().getId();
+    public  int index;
+
     public HomePageCompanyPanel(MainFrame jFrame) {
         this.jFrame = jFrame;
 
@@ -57,9 +62,7 @@ public class HomePageCompanyPanel extends JPanel {
         jComboBoxPage.addItemListener(new ItemListener() {
             // Change data in jtable on combobox change
             public void itemStateChanged(ItemEvent e) {
-                TableUtility.initPagination(jTableJobOffers,jFrame
-                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel,1);
+                refreshTable();
             }
         });
         //Shows first paged rows in the jtable
@@ -75,9 +78,7 @@ public class HomePageCompanyPanel extends JPanel {
         jButtonLast = new JButton("last");
         jButtonLast.addActionListener(e -> {
             jFrame.page = jFrame.totalPage;
-            TableUtility.initPagination(jTableJobOffers,jFrame
-                    ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                    ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel,1);
+            refreshTable();
         });
         add(jButtonLast);
         //jButtonLast.setEnabled(true);
@@ -86,9 +87,7 @@ public class HomePageCompanyPanel extends JPanel {
         jButtonNext.addActionListener(e -> {
             if (jFrame.page < jFrame.totalPage) {
                 jFrame.page++;
-                TableUtility.initPagination(jTableJobOffers,jFrame
-                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel,1);
+                refreshTable();
             }
 
 
@@ -102,9 +101,7 @@ public class HomePageCompanyPanel extends JPanel {
         jButtonPrevious.addActionListener(e -> {
             if (jFrame.page > 1) {
                 jFrame.page--;
-                TableUtility.initPagination(jTableJobOffers,jFrame
-                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel,1);
+                refreshTable();
             }
         });
         add(jButtonPrevious);
@@ -113,9 +110,7 @@ public class HomePageCompanyPanel extends JPanel {
         jButtonFirst = new JButton("first");
         jButtonFirst.addActionListener(e -> {
             jFrame.page = 1;//Sets page counter to first page
-            TableUtility.initPagination(jTableJobOffers,jFrame
-                    ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                    ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel,1);
+            refreshTable();
         });
         add(jButtonFirst);
         // jButtonFirst.setEnabled(true);
@@ -139,8 +134,16 @@ public class HomePageCompanyPanel extends JPanel {
         jButtonDeleteSelectedApplication = new JButton("Delete offer");
         jButtonDeleteSelectedApplication.addActionListener(e -> {
 
-            //TODO ADD  WAY TO DELETE SELECTED offers FORM THE TABLE AND THE DATABASE
-            //FAST GUESS INIT PAGINATION AND DELETE OFFER BY ID with stored procedure only offer id cascade will take the rest out
+            index = this.jTableJobOffers.getSelectedRow();
+            id = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
+            System.out.println(id);
+            //delete offer
+            DataProviderCreateNewJobOffer.deleteJobOffer(id);
+
+            //TODO FIX TABLE REFRESH ON DELETION
+            refreshTable();  //refresh table
+
+
         });
         add(jButtonDeleteSelectedApplication);
 
@@ -152,8 +155,6 @@ public class HomePageCompanyPanel extends JPanel {
 
         });
         add(jButtonCreateNewJobOffer);
-
-
 
 
         jButtonManageProfile  = new JButton("Edit profile");
@@ -175,12 +176,15 @@ public class HomePageCompanyPanel extends JPanel {
         });
         add(jButtonLogOut);
 
-        TableUtility.initPagination(jTableJobOffers,jFrame
-                ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel,1);
+        refreshTable();
 
 
     }
 
+    public void refreshTable(){
+        TableUtility.initPaginationC(jTableJobOffers,jFrame
+                ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
+                ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel,id);
+    }
 
 }

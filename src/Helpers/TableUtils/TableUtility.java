@@ -87,7 +87,7 @@ public class TableUtility {
     }
 
 
-    public static void initPagination(JTable jTable
+    public static void initPaginationC(JTable jTable
             , MainFrame mainFrame
             , JButton last
             , JButton next

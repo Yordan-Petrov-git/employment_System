@@ -22,13 +22,14 @@ public class Router extends JPanel {
         loginPanel.setSize(800, 600);
         mainFrame.add(loginPanel);
         mainFrame.getContentPane().validate();
-        mainFrame.resetPagingCounters();
+      //  mainFrame.resetPagingCounters();
     }
 
     public void removePanel(MainFrame mainFrame) {
         //Remove all elements from the panel
         mainFrame.getContentPane().removeAll();
         mainFrame.getContentPane().repaint();
+        mainFrame.resetPagingCounters();
     }
 
     public void showRegistrationPanel(MainFrame mainFrame) {
@@ -37,7 +38,7 @@ public class Router extends JPanel {
         registerNewAccount.setSize(800, 600);
         mainFrame.add(registerNewAccount);
         mainFrame.getContentPane().validate();
-        mainFrame.resetPagingCounters();
+        //mainFrame.resetPagingCounters();
     }
 
     public void showRegistrationPanelCompany(MainFrame mainFrame) {
@@ -46,7 +47,7 @@ public class Router extends JPanel {
         registerNewCompany.setSize(800, 600);
         mainFrame.add(registerNewCompany);
         mainFrame.getContentPane().validate();
-        mainFrame.resetPagingCounters();
+       // mainFrame.resetPagingCounters();
     }
 
     public void showManageUserProfilePanel(MainFrame mainFrame) {
@@ -55,7 +56,7 @@ public class Router extends JPanel {
         manageUserProfile.setSize(800, 600);
         mainFrame.add(manageUserProfile);
         mainFrame.getContentPane().validate();
-        mainFrame.resetPagingCounters();
+       // mainFrame.resetPagingCounters();
     }
 
     public void showManageProfilePanel(MainFrame mainFrame) {
@@ -64,7 +65,7 @@ public class Router extends JPanel {
         manageCompanyProfile.setSize(800, 600);
         mainFrame.add(manageCompanyProfile);
         mainFrame.getContentPane().validate();
-        mainFrame.resetPagingCounters();
+       // mainFrame.resetPagingCounters();
     }
 
     public void showHomepagePanel(MainFrame mainFrame) {
@@ -82,7 +83,7 @@ public class Router extends JPanel {
         homePage.setSize(800, 600);
         mainFrame.add(homePage);
         mainFrame.getContentPane().validate();
-        mainFrame.resetPagingCounters();
+      //  mainFrame.resetPagingCounters();
     }
 
     public void showHomePageCompanyPanel(MainFrame mainFrame) {
@@ -91,10 +92,8 @@ public class Router extends JPanel {
         homePage.setSize(800, 600);
         mainFrame.add(homePage);
         mainFrame.getContentPane().validate();
-        mainFrame.resetPagingCounters();
+       // mainFrame.resetPagingCounters();
     }
-
-
 
     public void applyForOffer(MainFrame mainFrame) {
         //Homepage company
@@ -102,9 +101,8 @@ public class Router extends JPanel {
         applyForOffer.setSize(800, 600);
         mainFrame.add(applyForOffer);
         mainFrame.getContentPane().validate();
-        mainFrame.resetPagingCounters();
+       // mainFrame.resetPagingCounters();
     }
-
 
     public void createNewJobOffer(MainFrame mainFrame) {
         //Homepage company
@@ -112,7 +110,7 @@ public class Router extends JPanel {
         createNewJobOffer.setSize(800, 600);
         mainFrame.add(createNewJobOffer);
         mainFrame.getContentPane().validate();
-        mainFrame.resetPagingCounters();
+      //  mainFrame.resetPagingCounters();
     }
 
 }

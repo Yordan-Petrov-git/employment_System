@@ -94,6 +94,36 @@ public class LoginDataProvider extends DataProvider {
         return false;
     }
 
+
+    public static void getCompanyForCurrentLoggedInCompanyInfo(String username) {
+
+        String query = "{ call select_all_company_info_by_company_username(?) }";
+        ResultSet resultSet;
+
+        try (Connection conn = getConnection();
+             CallableStatement stmt = conn.prepareCall(query)) {
+
+            stmt.setString(1, username);
+
+            resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                String companyId = resultSet.getString("company_id");
+                String companyUsername = resultSet.getString("username_company");
+                String companyName = resultSet.getString("name_company");
+
+
+                DataProviderCreateNewCompany.setNewCompanyForCurrentLoggedCompanyInfo(Long.parseLong(companyId),companyUsername,companyName);
+
+            }
+
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
+
     public static void getUserForCurrentLoggedInUserInfo(String username) {
 
         //id,username, firstName, familyName, phoneNumber, emailAddress

@@ -103,11 +103,12 @@ public class LoginPanel extends JPanel {
 
     private void LoginCompany() {
 
-        String username = jTextFieldUsername.getText();
+        String companyUsername = jTextFieldUsername.getText();
         String password = String.valueOf(jPasswordField.getPassword());
 
-        if (LoginDataProvider.logonCompany(username,password)) {
+        if (LoginDataProvider.logonCompany(companyUsername,password)) {
 
+            LoginDataProvider.getCompanyForCurrentLoggedInCompanyInfo(companyUsername);
 
             MainFrame.router.removePanel(jFrame);
             MainFrame.router.showHomePageCompanyPanel(jFrame);

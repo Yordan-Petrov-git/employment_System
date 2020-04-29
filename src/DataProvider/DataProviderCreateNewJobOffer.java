@@ -1,6 +1,7 @@
 package DataProvider;
 
 import Models.JobOffer;
+import Models.User;
 
 import javax.swing.*;
 import java.sql.CallableStatement;
@@ -33,6 +34,7 @@ public class DataProviderCreateNewJobOffer extends DataProvider {
 
         setCurrentJobOffer(jobOffer);
     }
+
 
     public static void registerJobOffer(Integer companyId, String jobTitle, String city, String position
             , String description, String netSalary
@@ -85,6 +87,27 @@ public class DataProviderCreateNewJobOffer extends DataProvider {
         }
     }
 
+
+    public static void deleteJobOffer(Integer offerId) {
+
+        String query = "{ call delete_job_offer(?) }";
+
+        try (Connection conn = DataProvider.getConnection();
+
+             CallableStatement cstmt = conn.prepareCall(query)) {
+
+            cstmt.setInt(1,offerId);
+
+            boolean isRegistered = cstmt.execute();
+
+            if(!isRegistered){
+                JOptionPane.showMessageDialog(null,   "Job offer deleted !");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
 //    public static void addJobOfferToDataBase() {
 //
