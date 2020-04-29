@@ -168,7 +168,7 @@ public class HomePageCompanyPanel extends JPanel {
 
         jButtonLogOut = new JButton("Logout");
         jButtonLogOut.addActionListener(e -> {
-
+           DataProviderCreateNewCompany.removeCurrentCompany();
             // DataProviderCreateNewUser.removeCurrentCompany();
             MainFrame.router.removePanel(jFrame);
             MainFrame.router.showHomepagePanel(jFrame);
