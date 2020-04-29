@@ -3,6 +3,7 @@ package DataProvider;
 import Models.Company;
 import Models.User;
 
+import javax.swing.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -56,12 +57,17 @@ public class DataProviderCreateNewCompany extends DataProvider {
     public static void addCompanyToDataBase() {
 
         String companyName = getCurrentCompany().getCompanyName();
-        String username = getCurrentCompany().getUsername();
+        String usernameCompany = getCurrentCompany().getUsername();
         String key = getCurrentCompany().getPassword();
         String salt = getCurrentCompany().getSalt();
         String passphrase = getCurrentCompany().getPassPhrase();
 
-        registerNewCompany(companyName,username,key,salt,passphrase);
+
+        if (!LoginDataProvider.doesUsernameCompanyExists(usernameCompany)){
+            registerNewCompany(companyName,usernameCompany,key,salt,passphrase);
+        }else{
+            JOptionPane.showMessageDialog(null, "Username is taken", "Registration Error", 2);
+        }
 
     }
 

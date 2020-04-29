@@ -2,6 +2,7 @@ package Views;
 
 import DataProvider.DataProviderTableJobOffers;
 import DataProvider.LoginDataProvider;
+import Models.User;
 import Router.Router;
 
 import javax.swing.*;
@@ -13,10 +14,12 @@ public class MainFrame extends JFrame {
     public static DataProviderTableJobOffers dataProviderTableJobOfferss = new DataProviderTableJobOffers();
     public static Router router = new Router();
     public static LoginEnum loginAs;
-    public static Integer page = 1;
-    public static Integer rowCountPerPage = 10;
-    public static Integer totalPage = 1;
-    public static Integer totalData = 0;
+    public  Integer page = 1;
+    public  Integer rowCountPerPage = 10;
+    public  Integer totalPage = 1;
+    public  Integer totalData = 0;
+
+
 
     public MainFrame() {
 

@@ -76,4 +76,7 @@ public class DataProviderCreateNewJobOffer extends DataProvider {
     public static void removeCurrentJobOffer() {
         setCurrentJobOffer(null);
     }
+
+
+
 }

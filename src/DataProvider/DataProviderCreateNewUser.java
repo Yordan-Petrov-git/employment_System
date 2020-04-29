@@ -1,7 +1,9 @@
 package DataProvider;
 
 import Models.User;
+import Views.MainFrame;
 
+import javax.swing.*;
 import java.sql.*;
 
 public class DataProviderCreateNewUser extends DataProvider {
@@ -91,7 +93,12 @@ public class DataProviderCreateNewUser extends DataProvider {
         String email = getCurrentUser().getEmailAddress();
         String passphrase = getCurrentUser().getPassPhrase();
 
-        registerNewUser(firstName, familyName, email, phone, username, key, salt, passphrase);
+
+    if (!LoginDataProvider.doesUsernameUserExists(username)){
+            registerNewUser(firstName,familyName, email, phone, username, key, salt, passphrase);
+        }else{
+            JOptionPane.showMessageDialog(null, "Username is taken", "Registration Error", 2);
+        }
 
     }
 

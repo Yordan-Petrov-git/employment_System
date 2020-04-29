@@ -57,9 +57,9 @@ public class Home extends JPanel {
         jComboBoxPage.addItemListener(new ItemListener() {
             // Change data in jtable on combobox change
             public void itemStateChanged(ItemEvent e) {
-                initPagination(jTableJobOffers,jFrame
-                        , jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage);
+                TableUtility.initPagination(jTableJobOffers,jFrame
+                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
+                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
             }
         });
         //Shows first paged rows in the jtable
@@ -74,21 +74,21 @@ public class Home extends JPanel {
 
         jButtonLast = new JButton("last");
         jButtonLast.addActionListener(e -> {
-            MainFrame.page = MainFrame.totalPage;
-            initPagination(jTableJobOffers,jFrame
-                    , jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                    ,jLabelStatus,jLabelTotalData,jComboBoxPage);
+            jFrame.page = jFrame.totalPage;
+            TableUtility.initPagination(jTableJobOffers,jFrame
+                    ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
+                    ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
         });
         add(jButtonLast);
         //jButtonLast.setEnabled(true);
 
         jButtonNext = new JButton("next");
         jButtonNext.addActionListener(e -> {
-            if (MainFrame.page < MainFrame.totalPage) {
-                MainFrame.page++;
-                initPagination(jTableJobOffers,jFrame
-                        , jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage);
+            if (jFrame.page < jFrame.totalPage) {
+                jFrame.page++;
+                TableUtility.initPagination(jTableJobOffers,jFrame
+                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
+                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
             }
 
 
@@ -100,11 +100,11 @@ public class Home extends JPanel {
 
         jButtonPrevious = new JButton("previous");
         jButtonPrevious.addActionListener(e -> {
-            if (MainFrame.page > 1) {
-                MainFrame.page--;
-                initPagination(jTableJobOffers,jFrame
-                        , jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage);
+            if (jFrame.page > 1) {
+                jFrame.page--;
+                TableUtility.initPagination(jTableJobOffers,jFrame
+                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
+                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
             }
         });
         add(jButtonPrevious);
@@ -112,10 +112,10 @@ public class Home extends JPanel {
 
         jButtonFirst = new JButton("first");
         jButtonFirst.addActionListener(e -> {
-            MainFrame.page = 1;//Sets page counter to first page
-            initPagination(jTableJobOffers,jFrame
-                    , jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                    ,jLabelStatus,jLabelTotalData,jComboBoxPage);
+            jFrame.page = 1;//Sets page counter to first page
+            TableUtility.initPagination(jTableJobOffers,jFrame
+                    ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
+                    ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
         });
         add(jButtonFirst);
        // jButtonFirst.setEnabled(true);
@@ -141,68 +141,16 @@ public class Home extends JPanel {
         });
         add(jButtonLoginAsCompany);
 
-        initPagination(jTableJobOffers,jFrame
+        TableUtility.initPagination(jTableJobOffers,jFrame
                 ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                ,jLabelStatus,jLabelTotalData,jComboBoxPage);
+                ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
     }
-
 
     public static void showLogin() {
 
         MainFrame.router.removePanel(jFrame);
         MainFrame.router.showLoginPanel(jFrame);
 
-    }
-
-    private void initPagination(JTable jTable
-            ,MainFrame mainFrame
-            ,JButton last
-            ,JButton next
-            ,JButton previous
-            ,JButton first
-            ,JLabel status
-            ,JLabel totalData
-            ,JComboBox pageSelect) {
-        //Initializes pagiantion of rows in jtable
-        //Counts total rows in SQL DB
-        mainFrame.totalData = DataProviderTableJobOffers.count();
-        //Testing coutn utput
-        System.out.println(mainFrame.totalData);
-
-        mainFrame.rowCountPerPage = Integer.valueOf(pageSelect.getSelectedItem().toString());
-        Double totalPageD = Math.ceil(mainFrame.totalData.doubleValue() / mainFrame.rowCountPerPage.doubleValue());
-        mainFrame.totalPage = totalPageD.intValue();
-        //Bquttons for page navigation
-        //Buttons for first page adn next page
-        if (mainFrame.page.equals(1)) {
-            first.setEnabled(false);
-            previous.setEnabled(false);
-        } else {
-            first.setEnabled(true);
-            previous.setEnabled(true);
-        }
-        //Buittons for last apge and next page
-        if (mainFrame.page.equals(mainFrame.totalPage)) {
-            last.setEnabled(false);
-            next.setEnabled(false);
-        } else {
-            last.setEnabled(true);
-            next.setEnabled(true);
-        }
-
-        if (mainFrame.page > mainFrame.totalPage) {
-            mainFrame.page = 1;
-        }
-        //New instance of table for client table model
-        productTableModel = new DataProviderTableJobOffers();
-        //Popialte table
-        productTableModel.setList(DataProviderTableJobOffers.findAll(mainFrame.page, mainFrame.rowCountPerPage));
-        //Set model
-        jTable.setModel(productTableModel);
-        status.setText("Page " + mainFrame.page + " for " + mainFrame.totalPage);//Page position count
-        totalData.setText(("Row count " + mainFrame.totalData));//Row count
-        //Resizes jtables columns
-        TableUtility.autoResizeColumn(jTable);
     }
 
     // int index = jTableJobOffers.getSelectedRow();

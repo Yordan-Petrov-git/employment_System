@@ -48,7 +48,13 @@ public class User extends SuperclassUser {
         setEmailAddress(emailAddress);
     }
 
-
+    public User(String firstName,
+                String familyName,String phoneNumber,String emailAddress) {
+        setFirstName(firstName);
+        setFamilyName(familyName);
+        setPhoneNumber(phoneNumber);
+        setEmailAddress(emailAddress);
+    }
 
     public String getFirstName() {
         return this.firstName;

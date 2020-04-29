@@ -50,6 +50,12 @@ public class Company extends SuperclassUser {
         setCompanyName(companyName);
     }
 
+    public Company(String username, String companyName) {
+        super(username);
+        setCompanyName(companyName);
+    }
+
+
     public String getCompanyName() {
         return this.companyName;
     }

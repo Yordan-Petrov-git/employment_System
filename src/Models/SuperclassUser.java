@@ -18,6 +18,17 @@ public class SuperclassUser {
         setPassPhrase(passPhrase);
     }
 
+    public SuperclassUser(String username) {
+        setUsername(username);
+    }
+
+    public SuperclassUser(long id,String username) {
+        setId(id);
+        setUsername(username);
+    }
+
+    public SuperclassUser() {
+    }
 
     public long getId() {
         return id;
