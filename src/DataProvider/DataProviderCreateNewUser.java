@@ -1,7 +1,6 @@
 package DataProvider;
 
 import Models.User;
-import Views.MainFrame;
 
 import javax.swing.*;
 import java.sql.*;

@@ -85,4 +85,58 @@ public class TableUtility {
         //Resizes jtables columns
         TableUtility.autoResizeColumn(jTable);
     }
+
+
+    public static void initPagination(JTable jTable
+            , MainFrame mainFrame
+            , JButton last
+            , JButton next
+            , JButton previous
+            , JButton first
+            , JLabel status
+            , JLabel totalData
+            , JComboBox pageSelect
+            , DataProviderTableJobOffers productTableModel,
+            int currentIdComp) {
+        //Initializes pagiantion of rows in jtable
+        //Counts total rows in SQL DB
+        mainFrame.totalData = productTableModel.count();
+        //Testing coutn utput
+        System.out.println(mainFrame.totalData);
+
+        mainFrame.rowCountPerPage = Integer.valueOf(pageSelect.getSelectedItem().toString());
+        Double totalPageD = Math.ceil(mainFrame.totalData.doubleValue() / mainFrame.rowCountPerPage.doubleValue());
+        mainFrame.totalPage = totalPageD.intValue();
+        //Bquttons for page navigation
+        //Buttons for first page adn next page
+        if (mainFrame.page.equals(1)) {
+            first.setEnabled(false);
+            previous.setEnabled(false);
+        } else {
+            first.setEnabled(true);
+            previous.setEnabled(true);
+        }
+        //Buittons for last apge and next page
+        if (mainFrame.page.equals(mainFrame.totalPage)) {
+            last.setEnabled(false);
+            next.setEnabled(false);
+        } else {
+            last.setEnabled(true);
+            next.setEnabled(true);
+        }
+
+        if (mainFrame.page > mainFrame.totalPage) {
+            mainFrame.page = 1;
+        }
+        //New instance of table for client table model
+        productTableModel = new DataProviderTableJobOffers();
+        //Popialte table
+        productTableModel.setList(DataProviderTableJobOffers.findAllForCompany(mainFrame.page, mainFrame.rowCountPerPage,currentIdComp));
+        //Set model
+        jTable.setModel(productTableModel);
+        status.setText("Page " + mainFrame.page + " for " + mainFrame.totalPage);//Page position count
+        totalData.setText(("Row count " + mainFrame.totalData));//Row count
+        //Resizes jtables columns
+        TableUtility.autoResizeColumn(jTable);
+    }
 }

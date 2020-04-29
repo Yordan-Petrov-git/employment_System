@@ -28,7 +28,12 @@ public class DataProviderCreateNewCompany extends DataProvider {
         setCurrentCompany(company);
     }
 
+    public static void setNewCompanyForCurrentLoggedCompanyInfo(String username, String companyName) {
 
+        Company company = new Company(username , companyName);
+
+        setCurrentCompany(company);
+    }
 
     public static void registerNewCompany(String companyName
             , String username

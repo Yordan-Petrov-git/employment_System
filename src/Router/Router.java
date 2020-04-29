@@ -4,6 +4,7 @@ import Views.Home;
 import Views.MainFrame;
 import Views.Panels.Company.CreateNewJobOffer;
 import Views.Panels.Company.HomePageCompanyPanel;
+import Views.Panels.Company.ManageProfileCompany;
 import Views.Panels.Company.RegisterNewCompany;
 import Views.Panels.LoginPanel;
 import Views.Panels.Users.ApplyForOffer;
@@ -12,8 +13,6 @@ import Views.Panels.Users.RegisterNewAccountPanel;
 import Views.Panels.Users.ManageProfileUser;
 
 import javax.swing.*;
-import java.awt.desktop.AppEvent;
-
 
 public class Router extends JPanel {
 
@@ -59,6 +58,14 @@ public class Router extends JPanel {
         mainFrame.resetPagingCounters();
     }
 
+    public void showManageProfile(MainFrame mainFrame) {
+        //Mange profile user
+        ManageProfileCompany manageProfile = new ManageProfileCompany(mainFrame);
+        manageProfile.setSize(800, 600);
+        mainFrame.add(manageProfile);
+        mainFrame.getContentPane().validate();
+        mainFrame.resetPagingCounters();
+    }
 
     public void showHomepagePanel(MainFrame mainFrame) {
       //Homepage
@@ -87,14 +94,13 @@ public class Router extends JPanel {
     }
 
 
-
     public void showManageUserAccount(MainFrame mainFrame) {
         //Homepage company
         ManageProfileUser manageProfileUser = new ManageProfileUser(mainFrame);
         manageProfileUser.setSize(800, 600);
         mainFrame.add(manageProfileUser);
         mainFrame.getContentPane().validate();
-       // mainFrame.resetPagingCounters();
+        mainFrame.resetPagingCounters();
     }
 
     public void applyForOffer(MainFrame mainFrame) {
@@ -103,7 +109,7 @@ public class Router extends JPanel {
         applyForOffer.setSize(800, 600);
         mainFrame.add(applyForOffer);
         mainFrame.getContentPane().validate();
-        // mainFrame.resetPagingCounters();
+         mainFrame.resetPagingCounters();
     }
 
 
@@ -113,7 +119,7 @@ public class Router extends JPanel {
         createNewJobOffer.setSize(800, 600);
         mainFrame.add(createNewJobOffer);
         mainFrame.getContentPane().validate();
-        // mainFrame.resetPagingCounters();
+        mainFrame.resetPagingCounters();
     }
 
 }

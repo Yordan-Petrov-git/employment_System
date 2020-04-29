@@ -39,10 +39,7 @@ public class Home extends JPanel {
 
         jTableJobOffers = new JTable();
         JScrollPane pane = new JScrollPane();
-        //  String[] columnIdentifiers = {"Company","Title","City","Salary","DateAdded"};
         MainFrame.dataProviderTableJobOfferss.model = new DefaultTableModel();
-        //   MainFrame.dataProviderTableJobOfferss.model.setColumnIdentifiers(columnIdentifiers);
-        // jTableJobOffers.setModel(MainFrame.dataProviderTableJobOfferss.model);
         pane.setViewportView(jTableJobOffers);
         TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);

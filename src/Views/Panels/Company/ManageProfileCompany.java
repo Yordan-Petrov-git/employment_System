@@ -4,14 +4,12 @@ import Views.MainFrame;
 
 import javax.swing.*;
 
-public class ManageProfile extends JPanel {
+public class ManageProfileCompany extends JPanel {
     public MainFrame jFrame;
     private JButton jButtonBack;
 
-    public ManageProfile(MainFrame jFrame) {
+    public ManageProfileCompany(MainFrame jFrame) {
         this.jFrame = jFrame;
-
-
 
 
         jButtonBack = new JButton("Back");

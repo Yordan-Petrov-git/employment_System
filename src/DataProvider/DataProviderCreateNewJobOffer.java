@@ -86,19 +86,19 @@ public class DataProviderCreateNewJobOffer extends DataProvider {
     }
 
 
-    public static void addJobOfferToDataBase() {
-
-                long companyId = getCurrentJobOffer().getId();
-                String jobTitle = getCurrentJobOffer().getJobTitle();
-                String city = getCurrentJobOffer().getCity();
-                String position = getCurrentJobOffer().getPosition();
-                String description = getCurrentJobOffer().getDescription();
-                String netSalary = getCurrentJobOffer().getNetSalary();
-                String jobType = getCurrentJobOffer().getJobType();
-
-        DataProviderCreateNewJobOffer.registerJobOffer((int)companyId,jobTitle,city,position,description,netSalary,jobType);
-
-    }
+//    public static void addJobOfferToDataBase() {
+//
+//                long companyId = getCurrentJobOffer().getId();
+//                String jobTitle = getCurrentJobOffer().getJobTitle();
+//                String city = getCurrentJobOffer().getCity();
+//                String position = getCurrentJobOffer().getPosition();
+//                String description = getCurrentJobOffer().getDescription();
+//                String netSalary = getCurrentJobOffer().getNetSalary();
+//                String jobType = getCurrentJobOffer().getJobType();
+//
+//        DataProviderCreateNewJobOffer.registerJobOffer((int)companyId,jobTitle,city,position,description,netSalary,jobType);
+//
+//    }
 
 
     public static void removeCurrentJobOffer() {
