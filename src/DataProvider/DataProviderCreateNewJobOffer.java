@@ -2,6 +2,7 @@ package DataProvider;
 
 import Models.JobOffer;
 
+import javax.swing.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -72,7 +73,12 @@ public class DataProviderCreateNewJobOffer extends DataProvider {
             cstmt.setInt(2, userId);
             cstmt.setString(3, mLetter);
             cstmt.setString(4, yExperience);
-            cstmt.execute();
+
+            boolean isRegistered = cstmt.execute();
+
+            if(!isRegistered){
+                JOptionPane.showMessageDialog(null,   "Application successful !");
+            }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

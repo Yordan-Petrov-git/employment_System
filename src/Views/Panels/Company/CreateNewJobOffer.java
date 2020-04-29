@@ -47,6 +47,7 @@ public class CreateNewJobOffer extends JPanel{
         jCreateOffer = new JButton("Create Offer");
         jCreateOffer.addActionListener(e -> {
 
+            createOffer();
 
         });
         add(jCreateOffer);
@@ -54,9 +55,16 @@ public class CreateNewJobOffer extends JPanel{
         jButtonBack = new JButton("Back");
         jButtonBack.addActionListener(e -> {
 
+            MainFrame.router.removePanel(jFrame);
+            MainFrame.router.showHomePageCompanyPanel(jFrame);
 
         });
         add(jButtonBack);
+    }
+
+    public  static  void createOffer(){
+
+
     }
 }
 

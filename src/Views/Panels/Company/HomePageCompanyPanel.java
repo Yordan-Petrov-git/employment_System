@@ -13,6 +13,7 @@ public class HomePageCompanyPanel extends JPanel {
     public JButton jButtonViewApplication;
     public JButton jButtonManageApplication;
     public JButton jButtonDeleteSelectedApplication;
+    public JButton jButtonCreateNewJobOffer;
     public JTable jTableJobOffers;
 
 
@@ -52,10 +53,19 @@ public class HomePageCompanyPanel extends JPanel {
         });
         add(jButtonDeleteSelectedApplication);
 
+        jButtonCreateNewJobOffer = new JButton("Create New Job Offer");
+        jButtonCreateNewJobOffer.addActionListener(e -> {
+
+            MainFrame.router.removePanel(jFrame);
+            MainFrame.router.createNewJobOffer(jFrame);
+
+        });
+        add(jButtonCreateNewJobOffer);
+
         jButtonLogOut = new JButton("Logout");
         jButtonLogOut.addActionListener(e -> {
 
-           // DataProviderCreateNewUser.removeCurrentCompany();
+            // DataProviderCreateNewUser.removeCurrentCompany();
             MainFrame.router.removePanel(jFrame);
             MainFrame.router.showHomepagePanel(jFrame);
 

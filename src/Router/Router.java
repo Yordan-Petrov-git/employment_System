@@ -2,6 +2,7 @@ package Router;
 
 import Views.Home;
 import Views.MainFrame;
+import Views.Panels.Company.CreateNewJobOffer;
 import Views.Panels.Company.HomePageCompanyPanel;
 import Views.Panels.Company.RegisterNewCompany;
 import Views.Panels.LoginPanel;
@@ -101,6 +102,16 @@ public class Router extends JPanel {
         ApplyForOffer applyForOffer = new ApplyForOffer(mainFrame);
         applyForOffer.setSize(800, 600);
         mainFrame.add(applyForOffer);
+        mainFrame.getContentPane().validate();
+        // mainFrame.resetPagingCounters();
+    }
+
+
+    public void createNewJobOffer(MainFrame mainFrame) {
+        //Homepage company
+        CreateNewJobOffer createNewJobOffer = new CreateNewJobOffer(mainFrame);
+        createNewJobOffer.setSize(800, 600);
+        mainFrame.add(createNewJobOffer);
         mainFrame.getContentPane().validate();
         // mainFrame.resetPagingCounters();
     }

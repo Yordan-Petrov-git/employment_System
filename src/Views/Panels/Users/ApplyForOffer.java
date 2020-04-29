@@ -49,6 +49,11 @@ public class ApplyForOffer extends JPanel {
     }
 
     public  static void apply(int id,int userId,String mLetter,String yExp) {
-        DataProviderCreateNewJobOffer.applyForJobOffer(id,userId,mLetter,yExp);
+
+        if (HomePageUsersPanel.index >= 0){
+            DataProviderCreateNewJobOffer.applyForJobOffer(id,userId,mLetter,yExp);
+        }else{
+            JOptionPane.showMessageDialog(null,   "Please select job offer !");
+        }
     }
 }
