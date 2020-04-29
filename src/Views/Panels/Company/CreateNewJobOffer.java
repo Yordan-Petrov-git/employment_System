@@ -4,7 +4,7 @@ import Views.MainFrame;
 
 import javax.swing.*;
 
-public class CreateNewJobOffer {
+public class CreateNewJobOffer extends JPanel{
 
 
     private JTextField JTextFieldJobTitle;

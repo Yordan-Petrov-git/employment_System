@@ -26,6 +26,9 @@ public class SuperclassUser {
         setId(id);
         setUsername(username);
     }
+    public SuperclassUser(long id) {
+        setId(id);
+    }
 
     public SuperclassUser() {
     }

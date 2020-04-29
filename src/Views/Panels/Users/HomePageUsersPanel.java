@@ -1,5 +1,6 @@
 package Views.Panels.Users;
 
+import DataProvider.DataProviderCreateNewUser;
 import DataProvider.DataProviderTableJobOffers;
 import Helpers.TableUtils.TableUtility;
 import Views.MainFrame;
@@ -15,7 +16,7 @@ public class HomePageUsersPanel extends JPanel {
     public JTable jTableJobOffers;
     private JButton jButtonApply;
     private JButton jButtonSearch;
-
+    private JLabel jLabelLoggedInAs;
     public JButton jButtonLogout;
     private JLabel jLabelStatus;
     private JLabel jLabelTotalData;
@@ -27,7 +28,7 @@ public class HomePageUsersPanel extends JPanel {
 
     public JComboBox<String> jComboBoxPage;
 
-private JTable tableJobOffers = new JTable();
+    private JTable tableJobOffers = new JTable();
 
     public HomePageUsersPanel(MainFrame jFrame) {
         this.jFrame = jFrame;
@@ -42,9 +43,21 @@ private JTable tableJobOffers = new JTable();
         TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
 
+        //---------------------------------------------------------
+        //===========LOGED IN AS TEXT==========================
+        StringBuilder loginDetails = new StringBuilder();
+        loginDetails.append("You are logged in as");
+        loginDetails.append(" : ");
+        loginDetails.append(DataProviderCreateNewUser.getCurrentUser().getFirstName());
+        loginDetails.append(" ");
+        loginDetails.append(DataProviderCreateNewUser.getCurrentUser().getFamilyName());
+        jLabelStatus = new JLabel(String.valueOf(loginDetails));
+        add(jLabelStatus);
+        //---------------------------------------------------
+
+
         jButtonApply = new JButton("Apply");
         jButtonApply.addActionListener(e -> {
-
 
 
         });
@@ -58,7 +71,6 @@ private JTable tableJobOffers = new JTable();
         add(jButtonSearch);
 
 
-
         jComboBoxPage = new JComboBox<String>();
         jComboBoxPage.addItem("10");
         jComboBoxPage.addItem("15");
@@ -69,9 +81,9 @@ private JTable tableJobOffers = new JTable();
         jComboBoxPage.addItemListener(new ItemListener() {
             // Change data in jtable on combobox change
             public void itemStateChanged(ItemEvent e) {
-                TableUtility.initPagination(jTableJobOffers,jFrame
-                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+                TableUtility.initPagination(jTableJobOffers, jFrame
+                        , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
+                        , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
             }
         });
         //Shows first paged rows in the jtable
@@ -87,9 +99,9 @@ private JTable tableJobOffers = new JTable();
         jButtonLast = new JButton("last");
         jButtonLast.addActionListener(e -> {
             jFrame.page = jFrame.totalPage;
-            TableUtility.initPagination(jTableJobOffers,jFrame
-                    ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                    ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+            TableUtility.initPagination(jTableJobOffers, jFrame
+                    , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
+                    , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
         });
         add(jButtonLast);
         //jButtonLast.setEnabled(true);
@@ -98,11 +110,10 @@ private JTable tableJobOffers = new JTable();
         jButtonNext.addActionListener(e -> {
             if (jFrame.page < jFrame.totalPage) {
                 jFrame.page++;
-                TableUtility.initPagination(jTableJobOffers,jFrame
-                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+                TableUtility.initPagination(jTableJobOffers, jFrame
+                        , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
+                        , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
             }
-
 
 
         });
@@ -114,9 +125,9 @@ private JTable tableJobOffers = new JTable();
         jButtonPrevious.addActionListener(e -> {
             if (jFrame.page > 1) {
                 jFrame.page--;
-                TableUtility.initPagination(jTableJobOffers,jFrame
-                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+                TableUtility.initPagination(jTableJobOffers, jFrame
+                        , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
+                        , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
             }
         });
         add(jButtonPrevious);
@@ -125,12 +136,11 @@ private JTable tableJobOffers = new JTable();
         jButtonFirst = new JButton("first");
         jButtonFirst.addActionListener(e -> {
             jFrame.page = 1;//Sets page counter to first page
-            TableUtility.initPagination(jTableJobOffers,jFrame
-                    ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                    ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+            TableUtility.initPagination(jTableJobOffers, jFrame
+                    , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
+                    , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
         });
         add(jButtonFirst);
-
 
         jButtonLogout = new JButton("Edit Account");
         jButtonLogout.addActionListener(e -> {
@@ -141,10 +151,9 @@ private JTable tableJobOffers = new JTable();
         });
         add(jButtonLogout);
 
-
         jButtonLogout = new JButton("Logout");
         jButtonLogout.addActionListener(e -> {
-
+            DataProviderCreateNewUser.removeCurrentUser();
             MainFrame.router.removePanel(jFrame);
             MainFrame.router.showHomepagePanel(jFrame);
 
@@ -152,8 +161,8 @@ private JTable tableJobOffers = new JTable();
         add(jButtonLogout);
 
 
-        TableUtility.initPagination(jTableJobOffers,jFrame
-                ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+        TableUtility.initPagination(jTableJobOffers, jFrame
+                , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
+                , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
     }
 }

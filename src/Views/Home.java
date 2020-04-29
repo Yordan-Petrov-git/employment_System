@@ -153,6 +153,5 @@ public class Home extends JPanel {
 
     }
 
-    // int index = jTableJobOffers.getSelectedRow();
 
 }

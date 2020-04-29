@@ -22,33 +22,47 @@ public class DataProviderCreateNewUser extends DataProvider {
     public static void initializeNewUser(String username, String password, String salt
             , String passPhrase, String firstName, String familyName, String phoneNumber
             , String emailAddress, String accountType, String picture) {
-
+//For registration of new user only!!!
+        //with all info for the user
         User user = new User(username, password, salt, passPhrase, firstName, familyName, phoneNumber
                 , emailAddress, accountType, picture);
 
-
+        setCurrentUser(user);
     }
 
     public static void initializeNewUserNoPicture(String username, String password, String salt
             , String passPhrase, String firstName, String familyName, String phoneNumber
             , String emailAddress, String accountType) {
-
+//For registration of new user only!!!
+        //without picture type
         User user = new User(username, password, salt, passPhrase, firstName, familyName, phoneNumber
                 , emailAddress, accountType);
 
-
+        setCurrentUser(user);
     }
 
     public static void initializeNewUserNoAccountType(String username, String password, String salt
             , String passPhrase, String firstName, String familyName, String phoneNumber
             , String emailAddress) {
-
+     //For registration of new user only!!!
+        //without acc type
         User user = new User(username, password, salt, passPhrase, firstName, familyName, phoneNumber
                 , emailAddress);
 
         setCurrentUser(user);
     }
 
+
+
+    public static void setNewUserForCurrentLoggedUserInfo(long id,String username, String firstName, String familyName, String phoneNumber
+            , String emailAddress) {
+        //current user without login credentials for use in job application
+        //should be kept here until logout
+        User user = new User(id,username, firstName, familyName, phoneNumber
+                , emailAddress);
+
+        setCurrentUser(user);
+    }
 
     public static void registerNewUser(String firstName
             , String familyName

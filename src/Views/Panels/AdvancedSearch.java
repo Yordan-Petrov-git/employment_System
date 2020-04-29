@@ -1,6 +1,8 @@
 package Views.Panels;
 
-public class AdvancedSearch {
+import javax.swing.*;
+
+public class AdvancedSearch  extends JPanel {
 
 
 

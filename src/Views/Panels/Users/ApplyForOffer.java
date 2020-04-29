@@ -2,7 +2,9 @@ package Views.Panels.Users;
 
 import Views.MainFrame;
 
-public class ApplyForOffer {
+import javax.swing.*;
+
+public class ApplyForOffer extends JPanel {
 
 
     public MainFrame jFrame;

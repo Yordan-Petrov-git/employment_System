@@ -48,8 +48,10 @@ public class User extends SuperclassUser {
         setEmailAddress(emailAddress);
     }
 
-    public User(String firstName,
+    public User(long id,String username,String firstName,
                 String familyName,String phoneNumber,String emailAddress) {
+        //constructor for fetching user credentials on logon
+        super(id,username);
         setFirstName(firstName);
         setFamilyName(familyName);
         setPhoneNumber(phoneNumber);

@@ -87,7 +87,12 @@ public class LoginPanel extends JPanel {
 
     private void LoginUser() {
 
-        if (LoginDataProvider.logonUser(jTextFieldUsername.getText(), String.valueOf(jPasswordField.getPassword()))) {
+        String username = jTextFieldUsername.getText();
+        String password = String.valueOf(jPasswordField.getPassword());
+
+        if (LoginDataProvider.logonUser(username,password)) {
+
+            LoginDataProvider.getUserForCurrentLoggedInUserInfo(username);//gets current user details by username
 
             MainFrame.router.removePanel(jFrame);
             MainFrame.router.showHomepageUserPanel(jFrame);
@@ -98,7 +103,11 @@ public class LoginPanel extends JPanel {
 
     private void LoginCompany() {
 
-        if (LoginDataProvider.logonCompany(jTextFieldUsername.getText(), String.valueOf(jPasswordField.getPassword()))) {
+        String username = jTextFieldUsername.getText();
+        String password = String.valueOf(jPasswordField.getPassword());
+
+        if (LoginDataProvider.logonCompany(username,password)) {
+
 
             MainFrame.router.removePanel(jFrame);
             MainFrame.router.showHomePageCompanyPanel(jFrame);

@@ -2,7 +2,9 @@ package Views.Panels.Company;
 
 import Views.MainFrame;
 
-public class ManageProfile {
+import javax.swing.*;
+
+public class ManageProfile extends JPanel {
     public MainFrame jFrame;
 
     public ManageProfile(MainFrame jFrame) {

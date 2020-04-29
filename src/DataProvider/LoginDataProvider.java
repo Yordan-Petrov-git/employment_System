@@ -94,10 +94,10 @@ public class LoginDataProvider extends DataProvider {
         return false;
     }
 
+    public static void getUserForCurrentLoggedInUserInfo(String username) {
 
+        //id,username, firstName, familyName, phoneNumber, emailAddress
 
-    public static void getUserInfo(String username) {
-        //
         String query = "{ call select_all_user_info_by_usernamr(?) }";
         ResultSet resultSet;
 
@@ -114,7 +114,13 @@ public class LoginDataProvider extends DataProvider {
                 String lName = resultSet.getString("family_name_user");
                 String phone = resultSet.getString("phone_number");
                 String email = resultSet.getString("email");
+
+                DataProviderCreateNewUser
+                        .setNewUserForCurrentLoggedUserInfo
+                                (Long.parseLong(compId),usernameUser,fName,lName,phone,email);
             }
+
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

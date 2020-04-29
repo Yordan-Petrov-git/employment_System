@@ -2,7 +2,9 @@ package Views.Panels.Company;
 
 import Views.MainFrame;
 
-public class ManageJobOffer {
+import javax.swing.*;
+
+public class ManageJobOffer extends JPanel {
     public MainFrame jFrame;
 
 
