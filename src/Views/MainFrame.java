@@ -13,7 +13,9 @@ public class MainFrame extends JFrame {
     public static LoginDataProvider loginDataProvider = new LoginDataProvider();
     public static DataProviderTableJobOffers dataProviderTableJobOfferss = new DataProviderTableJobOffers();
     public static Router router = new Router();
-    public static LoginEnum loginAs;
+
+    public static LoginEnum loginAs ;
+
     public  Integer page = 1;
     public  Integer rowCountPerPage = 10;
     public  Integer totalPage = 1;
@@ -29,8 +31,6 @@ public class MainFrame extends JFrame {
         this.setLocationRelativeTo(null);
         setLayout(new FlowLayout());
 
-        //router.showManageProfilePanel(this);
-        //router.showRegistrationPanelCompany(this);
         router.showHomepagePanel(this);
     }
 

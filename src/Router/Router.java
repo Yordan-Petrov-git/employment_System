@@ -63,7 +63,7 @@ public class Router extends JPanel {
         homePage.setSize(800, 600);
         mainFrame.add(homePage);
         mainFrame.getContentPane().validate();
-       // mainFrame.resetPagingCounters();
+
     }
     public void showHomepageUserPanel(MainFrame mainFrame) {
      //Homepage user
@@ -75,13 +75,15 @@ public class Router extends JPanel {
     }
 
     public void showHomePageCompanyPanel(MainFrame mainFrame) {
-      //Homepage company
-        HomePageCompanyPanel homePageCompany = new HomePageCompanyPanel(mainFrame);
-        homePageCompany.setSize(800, 600);
-        mainFrame.add(homePageCompany);
+        //Homepage user
+        HomePageCompanyPanel homePage = new HomePageCompanyPanel(mainFrame);
+        homePage.setSize(800, 600);
+        mainFrame.add(homePage);
         mainFrame.getContentPane().validate();
         mainFrame.resetPagingCounters();
     }
+
+
 
     public void showManageUserAccount(MainFrame mainFrame) {
         //Homepage company

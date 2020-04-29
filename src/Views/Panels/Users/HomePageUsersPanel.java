@@ -13,6 +13,9 @@ public class HomePageUsersPanel extends JPanel {
 
     public MainFrame jFrame;
     public JTable jTableJobOffers;
+    private JButton jButtonApply;
+    private JButton jButtonSearch;
+
     public JButton jButtonLogout;
     private JLabel jLabelStatus;
     private JLabel jLabelTotalData;
@@ -39,24 +42,22 @@ private JTable tableJobOffers = new JTable();
         TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
 
-        jButtonLogout = new JButton("Edit Account");
-        jButtonLogout.addActionListener(e -> {
-
-            MainFrame.router.removePanel(jFrame);
-            MainFrame.router.showManageUserAccount(jFrame);
-
-        });
-        add(jButtonLogout);
+        jButtonApply = new JButton("Apply");
+        jButtonApply.addActionListener(e -> {
 
 
-        jButtonLogout = new JButton("Logout");
-        jButtonLogout.addActionListener(e -> {
-
-            MainFrame.router.removePanel(jFrame);
-            MainFrame.router.showHomepagePanel(jFrame);
 
         });
-        add(jButtonLogout);
+        add(jButtonApply);
+
+        jButtonSearch = new JButton("Search");
+        jButtonSearch.addActionListener(e -> {
+
+
+        });
+        add(jButtonSearch);
+
+
 
         jComboBoxPage = new JComboBox<String>();
         jComboBoxPage.addItem("10");
@@ -129,6 +130,27 @@ private JTable tableJobOffers = new JTable();
                     ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
         });
         add(jButtonFirst);
+
+
+        jButtonLogout = new JButton("Edit Account");
+        jButtonLogout.addActionListener(e -> {
+
+            MainFrame.router.removePanel(jFrame);
+            MainFrame.router.showManageUserAccount(jFrame);
+
+        });
+        add(jButtonLogout);
+
+
+        jButtonLogout = new JButton("Logout");
+        jButtonLogout.addActionListener(e -> {
+
+            MainFrame.router.removePanel(jFrame);
+            MainFrame.router.showHomepagePanel(jFrame);
+
+        });
+        add(jButtonLogout);
+
 
         TableUtility.initPagination(jTableJobOffers,jFrame
                 ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
