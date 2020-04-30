@@ -184,7 +184,7 @@ public class HomePageCompanyPanel extends JPanel {
     }
 
     public void refreshTable() {
-        DataProviderTableJobOffers.initPaginationC(jTableJobOffers, jFrame
+        DataProviderTableJobOffers.initPaginationC(jTableJobOffers
                 , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
                 , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel, id);
     }

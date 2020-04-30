@@ -3,7 +3,6 @@ package Views.Panels.Company;
 import javax.swing.*;
 
 import DataProvider.DataProviderCreateNewCompany;
-import DataProvider.DataProviderCreateNewUser;
 import DataProvider.DataProviderTablesUsers;
 import Views.MainFrame;
 
@@ -11,10 +10,11 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class ViewJobOfferDetails extends JPanel {
+
     public MainFrame jFrame;
+
     private JButton jButtonBack;
     private JTable jTableUsersAppllied;
-
 
     private JLabel jLabelStatus;
     private JLabel jLabelTotalData;
@@ -28,8 +28,6 @@ public class ViewJobOfferDetails extends JPanel {
 
     public DataProviderTablesUsers userTableModel;
 
-    int id = (int) DataProviderCreateNewCompany.getCurrentCompany().getId();
-    public int index;
 
     public ViewJobOfferDetails(MainFrame jFrame) {
         this.jFrame = jFrame;
@@ -117,19 +115,11 @@ public class ViewJobOfferDetails extends JPanel {
 
     public void refreshTable() {
         //todo show users in table
-      //  index = this.jTableJobOffers.getSelectedRow();
-       // id = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
-       // DataProviderTablesUsers.initPaginationC();
 
-        DataProviderTablesUsers.initPagingUsersApplied(jTableUsersAppllied, jFrame
+        DataProviderTablesUsers.initPagingUsersApplied(jTableUsersAppllied
                 , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
-                , jLabelStatus, jLabelTotalData, jComboBoxPage,userTableModel,HomePageCompanyPanel.id);
+                , jLabelStatus, jLabelTotalData, jComboBoxPage, userTableModel, HomePageCompanyPanel.id);
     }
-
-
-
-
-
 
 
 }

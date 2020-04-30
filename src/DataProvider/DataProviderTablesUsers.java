@@ -16,10 +16,7 @@ public class DataProviderTablesUsers extends AbstractTableModel {
 
     List<User> userList = new ArrayList<User>();
 
-
-
     public static void initPagingUsersApplied(JTable jTable
-            , MainFrame mainFrame
             , JButton last
             , JButton next
             , JButton previous
@@ -32,7 +29,7 @@ public class DataProviderTablesUsers extends AbstractTableModel {
         //Initializes pagiantion of rows in jtable
         //Counts total rows in SQL DB
       //TODO COULD SET WITH SETTERS ?
-        MainFrame.totalData = countJobOffers(jobOfferId);
+        MainFrame.totalData = countJobOffersApplication(jobOfferId);
         //Testing coutn utput
         System.out.println(MainFrame.totalData);
 
@@ -71,9 +68,9 @@ public class DataProviderTablesUsers extends AbstractTableModel {
         //Resizes jtables columns
         TableUtility.autoResizeColumn(jTable);
     }
-    
-    public static int countJobOffers(int offerId) {
-        //Counts SQL table all rows
+
+    public static int countJobOffersApplication(int offerId) {
+        //Counts job offer applications  by offer id
         int counter = 0;
         try {
             PreparedStatement preparedStatement;
@@ -95,9 +92,9 @@ public class DataProviderTablesUsers extends AbstractTableModel {
     
     public static List<User> getListOfApplicants(int page, int pageSize, int offerId) {
 
-        List<User> listJobOffers = new ArrayList<User>();
+        List<User> listJobOffers = new ArrayList<User>(); // list for offers
 
-        if (countJobOffers(offerId) == 0) {
+        if (countJobOffersApplication(offerId) == 0) { //counts job offers by selected job offer id
             return listJobOffers;
         }
 
@@ -113,16 +110,15 @@ public class DataProviderTablesUsers extends AbstractTableModel {
             ResultSet resultSet = preparedStatement.executeQuery();
             User user;
 
-            // ---------------for later user-------------
-            //resultSet.getString("date_added_offer")
-
-         //   (resultSet.getString("company_job_offer_title"))
             while (resultSet.next()) {
 
-                user = new User((long)(resultSet.getInt("user_id")),(resultSet.getString("first_name_user"))
-                        ,(resultSet.getString("family_name_user")),(resultSet.getString("phone_number"))
-                ,(resultSet.getString("motivational_letter_from_user"))
-                ,(resultSet.getString("years_of_experience")));
+                user = new User((resultSet.getString("first_name_user"))
+                        ,(resultSet.getString("family_name_user"))
+                        ,(resultSet.getString("phone_number"))
+                        ,(resultSet.getString("email"))
+                        ,(resultSet.getString("motivational_letter_from_user"))
+                        ,(resultSet.getString("years_of_experience")));
+
                 listJobOffers.add(user);
             }
             //DataProvider.getConnection().commit();
@@ -135,9 +131,7 @@ public class DataProviderTablesUsers extends AbstractTableModel {
 
     }
 
-
-
-    private final String HEADER[] = {"№->", "Name", "Family", "Email", "Phone Number"};
+    private final String[] HEADER = {"№->","Name ", "Email", "Phone Number","Motivation","Experience"};
 
     public void setList(List<User> listProduct) {
         this.userList = listProduct;
@@ -178,24 +172,24 @@ public class DataProviderTablesUsers extends AbstractTableModel {
         User user = userList.get(rowIndex);
 
         switch (columnIndex) {
+
             case 0:
                 return rowIndex + 1;//Row number counter for the table
 
             case 1:
-                return user.getFirstName();
+                return user.getFirstName()+ " " +user.getFamilyName();
 
             case 2:
-                return user.getFamilyName();
-
-            case 3:
                 return user.getEmailAddress();
 
-            case 4:
+            case 3:
                 return user.getPhoneNumber();
 
-//            case 5:
-//                return user.getId();
+            case 4:
+                return user.getDescription();
 
+            case 5:
+                return user.getYearsExp();
 
             default:
                 return null;//Defaut state null

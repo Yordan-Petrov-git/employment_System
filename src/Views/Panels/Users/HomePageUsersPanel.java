@@ -160,7 +160,7 @@ public class HomePageUsersPanel extends JPanel {
 
     public void updateJobOffersTable() {
 
-        DataProviderTableJobOffers.initPagination(jTableJobOffers, jFrame
+        DataProviderTableJobOffers.initPagination(jTableJobOffers
                 , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
                 , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
 

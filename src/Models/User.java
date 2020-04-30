@@ -12,7 +12,6 @@ public class User extends SuperclassUser {
     private String yearsExp;
 
 
-
     public User(String username, String password,
                 String salt, String passPhrase,
                 String firstName, String familyName, String phoneNumber,
@@ -36,9 +35,6 @@ public class User extends SuperclassUser {
         setPhoneNumber(phoneNumber);
         setEmailAddress(emailAddress);
         setAccountType(accountType);
-
-
-
     }
 
     public User(String username, String password,
@@ -62,10 +58,9 @@ public class User extends SuperclassUser {
     }
 
 
-    public User(long id,String firstName,
+    public User(String firstName,
                 String familyName,String phoneNumber,String emailAddress,String description, String yearsExp) {
         //constructor for company job offer checking
-        super(id);
         setFirstName(firstName);
         setFamilyName(familyName);
         setPhoneNumber(phoneNumber);
@@ -73,6 +68,9 @@ public class User extends SuperclassUser {
         setDescription(description);
         setYearsExp(yearsExp);
     }
+
+
+
 
     public String getFirstName() {
         return this.firstName;

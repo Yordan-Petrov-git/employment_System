@@ -19,7 +19,6 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
     private static List<JobOffer> listProduct = new ArrayList<JobOffer>();
 
     public static void initPaginationC(JTable jTable
-            , MainFrame mainFrame
             , JButton last
             , JButton next
             , JButton previous
@@ -32,16 +31,16 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
         //Initializes pagiantion of rows in jtable
         //Counts total rows in SQL DB
 
-        mainFrame.totalData = productTableModel.count();
+        MainFrame.totalData = count();
         //Testing coutn utput
-        System.out.println(mainFrame.totalData);
+        System.out.println(MainFrame.totalData);
 
-        mainFrame.rowCountPerPage = Integer.valueOf(pageSelect.getSelectedItem().toString());
-        Double totalPageD = Math.ceil(mainFrame.totalData.doubleValue() / mainFrame.rowCountPerPage.doubleValue());
-        mainFrame.totalPage = totalPageD.intValue();
+        MainFrame.rowCountPerPage = Integer.valueOf(pageSelect.getSelectedItem().toString());
+        Double totalPageD = Math.ceil(MainFrame.totalData.doubleValue() / MainFrame.rowCountPerPage.doubleValue());
+        MainFrame.totalPage = totalPageD.intValue();
         //Bquttons for page navigation
         //Buttons for first page adn next page
-        if (mainFrame.page.equals(1)) {
+        if (MainFrame.page.equals(1)) {
             first.setEnabled(false);
             previous.setEnabled(false);
         } else {
@@ -49,7 +48,7 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
             previous.setEnabled(true);
         }
         //Buittons for last apge and next page
-        if (mainFrame.page.equals(mainFrame.totalPage)) {
+        if (MainFrame.page.equals(MainFrame.totalPage)) {
             last.setEnabled(false);
             next.setEnabled(false);
         } else {
@@ -57,23 +56,22 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
             next.setEnabled(true);
         }
 
-        if (mainFrame.page > mainFrame.totalPage) {
-            mainFrame.page = 1;
+        if (MainFrame.page > MainFrame.totalPage) {
+            MainFrame.page = 1;
         }
         //New instance of table for client table model
         productTableModel = new DataProviderTableJobOffers();
         //Popialte table
-        productTableModel.setList(DataProviderTableJobOffers.findAllForCompany(mainFrame.page, mainFrame.rowCountPerPage,currentIdComp));
+        productTableModel.setList(DataProviderTableJobOffers.findAllForCompany(MainFrame.page, MainFrame.rowCountPerPage,currentIdComp));
         //Set model
         jTable.setModel(productTableModel);
-        status.setText("Page " + mainFrame.page + " for " + mainFrame.totalPage);//Page position count
-        totalData.setText(("Row count " + mainFrame.totalData));//Row count
+        status.setText("Page " + MainFrame.page + " for " + MainFrame.totalPage);//Page position count
+        totalData.setText(("Row count " + MainFrame.totalData));//Row count
         //Resizes jtables columns
         TableUtility.autoResizeColumn(jTable);
     }
 
     public static void initPagination(JTable jTable
-            , MainFrame mainFrame
             , JButton last
             , JButton next
             , JButton previous
@@ -84,16 +82,16 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
             , DataProviderTableJobOffers productTableModel) {
         //Initializes pagiantion of rows in jtable
         //Counts total rows in SQL DB
-        mainFrame.totalData = productTableModel.count();
+        MainFrame.totalData = productTableModel.count();
         //Testing coutn utput
-        System.out.println(mainFrame.totalData);
+        System.out.println(MainFrame.totalData);
 
-        mainFrame.rowCountPerPage = Integer.valueOf(pageSelect.getSelectedItem().toString());
-        Double totalPageD = Math.ceil(mainFrame.totalData.doubleValue() / mainFrame.rowCountPerPage.doubleValue());
-        mainFrame.totalPage = totalPageD.intValue();
+        MainFrame.rowCountPerPage = Integer.valueOf(pageSelect.getSelectedItem().toString());
+        Double totalPageD = Math.ceil(MainFrame.totalData.doubleValue() / MainFrame.rowCountPerPage.doubleValue());
+        MainFrame.totalPage = totalPageD.intValue();
         //Bquttons for page navigation
         //Buttons for first page adn next page
-        if (mainFrame.page.equals(1)) {
+        if (MainFrame.page.equals(1)) {
             first.setEnabled(false);
             previous.setEnabled(false);
         } else {
@@ -101,7 +99,7 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
             previous.setEnabled(true);
         }
         //Buittons for last apge and next page
-        if (mainFrame.page.equals(mainFrame.totalPage)) {
+        if (MainFrame.page.equals(MainFrame.totalPage)) {
             last.setEnabled(false);
             next.setEnabled(false);
         } else {
@@ -109,17 +107,17 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
             next.setEnabled(true);
         }
 
-        if (mainFrame.page > mainFrame.totalPage) {
-            mainFrame.page = 1;
+        if (MainFrame.page > MainFrame.totalPage) {
+            MainFrame.page = 1;
         }
         //New instance of table for client table model
         productTableModel = new DataProviderTableJobOffers();
         //Popialte table
-        productTableModel.setList(DataProviderTableJobOffers.findAll(mainFrame.page, mainFrame.rowCountPerPage));
+        productTableModel.setList(DataProviderTableJobOffers.findAll(MainFrame.page, MainFrame.rowCountPerPage));
         //Set model
         jTable.setModel(productTableModel);
-        status.setText("Page " + mainFrame.page + " for " + mainFrame.totalPage);//Page position count
-        totalData.setText(("Row count " + mainFrame.totalData));//Row count
+        status.setText("Page " + MainFrame.page + " for " + MainFrame.totalPage);//Page position count
+        totalData.setText(("Row count " + MainFrame.totalData));//Row count
         //Resizes jtables columns
         TableUtility.autoResizeColumn(jTable);
     }
@@ -256,7 +254,7 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
     }
 
 
-    private final String HEADER[] = {"№->", "Title", "City", "Description", "Salary","JobType","Company","id"};
+    private final String [] HEADER = {"№->", "Title", "City", "Description", "Salary","JobType","Company","id"};
 
         public void setList(List<JobOffer> listProduct) {
             this.listProduct = listProduct;

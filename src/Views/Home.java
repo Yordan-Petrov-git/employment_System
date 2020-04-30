@@ -139,7 +139,7 @@ public class Home extends JPanel {
 
     public void voidUpdateTable(){
 
-        DataProviderTableJobOffers.initPagination(jTableJobOffers,jFrame
+        DataProviderTableJobOffers.initPagination(jTableJobOffers
                 ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
                 ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
     }
