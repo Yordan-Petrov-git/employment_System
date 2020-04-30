@@ -28,7 +28,6 @@ public class DataProviderTablesUsers extends AbstractTableModel {
                                        int jobOfferId) {
         //Initializes pagiantion of rows in jtable
         //Counts total rows in SQL DB
-      //TODO COULD SET WITH SETTERS ?
         MainFrame.totalData = countJobOffersApplication(jobOfferId);
         //Testing coutn utput
         System.out.println(MainFrame.totalData);

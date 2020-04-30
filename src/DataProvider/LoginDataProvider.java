@@ -2,15 +2,12 @@ package DataProvider;
 
 import Helpers.PasswordUtils.PasswordUtility;
 import Models.User;
-import Views.MainFrame;
-import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.sql.*;
 
 public class LoginDataProvider extends DataProvider {
 
-    public User loggedInUser;
 
     public static Boolean logonUser(String username, String password) {
         //

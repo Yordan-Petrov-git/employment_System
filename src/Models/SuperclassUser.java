@@ -2,8 +2,6 @@ package Models;
 
 public class SuperclassUser {
 
-
-
     private long id;
     private String username;
     private String password;

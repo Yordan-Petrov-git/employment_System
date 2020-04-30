@@ -2,7 +2,6 @@ package Models;
 
 public class Company extends SuperclassUser {
 
-
     private String companyName;
     private String phoneNumber;
     private String logo;

@@ -1,8 +1,7 @@
 package DataProvider;
 
-
-
 import com.mysql.cj.jdbc.MysqlDataSource;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.SQLException;

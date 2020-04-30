@@ -78,12 +78,13 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
     }
 
     public static void search(JTable jTable
-            ,String  compTitle) {
+            , String compTitle) {
 
         DataProviderTableJobOffers productTableModel = new DataProviderTableJobOffers();
         productTableModel.setList(DataProviderTableJobOffers.listSearchComp(compTitle));
         TableUtility.autoResizeColumn(jTable);
     }
+
     public static List<JobOffer> findAll(int page, int pageSize) {
 
         List<JobOffer> listJobOffers = new ArrayList<JobOffer>();
@@ -116,7 +117,7 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
     }
 
 
-    public static List<JobOffer> listSearchComp(String  compTitle) {
+    public static List<JobOffer> listSearchComp(String compTitle) {
         List<JobOffer> jobOffersById = new ArrayList<JobOffer>();
 
         try {

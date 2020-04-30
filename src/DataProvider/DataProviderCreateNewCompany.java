@@ -1,7 +1,6 @@
 package DataProvider;
 
 import Models.Company;
-import Models.User;
 
 import javax.swing.*;
 import java.sql.CallableStatement;
@@ -28,10 +27,10 @@ public class DataProviderCreateNewCompany extends DataProvider {
         setCurrentCompany(company);
     }
 
-    public static void setNewCompanyForCurrentLoggedCompanyInfo(long id ,String username, String companyName) {
+    public static void setNewCompanyForCurrentLoggedCompanyInfo(long id, String username, String companyName) {
         //login current company
 
-        Company company = new Company(id,companyName,username);
+        Company company = new Company(id, companyName, username);
         setCurrentCompany(company);
     }
 
@@ -59,6 +58,7 @@ public class DataProviderCreateNewCompany extends DataProvider {
             System.out.println(ex.getMessage());
         }
     }
+
     public static void addCompanyToDataBase() {
 
         String companyName = getCurrentCompany().getCompanyName();
@@ -68,10 +68,10 @@ public class DataProviderCreateNewCompany extends DataProvider {
         String passphrase = getCurrentCompany().getPassPhrase();
 
 
-        if (!LoginDataProvider.doesUsernameCompanyExists(usernameCompany)){
+        if (!LoginDataProvider.doesUsernameCompanyExists(usernameCompany)) {
             JOptionPane.showMessageDialog(null, "Company :" + companyName + "redistricted");
-            registerNewCompany(companyName,usernameCompany,key,salt,passphrase);
-        }else{
+            registerNewCompany(companyName, usernameCompany, key, salt, passphrase);
+        } else {
             JOptionPane.showMessageDialog(null, "Username is taken", "Registration Error", 2);
         }
 

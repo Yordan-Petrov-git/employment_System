@@ -1,12 +1,8 @@
 package DataProvider;
 
-import Models.JobOffer;
-import Models.User;
-
 import javax.swing.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DataProviderCreateNewJobOffer extends DataProvider {
@@ -31,7 +27,7 @@ public class DataProviderCreateNewJobOffer extends DataProvider {
             cstmt.setString(7, jobType);
             cstmt.execute();
 
-            JOptionPane.showMessageDialog(null,"Offer successfully added");
+            JOptionPane.showMessageDialog(null, "Offer successfully added");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

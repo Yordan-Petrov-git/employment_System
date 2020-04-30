@@ -2,7 +2,6 @@ package Views.Panels.Company;
 
 import javax.swing.*;
 
-import DataProvider.DataProviderCreateNewCompany;
 import DataProvider.DataProviderTablesUsers;
 import Views.MainFrame;
 
@@ -50,7 +49,6 @@ public class ViewJobOfferDetails extends JPanel {
                 refreshTable();
             }
         });
-        //Shows first paged rows in the jtable
 
 
         jLabelStatus = new JLabel("");
@@ -66,7 +64,6 @@ public class ViewJobOfferDetails extends JPanel {
             refreshTable();
         });
         add(jButtonLast);
-        //jButtonLast.setEnabled(true);
 
         jButtonNext = new JButton("next");
         jButtonNext.addActionListener(e -> {
@@ -97,7 +94,7 @@ public class ViewJobOfferDetails extends JPanel {
             refreshTable();
         });
         add(jButtonFirst);
-        // jButtonFirst.setEnabled(true);
+
 
 
         jButtonBack = new JButton("Back");
@@ -114,7 +111,6 @@ public class ViewJobOfferDetails extends JPanel {
     }
 
     public void refreshTable() {
-        //todo show users in table
 
         DataProviderTablesUsers.initPagingUsersApplied(jTableUsersAppllied
                 , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst

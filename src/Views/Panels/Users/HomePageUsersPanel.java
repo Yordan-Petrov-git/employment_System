@@ -1,16 +1,11 @@
 package Views.Panels.Users;
 
-import DataProvider.DataProviderCreateNewCompany;
-import DataProvider.DataProviderCreateNewJobOffer;
 import DataProvider.DataProviderCreateNewUser;
 import DataProvider.DataProviderTableJobOffers;
 import Helpers.TableUtils.TableUtility;
-import Models.JobOffer;
 import Views.MainFrame;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -65,7 +60,7 @@ public class HomePageUsersPanel extends JPanel {
         jButtonSearch = new JButton("Search");
         jButtonSearch.addActionListener(e -> {
 
-            DataProviderTableJobOffers.search(jTableJobOffers,jTextFieldSearch.getText());
+            DataProviderTableJobOffers.search(jTableJobOffers, jTextFieldSearch.getText());
 
         });
         add(jButtonSearch);
@@ -82,7 +77,6 @@ public class HomePageUsersPanel extends JPanel {
 
         });
         add(jButtonApply);
-
 
 
         jComboBoxPage = new JComboBox<String>();

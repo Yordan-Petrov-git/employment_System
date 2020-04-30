@@ -90,7 +90,7 @@ public class LoginPanel extends JPanel {
         String username = jTextFieldUsername.getText();
         String password = String.valueOf(jPasswordField.getPassword());
 
-        if (LoginDataProvider.logonUser(username,password)) {
+        if (LoginDataProvider.logonUser(username, password)) {
 
             LoginDataProvider.getUserForCurrentLoggedInUserInfo(username);//gets current user details by username
             System.out.println();
@@ -106,7 +106,7 @@ public class LoginPanel extends JPanel {
         String companyUsername = jTextFieldUsername.getText();
         String password = String.valueOf(jPasswordField.getPassword());
 
-        if (LoginDataProvider.logonCompany(companyUsername,password)) {
+        if (LoginDataProvider.logonCompany(companyUsername, password)) {
 
             LoginDataProvider.getCompanyForCurrentLoggedInCompanyInfo(companyUsername);
 
@@ -125,6 +125,7 @@ public class LoginPanel extends JPanel {
 
 
     }
+
     private void registerNewCompany() {
 
 

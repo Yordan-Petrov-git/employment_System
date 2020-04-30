@@ -13,7 +13,7 @@ public class MainFrame extends JFrame {
     public static DataProviderTableJobOffers dataProviderTableJobOffers = new DataProviderTableJobOffers();
     public static Router router = new Router();
 
-    public static LoginEnum loginAs ;
+    public static LoginEnum loginAs;
 
     public static Integer page = 1;
     public static Integer rowCountPerPage = 10;

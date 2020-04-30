@@ -1,6 +1,5 @@
 package Views.Panels.Users;
 
-import DataProvider.DataProviderCreateNewCompany;
 import DataProvider.DataProviderCreateNewUser;
 import Helpers.PasswordUtils.PasswordUtility;
 import Helpers.UtilityGui.GuiUtils;

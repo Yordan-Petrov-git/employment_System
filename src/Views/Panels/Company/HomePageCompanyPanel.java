@@ -7,7 +7,6 @@ import Helpers.TableUtils.TableUtility;
 import Views.MainFrame;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 public class HomePageCompanyPanel extends JPanel {
     public MainFrame jFrame;

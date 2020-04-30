@@ -4,7 +4,6 @@ import DataProvider.DataProviderTableJobOffers;
 import Helpers.TableUtils.TableUtility;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -39,7 +38,7 @@ public class Home extends JPanel {
 
         jTableJobOffers = new JTable();
         JScrollPane pane = new JScrollPane();
-       // MainFrame.dataProviderTableJobOffers.model = new DefaultTableModel();
+        // MainFrame.dataProviderTableJobOffers.model = new DefaultTableModel();
         pane.setViewportView(jTableJobOffers);
         TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
@@ -86,7 +85,6 @@ public class Home extends JPanel {
             }
 
 
-
         });
         add(jButtonNext);
         //jButtonNext.setEnabled(true);
@@ -101,7 +99,7 @@ public class Home extends JPanel {
             }
         });
         add(jButtonPrevious);
-       // jButtonPrevious.setEnabled(true);
+        // jButtonPrevious.setEnabled(true);
 
         jButtonFirst = new JButton("first");
         jButtonFirst.addActionListener(e -> {
@@ -110,7 +108,7 @@ public class Home extends JPanel {
 
         });
         add(jButtonFirst);
-       // jButtonFirst.setEnabled(true);
+        // jButtonFirst.setEnabled(true);
 
 
         jButtonLoginAsUser = new JButton("Login as User");
@@ -137,11 +135,11 @@ public class Home extends JPanel {
 
     }
 
-    public void voidUpdateTable(){
+    public void voidUpdateTable() {
 
         DataProviderTableJobOffers.initPagination(jTableJobOffers
-                ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+                , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
+                , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
     }
 
     public static void showLogin() {
