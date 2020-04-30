@@ -3,10 +3,7 @@ package Router;
 import DataProvider.DataProviderTableJobOffers;
 import Views.Home;
 import Views.MainFrame;
-import Views.Panels.Company.CreateNewJobOffer;
-import Views.Panels.Company.HomePageCompanyPanel;
-import Views.Panels.Company.ManageProfileCompany;
-import Views.Panels.Company.RegisterNewCompany;
+import Views.Panels.Company.*;
 import Views.Panels.LoginPanel;
 import Views.Panels.Users.ApplyForOffer;
 import Views.Panels.Users.HomePageUsersPanel;
@@ -113,5 +110,27 @@ public class Router extends JPanel {
         mainFrame.getContentPane().validate();
       //  mainFrame.resetPagingCounters();
     }
+
+
+
+    public void viewJobOfersCompany(MainFrame mainFrame) {
+        //Homepage company
+        ViewJobOfferDetails viewJobOfferDetails = new ViewJobOfferDetails(mainFrame);
+        viewJobOfferDetails.setSize(800, 600);
+        mainFrame.add(viewJobOfferDetails);
+        mainFrame.getContentPane().validate();
+        //  mainFrame.resetPagingCounters();
+    }
+
+    public void editSelectedJobOffer(MainFrame mainFrame) {
+        //Homepage company
+        ManageJobOffer manageSelectedJobOffer = new ManageJobOffer(mainFrame);
+        manageSelectedJobOffer.setSize(800, 600);
+        mainFrame.add(manageSelectedJobOffer);
+        mainFrame.getContentPane().validate();
+        //  mainFrame.resetPagingCounters();
+    }
+
+
 
 }

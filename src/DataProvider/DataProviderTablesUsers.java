@@ -15,13 +15,14 @@ public class DataProviderTablesUsers extends AbstractTableModel {
     List<User> userList = new ArrayList<User>();
 
 
-    public static int count() {
+    public static int countUsers(int id) {
         //Counts SQL table all rows
         int counter = 0;
         try {
             PreparedStatement preparedStatement;
             //  DataProvider.getConnection().setAutoCommit(false);  //count_job_offers
-            preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers()}");
+            preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers(?)}");
+            preparedStatement.setInt(1,id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 counter = rs.getInt("count(job_offer_id)");
@@ -35,11 +36,11 @@ public class DataProviderTablesUsers extends AbstractTableModel {
 
     }
 
-    public static List<JobOffer> findAll(int page, int pageSize) {
+    public static List<JobOffer> findAll(int page, int pageSize,int id) {
 
         List<JobOffer> listJobOffers = new ArrayList<JobOffer>();
 
-        if (count() == 0) {
+        if (countUsers(id) == 0) {
             return listJobOffers;
         }
 
@@ -47,7 +48,7 @@ public class DataProviderTablesUsers extends AbstractTableModel {
             // DataProvider.getConnection().setAutoCommit(false);
             //SQL DB Query for table paging
             PreparedStatement preparedStatement;
-            preparedStatement = DataProvider.getConnection().prepareCall("{call show_all_job_offers(?,?)}");
+            preparedStatement = DataProvider.getConnection().prepareCall("{call show_all_job_offers(?,?,?,?)}");
             preparedStatement.setInt(1, pageSize * (page - 1));
             preparedStatement.setInt(2, pageSize);
             ResultSet resultSet = preparedStatement.executeQuery();

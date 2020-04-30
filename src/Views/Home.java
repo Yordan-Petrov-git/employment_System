@@ -54,9 +54,8 @@ public class Home extends JPanel {
         jComboBoxPage.addItemListener(new ItemListener() {
             // Change data in jtable on combobox change
             public void itemStateChanged(ItemEvent e) {
-                TableUtility.initPagination(jTableJobOffers,jFrame
-                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+                voidUpdateTable();
+
             }
         });
         //Shows first paged rows in the jtable
@@ -72,9 +71,8 @@ public class Home extends JPanel {
         jButtonLast = new JButton("last");
         jButtonLast.addActionListener(e -> {
             jFrame.page = jFrame.totalPage;
-            TableUtility.initPagination(jTableJobOffers,jFrame
-                    ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                    ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+            voidUpdateTable();
+
         });
         add(jButtonLast);
         //jButtonLast.setEnabled(true);
@@ -83,9 +81,8 @@ public class Home extends JPanel {
         jButtonNext.addActionListener(e -> {
             if (jFrame.page < jFrame.totalPage) {
                 jFrame.page++;
-                TableUtility.initPagination(jTableJobOffers,jFrame
-                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+                voidUpdateTable();
+
             }
 
 
@@ -99,9 +96,8 @@ public class Home extends JPanel {
         jButtonPrevious.addActionListener(e -> {
             if (jFrame.page > 1) {
                 jFrame.page--;
-                TableUtility.initPagination(jTableJobOffers,jFrame
-                        ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                        ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+                voidUpdateTable();
+
             }
         });
         add(jButtonPrevious);
@@ -110,9 +106,8 @@ public class Home extends JPanel {
         jButtonFirst = new JButton("first");
         jButtonFirst.addActionListener(e -> {
             jFrame.page = 1;//Sets page counter to first page
-            TableUtility.initPagination(jTableJobOffers,jFrame
-                    ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                    ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+            voidUpdateTable();
+
         });
         add(jButtonFirst);
        // jButtonFirst.setEnabled(true);
@@ -138,7 +133,13 @@ public class Home extends JPanel {
         });
         add(jButtonLoginAsCompany);
 
-        TableUtility.initPagination(jTableJobOffers,jFrame
+        voidUpdateTable();
+
+    }
+
+    public void voidUpdateTable(){
+
+        DataProviderTableJobOffers.initPagination(jTableJobOffers,jFrame
                 ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
                 ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
     }

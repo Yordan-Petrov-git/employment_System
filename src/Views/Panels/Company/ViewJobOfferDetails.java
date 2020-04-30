@@ -1,24 +1,19 @@
 package Views.Panels.Company;
 
+import javax.swing.*;
+
 import DataProvider.DataProviderCreateNewCompany;
-import DataProvider.DataProviderCreateNewJobOffer;
 import DataProvider.DataProviderCreateNewUser;
 import DataProvider.DataProviderTableJobOffers;
 import Helpers.TableUtils.TableUtility;
 import Views.MainFrame;
-
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class HomePageCompanyPanel extends JPanel {
+public class ViewJobOfferDetails extends JPanel {
     public MainFrame jFrame;
-    private JButton jButtonLogOut;
-    private JButton jButtonViewApplication;
-    private JButton jButtonManageApplication;
-    private JButton jButtonDeleteSelectedApplication;
-    private JButton jButtonCreateNewJobOffer;
+    private JButton jButtonBack;
     private JTable jTableJobOffers;
 
 
@@ -30,16 +25,14 @@ public class HomePageCompanyPanel extends JPanel {
     private JButton jButtonPrevious;
     private JButton jButtonFirst;
 
-    private JButton jButtonManageProfile;
-
     public JComboBox<String> jComboBoxPage;
 
-    public DataProviderTableJobOffers productTableModel;
+    public DataProviderCreateNewUser userTableModel;
 
-    int id = (int) DataProviderCreateNewCompany.getCurrentCompany().getId();
-    public int index;
+    int id = (int)DataProviderCreateNewCompany.getCurrentCompany().getId();
+    public  int index;
 
-    public HomePageCompanyPanel(MainFrame jFrame) {
+    public ViewJobOfferDetails(MainFrame jFrame) {
         this.jFrame = jFrame;
 
         //TODO ADD TABLE WITH JOB OFFERS FOR THE SPECIFIC LOGGED IN COMPANY BY ID OT WHTEVER IDENTIFIER
@@ -49,7 +42,7 @@ public class HomePageCompanyPanel extends JPanel {
         JScrollPane pane = new JScrollPane();
        // MainFrame.dataProviderTableJobOfferss.model = new DefaultTableModel();
         pane.setViewportView(jTableJobOffers);
-        TableUtility.autoResizeColumn(jTableJobOffers);
+       // TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
 
         jComboBoxPage = new JComboBox<String>();
@@ -91,6 +84,7 @@ public class HomePageCompanyPanel extends JPanel {
             }
 
 
+
         });
         add(jButtonNext);
         //jButtonNext.setEnabled(true);
@@ -114,68 +108,15 @@ public class HomePageCompanyPanel extends JPanel {
         add(jButtonFirst);
         // jButtonFirst.setEnabled(true);
 
-        jButtonViewApplication = new JButton("Check application");
-        jButtonViewApplication.addActionListener(e -> {
+
+        jButtonBack = new JButton("Back");
+        jButtonBack.addActionListener(e -> {
 
             MainFrame.router.removePanel(jFrame);
-            MainFrame.router.viewJobOfersCompany(jFrame);
+            MainFrame.router.showHomePageCompanyPanel(jFrame);
 
         });
-        add(jButtonViewApplication);
-
-        jButtonManageApplication = new JButton("Edit offer");
-        jButtonManageApplication.addActionListener(e -> {
-
-            MainFrame.router.removePanel(jFrame);
-            MainFrame.router.editSelectedJobOffer(jFrame);
-
-        });
-        add(jButtonManageApplication);
-
-        jButtonDeleteSelectedApplication = new JButton("Delete offer");
-        jButtonDeleteSelectedApplication.addActionListener(e -> {
-
-            index = this.jTableJobOffers.getSelectedRow();
-            id = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
-            System.out.println(id);
-            //delete offer
-            DataProviderCreateNewJobOffer.deleteJobOffer(id);
-
-            //TODO FIX TABLE REFRESH ON DELETION
-            refreshTable();  //refresh table
-
-
-        });
-        add(jButtonDeleteSelectedApplication);
-
-        jButtonCreateNewJobOffer = new JButton("Create Offer");
-        jButtonCreateNewJobOffer.addActionListener(e -> {
-
-            MainFrame.router.removePanel(jFrame);
-            MainFrame.router.createNewJobOffer(jFrame);
-
-        });
-        add(jButtonCreateNewJobOffer);
-
-
-        jButtonManageProfile = new JButton("Edit profile");
-        jButtonManageProfile.addActionListener(e -> {
-
-            MainFrame.router.removePanel(jFrame);
-            MainFrame.router.showManageProfilePanel(jFrame);
-
-        });
-        add(jButtonManageProfile);
-
-        jButtonLogOut = new JButton("Logout");
-        jButtonLogOut.addActionListener(e -> {
-            DataProviderCreateNewCompany.removeCurrentCompany();
-            // DataProviderCreateNewUser.removeCurrentCompany();
-            MainFrame.router.removePanel(jFrame);
-            MainFrame.router.showHomepagePanel(jFrame);
-
-        });
-        add(jButtonLogOut);
+        add(jButtonBack);
 
         refreshTable();
 
@@ -183,10 +124,12 @@ public class HomePageCompanyPanel extends JPanel {
 
     }
 
-    public void refreshTable() {
-        DataProviderTableJobOffers.initPaginationC(jTableJobOffers, jFrame
-                , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
-                , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel, id);
+    public void refreshTable(){
+//        TableUtility.initPaginationC(jTableJobOffers,jFrame
+//                ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
+//                ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel,id);
     }
 
 }
+
+

@@ -86,7 +86,8 @@ public class RegisterNewCompany extends JPanel {
         jButtonBack = new JButton("Back");
         jButtonBack.addActionListener(e -> {
 
-
+            MainFrame.router.removePanel(jFrame);
+            MainFrame.router.showLoginPanel(jFrame);
 
         });
         add(jButtonBack);

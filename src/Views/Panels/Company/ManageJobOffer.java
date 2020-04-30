@@ -6,9 +6,6 @@ import javax.swing.*;
 
 public class ManageJobOffer extends JPanel {
 
-
-
-
     private JTextField JTextFieldJobTitle;
     private JTextField JTextFieldCity;
     private JTextField JTextFieldPosition;
