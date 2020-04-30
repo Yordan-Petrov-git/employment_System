@@ -1,6 +1,5 @@
 package Router;
 
-import DataProvider.DataProviderTableJobOffers;
 import Views.Home;
 import Views.MainFrame;
 import Views.Panels.Company.*;
@@ -8,7 +7,6 @@ import Views.Panels.LoginPanel;
 import Views.Panels.Users.ApplyForOffer;
 import Views.Panels.Users.HomePageUsersPanel;
 import Views.Panels.Users.RegisterNewAccountPanel;
-import Views.Panels.Users.ManageProfileUser;
 
 import javax.swing.*;
 
@@ -45,21 +43,6 @@ public class Router extends JPanel {
         mainFrame.getContentPane().validate();
     }
 
-    public void showManageUserProfilePanel(MainFrame mainFrame) {
-        //Mange profile user
-        ManageProfileUser manageUserProfile = new ManageProfileUser(mainFrame);
-        manageUserProfile.setSize(800, 600);
-        mainFrame.add(manageUserProfile);
-        mainFrame.getContentPane().validate();
-    }
-
-    public void showManageProfilePanel(MainFrame mainFrame) {
-        //Mange profile Company
-        ManageProfileCompany manageCompanyProfile = new ManageProfileCompany(mainFrame);
-        manageCompanyProfile.setSize(800, 600);
-        mainFrame.add(manageCompanyProfile);
-        mainFrame.getContentPane().validate();
-    }
 
     public void showHomepagePanel(MainFrame mainFrame) {
         //Homepage

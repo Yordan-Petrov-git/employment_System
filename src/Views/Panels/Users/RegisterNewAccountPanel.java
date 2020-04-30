@@ -1,9 +1,10 @@
 package Views.Panels.Users;
 
+import DataProvider.DataProviderCreateNewCompany;
 import DataProvider.DataProviderCreateNewUser;
-import Helpers.ImageUtils.UtilsImages;
 import Helpers.PasswordUtils.PasswordUtility;
 import Helpers.UtilityGui.GuiUtils;
+import Helpers.Validators.Validators;
 import Views.MainFrame;
 
 import javax.swing.*;
@@ -13,7 +14,6 @@ import java.sql.SQLException;
 public class RegisterNewAccountPanel extends JPanel {
 
     private JLabel jLabelTitle;
-    private JLabel jLabelPicture;
     private JTextField jTextFieldName;
     private JTextField jTextFieldFamilyName;
     private JTextField jTextFieldUsername;
@@ -23,7 +23,6 @@ public class RegisterNewAccountPanel extends JPanel {
     private JTextField jTextFieldPhone;
     private JTextField jTextFieldEmail;
     private JToggleButton jButtonShowPassword;
-    private JButton jButtonAddPicture;
     private JButton jButtonCreateAccount;
     private JButton jButtonBack;
     public MainFrame jFrame;
@@ -37,9 +36,6 @@ public class RegisterNewAccountPanel extends JPanel {
         jLabelTitle = new JLabel("Registration");
         add(jLabelTitle);
 
-        jLabelPicture = new JLabel("");
-        jLabelPicture.setPreferredSize(new Dimension(60, 60));
-        add(jLabelPicture);
 
         jTextFieldName = new JTextField("Name");
         add(jTextFieldName);
@@ -73,14 +69,6 @@ public class RegisterNewAccountPanel extends JPanel {
             GuiUtils.showPassword(jButtonShowPassword, JPasswordFieldPasswordRetypePassword);
         });
         add(jButtonShowPassword);
-
-        jButtonAddPicture = new JButton("Add picture");
-        jButtonAddPicture.addActionListener(e -> {
-
-            UtilsImages.addPhoto(jLabelPicture);
-
-        });
-        add(jButtonAddPicture);
 
 
         jButtonCreateAccount = new JButton("Register User");
@@ -126,9 +114,33 @@ public class RegisterNewAccountPanel extends JPanel {
         String email = jTextFieldEmail.getText();
         String passphrase = jTextFieldPassphrase.getText();
 
-        DataProviderCreateNewUser.initializeNewUserNoAccountType(username,
-                key, salt, passphrase, firstName, familyName,
-                phone, email);
+
+        if (Validators.validatePassword(password) && Validators.validatePassword(String.valueOf(JPasswordFieldPasswordRetypePassword.getPassword()))) {
+
+
+            if (Validators.getEmailVer(email)) {
+
+                if (Validators.validatePhoneNumber(phone)) {
+                    DataProviderCreateNewUser.initializeNewUserNoAccountType(username,
+                            key, salt, passphrase, firstName, familyName,
+                            phone, email);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Wrong phone number");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid email address");
+            }
+
+
+        } else if (password.equals(String.valueOf(JPasswordFieldPasswordRetypePassword.getPassword()))) {
+
+            JOptionPane.showMessageDialog(null, "Passwords must contain at least at least 8 symbols ," +
+                    "one lower case one upper case latter one digit and no whitespaces");
+        } else {
+            JOptionPane.showMessageDialog(null, "Passwords must match");
+
+        }
+
 
     }
 

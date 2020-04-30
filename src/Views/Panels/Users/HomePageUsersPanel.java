@@ -21,7 +21,6 @@ public class HomePageUsersPanel extends JPanel {
     public JTable jTableJobOffers;
     private JButton jButtonApply;
     private JButton jButtonSearch;
-    private JLabel jLabelLoggedInAs;
     public JButton jButtonLogout;
     private JLabel jLabelStatus;
     private JLabel jLabelTotalData;
@@ -29,7 +28,6 @@ public class HomePageUsersPanel extends JPanel {
     private JButton jButtonNext;
     private JButton jButtonPrevious;
     private JButton jButtonFirst;
-
 
     public DataProviderTableJobOffers productTableModel;
 
@@ -144,15 +142,7 @@ public class HomePageUsersPanel extends JPanel {
             updateJobOffersTable();
         });
         add(jButtonFirst);
-        //------------------------------------------------------------------------------
-        jButtonLogout = new JButton("Edit Account");
-        jButtonLogout.addActionListener(e -> {
 
-            MainFrame.router.removePanel(jFrame);
-            MainFrame.router.showManageUserProfilePanel(jFrame);
-
-        });
-        add(jButtonLogout);
 
         jButtonLogout = new JButton("Logout");
         jButtonLogout.addActionListener(e -> {

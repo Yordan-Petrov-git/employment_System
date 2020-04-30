@@ -2,9 +2,9 @@ package Views.Panels.Company;
 
 
 import DataProvider.DataProviderCreateNewCompany;
-import Helpers.ImageUtils.UtilsImages;
 import Helpers.PasswordUtils.PasswordUtility;
 import Helpers.UtilityGui.GuiUtils;
+import Helpers.Validators.Validators;
 import Views.MainFrame;
 
 import javax.swing.*;
@@ -13,15 +13,12 @@ import java.awt.*;
 public class RegisterNewCompany extends JPanel {
 
     private JLabel jLabelTitle;
-    private JLabel jLabelPicture;
     private JTextField jTextFieldCompanyName;
     private JTextField jTextFieldUsername;
     private JPasswordField JPasswordFieldPassword;
     private JPasswordField JPasswordFieldPasswordRetypePassword;
     private JTextField jTextFieldPassphrase;
     private JToggleButton jButtonShowPassword;
-
-    private JButton jButtonAddPicture;
     private JButton jButtonCreateAccount;
     private JButton jButtonBack;
 
@@ -34,12 +31,6 @@ public class RegisterNewCompany extends JPanel {
 
         jLabelTitle = new JLabel("Register new Company");
         add(jLabelTitle);
-
-
-        jLabelPicture = new JLabel("");
-        jLabelPicture.setPreferredSize(new Dimension(60, 60));
-        add(jLabelPicture);
-
 
         jTextFieldCompanyName = new JTextField("Company Name");
         add(jTextFieldCompanyName);
@@ -61,14 +52,6 @@ public class RegisterNewCompany extends JPanel {
         });
         add(jButtonShowPassword);
 
-        jButtonAddPicture = new JButton("Add picture");
-        jButtonAddPicture.addActionListener(e -> {
-
-            UtilsImages.addPhoto(jLabelPicture);
-
-        });
-        add(jButtonAddPicture);
-        ;
 
         jButtonCreateAccount = new JButton("Register Company");
         jButtonCreateAccount.addActionListener(e -> {
@@ -91,6 +74,8 @@ public class RegisterNewCompany extends JPanel {
 
     public void createCompany() {
 
+
+
         String salt = PasswordUtility.generateSalt(512).get();//Generates secure random salt
         String password = String.valueOf(JPasswordFieldPassword.getPassword());//Gets the strign value of the first password field
         String key = PasswordUtility.hashPassword(password, salt).get();//Generates hashed key based on the passsword in the firs password field adn the generated secure random salt
@@ -98,8 +83,20 @@ public class RegisterNewCompany extends JPanel {
         String username = jTextFieldUsername.getText();
         String passPhrase = jTextFieldPassphrase.getText();
 
-        DataProviderCreateNewCompany.initializeNewCompany(username, key
-                , salt, passPhrase, companyName);
+
+        if(Validators.validatePassword(password)&&Validators.validatePassword(String.valueOf(JPasswordFieldPasswordRetypePassword.getPassword()))){
+
+            DataProviderCreateNewCompany.initializeNewCompany(username, key
+                    , salt, passPhrase, companyName);
+        }else if(password.equals(String.valueOf(JPasswordFieldPasswordRetypePassword.getPassword()))){
+
+            JOptionPane.showMessageDialog(null,"Passwords must contain at least at least 8 symbols ," +
+                    "one lower case one upper case latter one digit and no whitespaces");
+        }else{
+            JOptionPane.showMessageDialog(null,"Passwords must match");
+
+        }
+
 
     }
 

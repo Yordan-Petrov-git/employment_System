@@ -69,10 +69,12 @@ public class DataProviderCreateNewCompany extends DataProvider {
 
 
         if (!LoginDataProvider.doesUsernameCompanyExists(usernameCompany)){
+            JOptionPane.showMessageDialog(null, "Company :" + companyName + "redistricted");
             registerNewCompany(companyName,usernameCompany,key,salt,passphrase);
         }else{
             JOptionPane.showMessageDialog(null, "Username is taken", "Registration Error", 2);
         }
+
 
     }
 

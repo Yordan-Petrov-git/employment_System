@@ -17,8 +17,6 @@ public class HomePageCompanyPanel extends JPanel {
     private JButton jButtonDeleteSelectedApplication;
     private JButton jButtonCreateNewJobOffer;
     private JTable jTableJobOffers;
-    private JButton jButtonManageProfile;
-
     public JComboBox<String> jComboBoxPage;
 
     public DataProviderTableJobOffers productTableModel;
@@ -64,7 +62,7 @@ public class HomePageCompanyPanel extends JPanel {
             //delete offer
             DataProviderCreateNewJobOffer.deleteJobOffer(id);
             MainFrame.dataProviderTableJobOffers.delete(index);
-            refreshTable();  //refresh table
+           // refreshTable();  //refresh table
 
         });
         add(jButtonDeleteSelectedApplication);
@@ -78,15 +76,6 @@ public class HomePageCompanyPanel extends JPanel {
         });
         add(jButtonCreateNewJobOffer);
 
-
-        jButtonManageProfile = new JButton("Edit profile");
-        jButtonManageProfile.addActionListener(e -> {
-
-            MainFrame.router.removePanel(jFrame);
-            MainFrame.router.showManageProfilePanel(jFrame);
-
-        });
-        add(jButtonManageProfile);
 
         jButtonLogOut = new JButton("Logout");
         jButtonLogOut.addActionListener(e -> {

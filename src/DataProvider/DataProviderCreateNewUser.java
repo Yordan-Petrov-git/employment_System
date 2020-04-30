@@ -106,6 +106,7 @@ public class DataProviderCreateNewUser extends DataProvider {
 
     if (!LoginDataProvider.doesUsernameUserExists(username)){
             registerNewUser(firstName,familyName, email, phone, username, key, salt, passphrase);
+        JOptionPane.showMessageDialog(null, "User :" + username + "redistricted");
         }else{
             JOptionPane.showMessageDialog(null, "Username is taken", "Registration Error", 2);
         }
