@@ -177,7 +177,8 @@ public class HomePageUsersPanel extends JPanel {
         TableUtility.initPagination(jTableJobOffers, jFrame
                 , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
                 , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
-    }
 
+
+    }
 
 }

@@ -178,6 +178,7 @@ public class HomePageCompanyPanel extends JPanel {
 
         refreshTable();
 
+        System.out.println(DataProviderCreateNewCompany.getCurrentCompany().getCompanyName());
 
     }
 

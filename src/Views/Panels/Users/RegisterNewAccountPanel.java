@@ -24,13 +24,9 @@ public class RegisterNewAccountPanel extends JPanel {
     private JTextField jTextFieldEmail;
     private JToggleButton jButtonShowPassword;
     private JButton jButtonAddPicture;
-    private JComboBox jComboBoxAccountType;
     private JButton jButtonCreateAccount;
     private JButton jButtonBack;
     public MainFrame jFrame;
-
-
-
 
 
     public RegisterNewAccountPanel(MainFrame jFrame) {
@@ -86,13 +82,6 @@ public class RegisterNewAccountPanel extends JPanel {
         });
         add(jButtonAddPicture);
 
-        String[] sizesList = {"Users", "Companies"};
-        jComboBoxAccountType = new JComboBox(sizesList);
-        jComboBoxAccountType.addActionListener(e -> {
-
-
-        });
-        add(jComboBoxAccountType);
 
         jButtonCreateAccount = new JButton("Register User");
         jButtonCreateAccount.addActionListener(e -> {
@@ -117,7 +106,8 @@ public class RegisterNewAccountPanel extends JPanel {
         jButtonBack = new JButton("Back");
         jButtonBack.addActionListener(e -> {
 
-
+            MainFrame.router.removePanel(jFrame);
+            MainFrame.router.showLoginPanel(jFrame);
 
         });
         add(jButtonBack);

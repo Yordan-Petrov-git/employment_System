@@ -12,17 +12,18 @@ import java.util.List;
 
 public class DataProviderTableJobOffers extends AbstractTableModel {
 
-    private static PreparedStatement preparedStatement;
+  //  private static PreparedStatement preparedStatement;
 
 
     public DefaultTableModel model;
 
-    List<JobOffer> listProduct = new ArrayList<JobOffer>();
+     private static List<JobOffer> listProduct = new ArrayList<JobOffer>();
 
     public static int countId(int companyId) {
         //Counts SQL table all rows
         int counter = 0;
         try {
+            PreparedStatement preparedStatement;
             //  DataProvider.getConnection().setAutoCommit(false);  //count_job_offers
             preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers_by_company_id(?)}");
             preparedStatement.setInt(1,companyId);
@@ -30,6 +31,8 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
             while (rs.next()) {
 
                 counter = rs.getInt("count(job_offer_id)");
+
+
             }
             //  DataProvider.getConnection().commit();
             // DataProvider.getConnection().setAutoCommit(true);
@@ -44,6 +47,7 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
         //Counts SQL table all rows
         int counter = 0;
         try {
+            PreparedStatement preparedStatement;
           //  DataProvider.getConnection().setAutoCommit(false);  //count_job_offers
             preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers()}");
             ResultSet rs = preparedStatement.executeQuery();
@@ -70,6 +74,7 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
         try {
            // DataProvider.getConnection().setAutoCommit(false);
             //SQL DB Query for table paging
+            PreparedStatement preparedStatement;
             preparedStatement = DataProvider.getConnection().prepareCall("{call show_all_job_offers(?,?)}");
             preparedStatement.setInt(1, pageSize * (page - 1));
             preparedStatement.setInt(2, pageSize);
@@ -98,15 +103,16 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
 
     public static List<JobOffer> findAllForCompany(int page, int pageSize,int companyId) {
 
-        List<JobOffer> listJobOffers = new ArrayList<JobOffer>();
+        List<JobOffer> jobOffers = new ArrayList<JobOffer>();
 
         if (countId(companyId) == 0) {
-            return listJobOffers;
+            return jobOffers;
         }
 
         try {
             // DataProvider.getConnection().setAutoCommit(false);
             //SQL DB Query for table paging
+            PreparedStatement preparedStatement;
             preparedStatement = DataProvider.getConnection().prepareCall("{call select_all_job_offers_for_paging_by_company_id(?,?,?)}");
             preparedStatement.setInt(1, pageSize * (page - 1));
             preparedStatement.setInt(2, pageSize);
@@ -122,7 +128,7 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
                 jobOffer = new JobOffer((resultSet.getString("company_job_offer_title")),resultSet.getString("city_offer"),
                         resultSet.getString("position_job_offer"),  resultSet.getString("description_job_offer"),
                         resultSet.getString("net_salary_for_offer"),resultSet.getString("type"), resultSet.getString("name_company"),resultSet.getInt("job_offer_id") );
-                listJobOffers.add(jobOffer);
+                jobOffers.add(jobOffer);
             }
             //DataProvider.getConnection().commit();
             // DataProvider.getConnection().setAutoCommit(true);
@@ -130,11 +136,20 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
             ex.printStackTrace();
         }
 
-        return listJobOffers;
+        return jobOffers;
 
     }
 
-        private final String HEADER[] = {"№->", "Title", "City", "Description", "Salary","JobType","Company","id"};
+    public static List<JobOffer> getListProduct() {
+        return DataProviderTableJobOffers.listProduct;
+    }
+
+    public static void setListProduct(List<JobOffer> listProduct) {
+        DataProviderTableJobOffers.listProduct = listProduct;
+    }
+
+
+    private final String HEADER[] = {"№->", "Title", "City", "Description", "Salary","JobType","Company","id"};
 
         public void setList(List<JobOffer> listProduct) {
             this.listProduct = listProduct;
@@ -171,6 +186,10 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
             return HEADER[column];
         }
 
+        public static void deleteList()
+        {
+            setListProduct(null);
+        }
         public Object getValueAt(int rowIndex, int columnIndex) {
             JobOffer jobOffer = listProduct.get(rowIndex);
 

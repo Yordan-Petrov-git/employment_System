@@ -1,10 +1,12 @@
 package Views.Panels.Company;
 
+import DataProvider.DataProviderCreateNewCompany;
+import DataProvider.DataProviderCreateNewJobOffer;
 import Views.MainFrame;
 
 import javax.swing.*;
 
-public class CreateNewJobOffer extends JPanel{
+public class CreateNewJobOffer extends JPanel {
 
 
     private JTextField JTextFieldJobTitle;
@@ -47,7 +49,15 @@ public class CreateNewJobOffer extends JPanel{
         jCreateOffer = new JButton("Create Offer");
         jCreateOffer.addActionListener(e -> {
 
-            createOffer();
+
+            String title = JTextFieldJobTitle.getText();
+            String city = JTextFieldCity.getText();
+            String position = JTextFieldPosition.getText();
+            String description = JTextFieldDescription.getText();
+            String salary = JTextFieldNetSalary.getText();
+            String type = JTextFieldJobType.getText();
+
+            createOffer(title, city, position, description, salary, type);
 
         });
         add(jCreateOffer);
@@ -62,8 +72,12 @@ public class CreateNewJobOffer extends JPanel{
         add(jButtonBack);
     }
 
-    public  static  void createOffer(){
+    public static void createOffer(String title, String city, String position
+            , String desription, String salary, String type) {
 
+
+        int id = (int) DataProviderCreateNewCompany.getCurrentCompany().getId();
+        DataProviderCreateNewJobOffer.registerJobOffer(id, title, city, position, desription, salary, type);
 
     }
 }

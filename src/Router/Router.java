@@ -1,5 +1,6 @@
 package Router;
 
+import DataProvider.DataProviderTableJobOffers;
 import Views.Home;
 import Views.MainFrame;
 import Views.Panels.Company.CreateNewJobOffer;

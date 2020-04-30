@@ -111,7 +111,7 @@ public class LoginDataProvider extends DataProvider {
                 String companyUsername = resultSet.getString("username_company");
                 String companyName = resultSet.getString("name_company");
 
-
+                DataProviderCreateNewCompany.removeCurrentCompany();
                 DataProviderCreateNewCompany.setNewCompanyForCurrentLoggedCompanyInfo(Long.parseLong(companyId),companyUsername,companyName);
 
             }
@@ -128,7 +128,7 @@ public class LoginDataProvider extends DataProvider {
 
         //id,username, firstName, familyName, phoneNumber, emailAddress
 
-        String query = "{ call select_all_user_info_by_usernamr(?) }";
+        String query = "{ call select_all_user_info_by_username(?) }";
         ResultSet resultSet;
 
         try (Connection conn = getConnection();
@@ -145,6 +145,8 @@ public class LoginDataProvider extends DataProvider {
                 String phone = resultSet.getString("phone_number");
                 String email = resultSet.getString("email");
 
+
+                DataProviderCreateNewUser.removeCurrentUser();
                 DataProviderCreateNewUser
                         .setNewUserForCurrentLoggedUserInfo
                                 (Long.parseLong(userId),usernameUser,fName,lName,phone,email);

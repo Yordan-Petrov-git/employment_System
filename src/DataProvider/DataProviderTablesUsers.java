@@ -1,8 +1,12 @@
 package DataProvider;
 
+import Models.JobOffer;
 import Models.User;
 
 import javax.swing.table.AbstractTableModel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +14,68 @@ public class DataProviderTablesUsers extends AbstractTableModel {
 
     List<User> userList = new ArrayList<User>();
 
-    private final String HEADER[] = {"№->", "Name", "Family", "Email", "Phone Number", "id"};
+
+    public static int count() {
+        //Counts SQL table all rows
+        int counter = 0;
+        try {
+            PreparedStatement preparedStatement;
+            //  DataProvider.getConnection().setAutoCommit(false);  //count_job_offers
+            preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers()}");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                counter = rs.getInt("count(job_offer_id)");
+            }
+            //  DataProvider.getConnection().commit();
+            // DataProvider.getConnection().setAutoCommit(true);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return counter;
+
+    }
+
+    public static List<JobOffer> findAll(int page, int pageSize) {
+
+        List<JobOffer> listJobOffers = new ArrayList<JobOffer>();
+
+        if (count() == 0) {
+            return listJobOffers;
+        }
+
+        try {
+            // DataProvider.getConnection().setAutoCommit(false);
+            //SQL DB Query for table paging
+            PreparedStatement preparedStatement;
+            preparedStatement = DataProvider.getConnection().prepareCall("{call show_all_job_offers(?,?)}");
+            preparedStatement.setInt(1, pageSize * (page - 1));
+            preparedStatement.setInt(2, pageSize);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            JobOffer jobOffer;
+
+            // ---------------for later user-------------
+            //resultSet.getString("date_added_offer")
+
+
+            while (resultSet.next()) {
+                jobOffer = new JobOffer((resultSet.getString("company_job_offer_title")),resultSet.getString("city_offer"),
+                        resultSet.getString("position_job_offer"),  resultSet.getString("description_job_offer"),
+                        resultSet.getString("net_salary_for_offer"),resultSet.getString("type"), resultSet.getString("name_company"),resultSet.getInt("job_offer_id") );
+                listJobOffers.add(jobOffer);
+            }
+            //DataProvider.getConnection().commit();
+            // DataProvider.getConnection().setAutoCommit(true);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return listJobOffers;
+
+    }
+
+
+
+    private final String HEADER[] = {"№->", "Name", "Family", "Email", "Phone Number"};
 
     public void setList(List<User> listProduct) {
         this.userList = listProduct;
@@ -66,8 +131,8 @@ public class DataProviderTablesUsers extends AbstractTableModel {
             case 4:
                 return user.getPhoneNumber();
 
-            case 5:
-                return user.getId();
+//            case 5:
+//                return user.getId();
 
 
             default:
