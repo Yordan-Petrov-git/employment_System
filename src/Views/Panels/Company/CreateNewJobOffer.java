@@ -75,8 +75,16 @@ public class CreateNewJobOffer extends JPanel {
             , String desription, String salary, String type) {
 
 
-        int id = (int) DataProviderCreateNewCompany.getCurrentCompany().getId();
-        DataProviderCreateNewJobOffer.registerJobOffer(id, title, city, position, desription, salary, type);
+        if(title.trim().length()!=0 && city.trim().length()!=0 && position.trim().length()!=0 && salary.trim().length()!=0  && type.trim().length()!=0 )
+        {
+            int id = (int) DataProviderCreateNewCompany.getCurrentCompany().getId();
+
+            DataProviderCreateNewJobOffer.registerJobOffer(id, title, city, position, desription, salary, type);
+        }else {
+            JOptionPane.showMessageDialog(null,"Empty text or invalid information");
+        }
+
+
 
     }
 }

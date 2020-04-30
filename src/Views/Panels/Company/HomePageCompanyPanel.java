@@ -99,6 +99,4 @@ public class HomePageCompanyPanel extends JPanel {
 
 
 
-
-
 }

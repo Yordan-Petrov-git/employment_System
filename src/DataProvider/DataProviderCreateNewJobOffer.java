@@ -31,6 +31,7 @@ public class DataProviderCreateNewJobOffer extends DataProvider {
             cstmt.setString(7, jobType);
             cstmt.execute();
 
+            JOptionPane.showMessageDialog(null,"Offer successfully added");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
