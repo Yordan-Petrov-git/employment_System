@@ -123,49 +123,7 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
     }
 
 
-    public static int countId(int companyId) {
-        //Counts SQL table all rows
-        int counter = 0;
-        try {
-            PreparedStatement preparedStatement;
-            //  DataProvider.getConnection().setAutoCommit(false);  //count_job_offers
-            preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers_by_company_id(?)}");
-            preparedStatement.setInt(1,companyId);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
 
-                counter = rs.getInt("count(job_offer_id)");
-
-
-            }
-            //  DataProvider.getConnection().commit();
-            // DataProvider.getConnection().setAutoCommit(true);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return counter;
-
-    }
-
-    public static int count() {
-        //Counts SQL table all rows
-        int counter = 0;
-        try {
-            PreparedStatement preparedStatement;
-          //  DataProvider.getConnection().setAutoCommit(false);  //count_job_offers
-            preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers()}");
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                counter = rs.getInt("count(job_offer_id)");
-            }
-          //  DataProvider.getConnection().commit();
-           // DataProvider.getConnection().setAutoCommit(true);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-            return counter;
-
-    }
 
     public static List<JobOffer> findAll(int page, int pageSize) {
 
@@ -242,6 +200,51 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
         }
 
         return jobOffers;
+
+    }
+
+
+    public static int countId(int companyId) {
+        //Counts SQL table all rows
+        int counter = 0;
+        try {
+            PreparedStatement preparedStatement;
+            //  DataProvider.getConnection().setAutoCommit(false);  //count_job_offers
+            preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers_by_company_id(?)}");
+            preparedStatement.setInt(1,companyId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+
+                counter = rs.getInt("count(job_offer_id)");
+
+
+            }
+            //  DataProvider.getConnection().commit();
+            // DataProvider.getConnection().setAutoCommit(true);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return counter;
+
+    }
+
+    public static int count() {
+        //Counts SQL table all rows
+        int counter = 0;
+        try {
+            PreparedStatement preparedStatement;
+            //  DataProvider.getConnection().setAutoCommit(false);  //count_job_offers
+            preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers()}");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                counter = rs.getInt("count(job_offer_id)");
+            }
+            //  DataProvider.getConnection().commit();
+            // DataProvider.getConnection().setAutoCommit(true);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return counter;
 
     }
 

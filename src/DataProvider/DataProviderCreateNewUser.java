@@ -51,8 +51,6 @@ public class DataProviderCreateNewUser extends DataProvider {
         setCurrentUser(user);
     }
 
-
-
     public static void setNewUserForCurrentLoggedUserInfo(long id,String username, String firstName, String familyName, String phoneNumber
             , String emailAddress) {
         //current user without login credentials for use in job application
