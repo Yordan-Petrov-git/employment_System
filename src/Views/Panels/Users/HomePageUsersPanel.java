@@ -26,6 +26,8 @@ public class HomePageUsersPanel extends JPanel {
     private JButton jButtonNext;
     private JButton jButtonPrevious;
     private JButton jButtonFirst;
+
+
     public DataProviderTableJobOffers productTableModel;
 
     public JComboBox<String> jComboBoxPage;
@@ -34,7 +36,6 @@ public class HomePageUsersPanel extends JPanel {
     public static int id;
     public static int userID;
 
-
     private JTable tableJobOffers = new JTable();
 
     public HomePageUsersPanel(MainFrame jFrame) {
@@ -42,10 +43,6 @@ public class HomePageUsersPanel extends JPanel {
 
         jTableJobOffers = new JTable();
         JScrollPane pane = new JScrollPane();
-        //  String[] columnIdentifiers = {"Company","Title","City","Salary","DateAdded"};
-        MainFrame.dataProviderTableJobOfferss.model = new DefaultTableModel();
-        //   MainFrame.dataProviderTableJobOfferss.model.setColumnIdentifiers(columnIdentifiers);
-        // jTableJobOffers.setModel(MainFrame.dataProviderTableJobOfferss.model);
         pane.setViewportView(jTableJobOffers);
         TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
@@ -61,7 +58,6 @@ public class HomePageUsersPanel extends JPanel {
         jLabelStatus = new JLabel(String.valueOf(loginDetails));
         add(jLabelStatus);
         //---------------------------------------------------
-
 
         jButtonApply = new JButton("Apply");
         jButtonApply.addActionListener(e -> {
@@ -79,10 +75,8 @@ public class HomePageUsersPanel extends JPanel {
         jButtonSearch = new JButton("Search");
         jButtonSearch.addActionListener(e -> {
 
-
         });
         add(jButtonSearch);
-
 
         jComboBoxPage = new JComboBox<String>();
         jComboBoxPage.addItem("10");
@@ -94,11 +88,10 @@ public class HomePageUsersPanel extends JPanel {
         jComboBoxPage.addItemListener(new ItemListener() {
             // Change data in jtable on combobox change
             public void itemStateChanged(ItemEvent e) {
-                voidUpdateTable();
+                updateJobOffersTable();
             }
         });
         //Shows first paged rows in the jtable
-
 
         jLabelStatus = new JLabel("");
         add(jLabelStatus);
@@ -106,11 +99,10 @@ public class HomePageUsersPanel extends JPanel {
         jLabelTotalData = new JLabel("");
         add(jLabelTotalData);
 
-
         jButtonLast = new JButton("last");
         jButtonLast.addActionListener(e -> {
             jFrame.page = jFrame.totalPage;
-            voidUpdateTable();
+            updateJobOffersTable();
         });
         add(jButtonLast);
         //jButtonLast.setEnabled(true);
@@ -119,9 +111,8 @@ public class HomePageUsersPanel extends JPanel {
         jButtonNext.addActionListener(e -> {
             if (jFrame.page < jFrame.totalPage) {
                 jFrame.page++;
-                voidUpdateTable();
+                updateJobOffersTable();
             }
-
 
         });
         add(jButtonNext);
@@ -132,7 +123,7 @@ public class HomePageUsersPanel extends JPanel {
         jButtonPrevious.addActionListener(e -> {
             if (jFrame.page > 1) {
                 jFrame.page--;
-                voidUpdateTable();
+                updateJobOffersTable();
             }
         });
         add(jButtonPrevious);
@@ -141,10 +132,10 @@ public class HomePageUsersPanel extends JPanel {
         jButtonFirst = new JButton("first");
         jButtonFirst.addActionListener(e -> {
             jFrame.page = 1;//Sets page counter to first page
-            voidUpdateTable();
+            updateJobOffersTable();
         });
         add(jButtonFirst);
-    //------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------
         jButtonLogout = new JButton("Edit Account");
         jButtonLogout.addActionListener(e -> {
 
@@ -163,17 +154,15 @@ public class HomePageUsersPanel extends JPanel {
         });
         add(jButtonLogout);
 
-
-        voidUpdateTable();
-
+        updateJobOffersTable();
 
     }
 
-    public void voidUpdateTable(){
+    public void updateJobOffersTable() {
 
-        DataProviderTableJobOffers.initPagination(jTableJobOffers,jFrame
-                ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-                ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel);
+        DataProviderTableJobOffers.initPagination(jTableJobOffers, jFrame
+                , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
+                , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
 
 
     }

@@ -15,13 +15,8 @@ import java.util.List;
 
 public class DataProviderTableJobOffers extends AbstractTableModel {
 
-  //  private static PreparedStatement preparedStatement;
 
-
-    public DefaultTableModel model;
-
-     private static List<JobOffer> listProduct = new ArrayList<JobOffer>();
-
+    private static List<JobOffer> listProduct = new ArrayList<JobOffer>();
 
     public static void initPaginationC(JTable jTable
             , MainFrame mainFrame
@@ -128,7 +123,6 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
         //Resizes jtables columns
         TableUtility.autoResizeColumn(jTable);
     }
-
 
 
     public static int countId(int companyId) {
@@ -239,7 +233,8 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
             while (resultSet.next()) {
                 jobOffer = new JobOffer((resultSet.getString("company_job_offer_title")),resultSet.getString("city_offer"),
                         resultSet.getString("position_job_offer"),  resultSet.getString("description_job_offer"),
-                        resultSet.getString("net_salary_for_offer"),resultSet.getString("type"), resultSet.getString("name_company"),resultSet.getInt("job_offer_id") );
+                        resultSet.getString("net_salary_for_offer"),resultSet.getString("type"), resultSet.getString("name_company")
+                        ,resultSet.getInt("job_offer_id") );
                 jobOffers.add(jobOffer);
             }
             //DataProvider.getConnection().commit();
@@ -302,6 +297,8 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
         {
             setListProduct(null);
         }
+
+
         public Object getValueAt(int rowIndex, int columnIndex) {
             JobOffer jobOffer = listProduct.get(rowIndex);
 

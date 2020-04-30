@@ -14,10 +14,9 @@ public class CreateNewJobOffer extends JPanel {
     private JTextField JTextFieldPosition;
     private JTextArea JTextFieldDescription;
     private JTextField JTextFieldNetSalary;
-    private JTextField JTextFieldJobType;
     private JButton jCreateOffer;
     private JButton jButtonBack;
-
+    private  JComboBox <String> jComboBoxPage;
 
     public MainFrame jFrame;
 
@@ -42,20 +41,20 @@ public class CreateNewJobOffer extends JPanel {
         add(JTextFieldNetSalary);
 
 
-        //TODO add jComboBox with job types full time and part time isnted of  this text field
-        JTextFieldJobType = new JTextField("Job Type");
-        add(JTextFieldJobType);
+        jComboBoxPage = new JComboBox<String>();
+        jComboBoxPage.addItem("Full-time job");
+        jComboBoxPage.addItem("Temporary position");
+        add(jComboBoxPage);
 
         jCreateOffer = new JButton("Create Offer");
         jCreateOffer.addActionListener(e -> {
-
 
             String title = JTextFieldJobTitle.getText();
             String city = JTextFieldCity.getText();
             String position = JTextFieldPosition.getText();
             String description = JTextFieldDescription.getText();
             String salary = JTextFieldNetSalary.getText();
-            String type = JTextFieldJobType.getText();
+            String type = jComboBoxPage.getItemAt(jComboBoxPage.getSelectedIndex());
 
             createOffer(title, city, position, description, salary, type);
 

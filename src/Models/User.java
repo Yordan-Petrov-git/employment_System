@@ -8,6 +8,9 @@ public class User extends SuperclassUser {
     private String emailAddress;
     private String accountType;
     private String picture;
+    private String description;
+    private String yearsExp;
+
 
 
     public User(String username, String password,
@@ -58,6 +61,19 @@ public class User extends SuperclassUser {
         setEmailAddress(emailAddress);
     }
 
+
+    public User(long id,String firstName,
+                String familyName,String phoneNumber,String emailAddress,String description, String yearsExp) {
+        //constructor for company job offer checking
+        super(id);
+        setFirstName(firstName);
+        setFamilyName(familyName);
+        setPhoneNumber(phoneNumber);
+        setEmailAddress(emailAddress);
+        setDescription(description);
+        setYearsExp(yearsExp);
+    }
+
     public String getFirstName() {
         return this.firstName;
     }
@@ -106,5 +122,20 @@ public class User extends SuperclassUser {
         this.picture = picture;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getYearsExp() {
+        return this.yearsExp;
+    }
+
+    public void setYearsExp(String yearsExp) {
+        this.yearsExp = yearsExp;
+    }
 
 }

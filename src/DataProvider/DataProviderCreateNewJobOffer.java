@@ -6,6 +6,7 @@ import Models.User;
 import javax.swing.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DataProviderCreateNewJobOffer extends DataProvider {
@@ -33,6 +34,39 @@ public class DataProviderCreateNewJobOffer extends DataProvider {
                 , jobType);
 
         setCurrentJobOffer(jobOffer);
+    }
+
+
+
+    public static void getJobOfferApplicationById(int idOffer) {
+
+        String query = "{ call select_user_info_by_user_id_for_job_offers_applications(?) }";
+        ResultSet resultSet;
+
+        try (Connection conn = getConnection();
+             CallableStatement stmt = conn.prepareCall(query)) {
+
+            stmt.setInt(1, idOffer);
+
+            resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                String fName = resultSet.getString("first_name_user");
+                String lName = resultSet.getString("family_name_user");
+                String  phoneNumber = resultSet.getString("phone_number");
+                String email = resultSet.getString("email");
+                String motivationalLetterFromUser = resultSet.getString("motivational_letter_from_user");
+                String yearsOfExperience = resultSet.getString("years_of_experience");
+                String timeStampApplication = resultSet.getString("time_stamp_application");
+
+            //    DataProviderTablesUsers.;
+
+            }
+
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
 

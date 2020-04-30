@@ -17,10 +17,8 @@ public class UtilsImages {
         {
             temp = true;
         }
-
         return temp;
     }
-
 
     public static ImageIcon resizeImage(String photopath, byte[] photo, JLabel label) {
         //Resizes the image in the label
@@ -36,7 +34,6 @@ public class UtilsImages {
         ImageIcon picture = new ImageIcon(img1);
         return picture;
     }
-
 
 
     public static void addPhoto(JLabel label) {

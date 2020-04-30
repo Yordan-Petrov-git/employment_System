@@ -2,13 +2,11 @@ package Views.Panels.Company;
 
 import DataProvider.DataProviderCreateNewCompany;
 import DataProvider.DataProviderCreateNewJobOffer;
-import DataProvider.DataProviderCreateNewUser;
 import DataProvider.DataProviderTableJobOffers;
 import Helpers.TableUtils.TableUtility;
 import Views.MainFrame;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -36,7 +34,7 @@ public class HomePageCompanyPanel extends JPanel {
 
     public DataProviderTableJobOffers productTableModel;
 
-    int id = (int) DataProviderCreateNewCompany.getCurrentCompany().getId();
+    public static  int  id = (int) DataProviderCreateNewCompany.getCurrentCompany().getId();
     public int index;
 
     public HomePageCompanyPanel(MainFrame jFrame) {
@@ -47,7 +45,7 @@ public class HomePageCompanyPanel extends JPanel {
 
         jTableJobOffers = new JTable();
         JScrollPane pane = new JScrollPane();
-       // MainFrame.dataProviderTableJobOfferss.model = new DefaultTableModel();
+       // MainFrame.dataProviderTableJobOffers.model = new DefaultTableModel();
         pane.setViewportView(jTableJobOffers);
         TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
@@ -117,6 +115,8 @@ public class HomePageCompanyPanel extends JPanel {
         jButtonViewApplication = new JButton("Check application");
         jButtonViewApplication.addActionListener(e -> {
 
+            index = this.jTableJobOffers.getSelectedRow();
+            id = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
             MainFrame.router.removePanel(jFrame);
             MainFrame.router.viewJobOfersCompany(jFrame);
 

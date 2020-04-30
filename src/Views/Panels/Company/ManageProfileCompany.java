@@ -1,6 +1,5 @@
 package Views.Panels.Company;
 
-import DataProvider.DataProviderCreateNewCompany;
 import Helpers.ImageUtils.UtilsImages;
 import Helpers.UtilityGui.GuiUtils;
 import Views.MainFrame;

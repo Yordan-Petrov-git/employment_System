@@ -4,17 +4,16 @@ import javax.swing.*;
 
 import DataProvider.DataProviderCreateNewCompany;
 import DataProvider.DataProviderCreateNewUser;
-import DataProvider.DataProviderTableJobOffers;
-import Helpers.TableUtils.TableUtility;
+import DataProvider.DataProviderTablesUsers;
 import Views.MainFrame;
-import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class ViewJobOfferDetails extends JPanel {
     public MainFrame jFrame;
     private JButton jButtonBack;
-    private JTable jTableJobOffers;
+    private JTable jTableUsersAppllied;
 
 
     private JLabel jLabelStatus;
@@ -27,22 +26,17 @@ public class ViewJobOfferDetails extends JPanel {
 
     public JComboBox<String> jComboBoxPage;
 
-    public DataProviderCreateNewUser userTableModel;
+    public DataProviderTablesUsers userTableModel;
 
-    int id = (int)DataProviderCreateNewCompany.getCurrentCompany().getId();
-    public  int index;
+    int id = (int) DataProviderCreateNewCompany.getCurrentCompany().getId();
+    public int index;
 
     public ViewJobOfferDetails(MainFrame jFrame) {
         this.jFrame = jFrame;
 
-        //TODO ADD TABLE WITH JOB OFFERS FOR THE SPECIFIC LOGGED IN COMPANY BY ID OT WHTEVER IDENTIFIER
-
-
-        jTableJobOffers = new JTable();
+        jTableUsersAppllied = new JTable();
         JScrollPane pane = new JScrollPane();
-       // MainFrame.dataProviderTableJobOfferss.model = new DefaultTableModel();
-        pane.setViewportView(jTableJobOffers);
-       // TableUtility.autoResizeColumn(jTableJobOffers);
+        pane.setViewportView(jTableUsersAppllied);
         add(pane);
 
         jComboBoxPage = new JComboBox<String>();
@@ -84,7 +78,6 @@ public class ViewJobOfferDetails extends JPanel {
             }
 
 
-
         });
         add(jButtonNext);
         //jButtonNext.setEnabled(true);
@@ -120,15 +113,24 @@ public class ViewJobOfferDetails extends JPanel {
 
         refreshTable();
 
-        System.out.println(DataProviderCreateNewCompany.getCurrentCompany().getCompanyName());
-
     }
 
-    public void refreshTable(){
-//        TableUtility.initPaginationC(jTableJobOffers,jFrame
-//                ,jButtonLast,jButtonNext,jButtonPrevious,jButtonFirst
-//                ,jLabelStatus,jLabelTotalData,jComboBoxPage,productTableModel,id);
+    public void refreshTable() {
+        //todo show users in table
+      //  index = this.jTableJobOffers.getSelectedRow();
+       // id = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
+       // DataProviderTablesUsers.initPaginationC();
+
+        DataProviderTablesUsers.initPagingUsersApplied(jTableUsersAppllied, jFrame
+                , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
+                , jLabelStatus, jLabelTotalData, jComboBoxPage,userTableModel,HomePageCompanyPanel.id);
     }
+
+
+
+
+
+
 
 }
 

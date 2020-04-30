@@ -2,20 +2,15 @@ package Views.Panels.Company;
 
 
 import DataProvider.DataProviderCreateNewCompany;
-import DataProvider.DataProviderCreateNewUser;
 import Helpers.ImageUtils.UtilsImages;
 import Helpers.PasswordUtils.PasswordUtility;
 import Helpers.UtilityGui.GuiUtils;
 import Views.MainFrame;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.io.File;
-import java.sql.SQLException;
 
 public class RegisterNewCompany extends JPanel {
-
 
     private JLabel jLabelTitle;
     private JLabel jLabelPicture;
@@ -93,7 +88,6 @@ public class RegisterNewCompany extends JPanel {
         add(jButtonBack);
 
     }
-
 
     public void createCompany() {
 
