@@ -9,10 +9,12 @@ import Views.MainFrame;
 import javax.swing.*;
 
 public class HomePageCompanyPanel extends JPanel {
+
+    //TODO FIX ABSTRACT TABLE MODEL LOADING ON REFRESH
+
     public MainFrame jFrame;
     private JButton jButtonLogOut;
     private JButton jButtonViewApplication;
-    private JButton jButtonManageApplication;
     private JButton jButtonDeleteSelectedApplication;
     private JButton jButtonCreateNewJobOffer;
     private JTable jTableJobOffers;
@@ -20,8 +22,8 @@ public class HomePageCompanyPanel extends JPanel {
 
     public DataProviderTableJobOffers productTableModel;
 
-    public static  int  id = (int) DataProviderCreateNewCompany.getCurrentCompany().getId();
-    public int index;
+    public static int id = (int) DataProviderCreateNewCompany.getCurrentCompany().getId();
+    public Integer index;
 
     public HomePageCompanyPanel(MainFrame jFrame) {
         this.jFrame = jFrame;
@@ -43,25 +45,19 @@ public class HomePageCompanyPanel extends JPanel {
         });
         add(jButtonViewApplication);
 
-        jButtonManageApplication = new JButton("Edit offer");
-        jButtonManageApplication.addActionListener(e -> {
-
-            MainFrame.router.removePanel(jFrame);
-            MainFrame.router.editSelectedJobOffer(jFrame);
-
-        });
-        add(jButtonManageApplication);
 
         jButtonDeleteSelectedApplication = new JButton("Delete offer");
         jButtonDeleteSelectedApplication.addActionListener(e -> {
 
+            //TODO FIX TABLE UPDATE ON DELETE
+
             index = this.jTableJobOffers.getSelectedRow();
             id = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
-            System.out.println(id);
             //delete offer
-            DataProviderCreateNewJobOffer.deleteJobOffer(id);
-            MainFrame.dataProviderTableJobOffers.delete(index);
-           // refreshTable();  //refresh table
+            deleteJobOffer();
+
+            refreshTable();
+
 
         });
         add(jButtonDeleteSelectedApplication);
@@ -93,9 +89,14 @@ public class HomePageCompanyPanel extends JPanel {
     }
 
     public void refreshTable() {
-        DataProviderTableJobOffers.loadJobOffersInTable(jTableJobOffers,id);
+
+        DataProviderTableJobOffers.loadJobOffersInTable(jTableJobOffers, id);
     }
 
+    public void deleteJobOffer() {
+        DataProviderCreateNewJobOffer.deleteJobOffer(id);
 
+        MainFrame.dataProviderTableJobOffers.delete(index);//ATTEMPT TO REFRESH TABLE
+    }
 
 }
