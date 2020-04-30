@@ -1,5 +1,6 @@
 package Views.Panels.Users;
 
+import DataProvider.DataProviderCreateNewCompany;
 import DataProvider.DataProviderCreateNewJobOffer;
 import DataProvider.DataProviderCreateNewUser;
 import DataProvider.DataProviderTableJobOffers;
@@ -9,12 +10,14 @@ import Views.MainFrame;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class HomePageUsersPanel extends JPanel {
 
     public MainFrame jFrame;
+    public JTextField jTextFieldSearch;
     public JTable jTableJobOffers;
     private JButton jButtonApply;
     private JButton jButtonSearch;
@@ -49,17 +52,27 @@ public class HomePageUsersPanel extends JPanel {
 
         //---------------------------------------------------------
         //===========LOGED IN AS TEXT==========================
-        StringBuilder loginDetails = new StringBuilder();
-        loginDetails.append("You are logged in as");
-        loginDetails.append(" : ");
-        loginDetails.append(DataProviderCreateNewUser.getCurrentUser().getFirstName());
-        loginDetails.append(" ");
-        loginDetails.append(DataProviderCreateNewUser.getCurrentUser().getFamilyName());
+        String loginDetails = "Welcome" +
+                " : " +
+                DataProviderCreateNewUser.getCurrentUser().getFirstName() +
+                " " +
+                DataProviderCreateNewUser.getCurrentUser().getFamilyName();
         jLabelStatus = new JLabel(String.valueOf(loginDetails));
         add(jLabelStatus);
         //---------------------------------------------------
 
-        jButtonApply = new JButton("Apply");
+        jTextFieldSearch = new JTextField("Search Offers");
+        add(jTextFieldSearch);
+
+        jButtonSearch = new JButton("Search");
+        jButtonSearch.addActionListener(e -> {
+
+            DataProviderTableJobOffers.search(jTableJobOffers,jTextFieldSearch.getText());
+
+        });
+        add(jButtonSearch);
+
+        jButtonApply = new JButton("Apply for offer");
         jButtonApply.addActionListener(e -> {
 
             index = this.jTableJobOffers.getSelectedRow();
@@ -72,11 +85,7 @@ public class HomePageUsersPanel extends JPanel {
         });
         add(jButtonApply);
 
-        jButtonSearch = new JButton("Search");
-        jButtonSearch.addActionListener(e -> {
 
-        });
-        add(jButtonSearch);
 
         jComboBoxPage = new JComboBox<String>();
         jComboBoxPage.addItem("10");
@@ -163,7 +172,6 @@ public class HomePageUsersPanel extends JPanel {
         DataProviderTableJobOffers.initPagination(jTableJobOffers
                 , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
                 , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel);
-
 
     }
 

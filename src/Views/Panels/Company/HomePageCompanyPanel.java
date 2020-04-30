@@ -7,8 +7,7 @@ import Helpers.TableUtils.TableUtility;
 import Views.MainFrame;
 
 import javax.swing.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import javax.swing.table.DefaultTableModel;
 
 public class HomePageCompanyPanel extends JPanel {
     public MainFrame jFrame;
@@ -18,16 +17,6 @@ public class HomePageCompanyPanel extends JPanel {
     private JButton jButtonDeleteSelectedApplication;
     private JButton jButtonCreateNewJobOffer;
     private JTable jTableJobOffers;
-
-
-    private JLabel jLabelStatus;
-    private JLabel jLabelTotalData;
-
-    private JButton jButtonLast;
-    private JButton jButtonNext;
-    private JButton jButtonPrevious;
-    private JButton jButtonFirst;
-
     private JButton jButtonManageProfile;
 
     public JComboBox<String> jComboBoxPage;
@@ -40,77 +29,11 @@ public class HomePageCompanyPanel extends JPanel {
     public HomePageCompanyPanel(MainFrame jFrame) {
         this.jFrame = jFrame;
 
-        //TODO ADD TABLE WITH JOB OFFERS FOR THE SPECIFIC LOGGED IN COMPANY BY ID OT WHTEVER IDENTIFIER
-
-
-        jTableJobOffers = new JTable();
+        jTableJobOffers = new JTable(productTableModel);
         JScrollPane pane = new JScrollPane();
-       // MainFrame.dataProviderTableJobOffers.model = new DefaultTableModel();
         pane.setViewportView(jTableJobOffers);
         TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
-
-        jComboBoxPage = new JComboBox<String>();
-        jComboBoxPage.addItem("10");
-        jComboBoxPage.addItem("15");
-        jComboBoxPage.addItem("20");
-        jComboBoxPage.addItem("25");
-        add(jComboBoxPage);
-
-        jComboBoxPage.addItemListener(new ItemListener() {
-            // Change data in jtable on combobox change
-            public void itemStateChanged(ItemEvent e) {
-                refreshTable();
-            }
-        });
-        //Shows first paged rows in the jtable
-
-
-        jLabelStatus = new JLabel("");
-        add(jLabelStatus);
-
-        jLabelTotalData = new JLabel("");
-        add(jLabelTotalData);
-
-
-        jButtonLast = new JButton("last");
-        jButtonLast.addActionListener(e -> {
-            jFrame.page = jFrame.totalPage;
-            refreshTable();
-        });
-        add(jButtonLast);
-        //jButtonLast.setEnabled(true);
-
-        jButtonNext = new JButton("next");
-        jButtonNext.addActionListener(e -> {
-            if (jFrame.page < jFrame.totalPage) {
-                jFrame.page++;
-                refreshTable();
-            }
-
-
-        });
-        add(jButtonNext);
-        //jButtonNext.setEnabled(true);
-
-
-        jButtonPrevious = new JButton("previous");
-        jButtonPrevious.addActionListener(e -> {
-            if (jFrame.page > 1) {
-                jFrame.page--;
-                refreshTable();
-            }
-        });
-        add(jButtonPrevious);
-        // jButtonPrevious.setEnabled(true);
-
-        jButtonFirst = new JButton("first");
-        jButtonFirst.addActionListener(e -> {
-            jFrame.page = 1;//Sets page counter to first page
-            refreshTable();
-        });
-        add(jButtonFirst);
-        // jButtonFirst.setEnabled(true);
 
         jButtonViewApplication = new JButton("Check application");
         jButtonViewApplication.addActionListener(e -> {
@@ -140,10 +63,8 @@ public class HomePageCompanyPanel extends JPanel {
             System.out.println(id);
             //delete offer
             DataProviderCreateNewJobOffer.deleteJobOffer(id);
-
-            //TODO FIX TABLE REFRESH ON DELETION
+            MainFrame.dataProviderTableJobOffers.delete(index);
             refreshTable();  //refresh table
-
 
         });
         add(jButtonDeleteSelectedApplication);
@@ -184,9 +105,11 @@ public class HomePageCompanyPanel extends JPanel {
     }
 
     public void refreshTable() {
-        DataProviderTableJobOffers.initPaginationC(jTableJobOffers
-                , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
-                , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel, id);
+        DataProviderTableJobOffers.loadJobOffersInTable(jTableJobOffers,id);
     }
+
+
+
+
 
 }

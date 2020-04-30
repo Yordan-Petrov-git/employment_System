@@ -47,7 +47,6 @@ public class ManageJobOffer extends JPanel {
         add(jButtonSaveOffer);
 
 
-
         jButtonBack = new JButton("Back");
         jButtonBack.addActionListener(e -> {
 
