@@ -75,18 +75,17 @@ public class HomePageCompanyPanel extends JPanel {
 
         jButtonLast = new JButton("last");
         jButtonLast.addActionListener(e -> {
-            jFrame.page = jFrame.totalPage;
-            refreshTable();
+
+            lastPage();
+
         });
         add(jButtonLast);
         //jButtonLast.setEnabled(true);
 
         jButtonNext = new JButton("next");
         jButtonNext.addActionListener(e -> {
-            if (jFrame.page < jFrame.totalPage) {
-                jFrame.page++;
-                refreshTable();
-            }
+
+            nextPage();
 
         });
         add(jButtonNext);
@@ -95,18 +94,18 @@ public class HomePageCompanyPanel extends JPanel {
 
         jButtonPrevious = new JButton("previous");
         jButtonPrevious.addActionListener(e -> {
-            if (jFrame.page > 1) {
-                jFrame.page--;
-                refreshTable();
-            }
+
+            previousPage();
+
         });
         add(jButtonPrevious);
         // jButtonPrevious.setEnabled(true);
 
         jButtonFirst = new JButton("first");
         jButtonFirst.addActionListener(e -> {
-            jFrame.page = 1;//Sets page counter to first page
-            refreshTable();
+
+            firstPage();
+
         });
         add(jButtonFirst);
 
@@ -169,7 +168,8 @@ public class HomePageCompanyPanel extends JPanel {
 
     public void refreshTable() {
         //Refreshes table content
-        DataProviderTableJobOffers.loadJobOffersInTable(jTableJobOffers, (int) DataProviderCreateNewCompany.getCurrentCompany().getId());
+        DataProviderTableJobOffers.loadJobOffersInTable(jTableJobOffers, jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
+                , jLabelStatus, jLabelTotalData, jComboBoxPage, productTableModel, (int) DataProviderCreateNewCompany.getCurrentCompany().getId());
     }
 
     public void deleteJobOffer() {
@@ -184,4 +184,39 @@ public class HomePageCompanyPanel extends JPanel {
         MainFrame.router.removePanel(jFrame);//Removes panel
         MainFrame.router.showHomepagePanel(jFrame);//Shows homepage panel
     }
+
+    public void lastPage() {
+
+        jFrame.page = jFrame.totalPage;
+        refreshTable();
+
+    }
+
+    public void firstPage() {
+
+        jFrame.page = 1;//Sets page counter to first page
+        refreshTable();
+
+    }
+
+    public void nextPage() {
+
+        if (jFrame.page < jFrame.totalPage) {
+            jFrame.page++;
+            refreshTable();
+        }
+
+    }
+
+    public void previousPage() {
+
+        if (jFrame.page > 1) {
+            jFrame.page--;
+            refreshTable();
+        }
+
+    }
+
 }
+
+

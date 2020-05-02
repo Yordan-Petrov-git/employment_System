@@ -16,18 +16,70 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
 
     private static List<JobOffer> listProduct = new ArrayList<JobOffer>();
 
-    public static void loadJobOffersInTable(JTable jTable,
-                                            int currentIdComp) {
-        //TODO MAKE IT INTO PAGING
+    public static void loadJobOffersInTable(JTable jTable
+            , JButton last
+            , JButton next
+            , JButton previous
+            , JButton first
+            , JLabel status
+            , JLabel totalData
+            , JComboBox pageSelect
+            , DataProviderTableJobOffers productTableModel
+            , int currentIdComp
+    ) {
 
-       // countApplicationForSelectedJobOffer(jobofferId);
 
-        DataProviderTableJobOffers productTableModel = new DataProviderTableJobOffers();
+        MainFrame.totalData = countId(currentIdComp);
+        //Testing coutn utput
+        System.out.println(MainFrame.totalData);
+
+        MainFrame.rowCountPerPage = Integer.valueOf(pageSelect.getSelectedItem().toString());
+        Double totalPageD = Math.ceil(MainFrame.totalData.doubleValue() / MainFrame.rowCountPerPage.doubleValue());
+        MainFrame.totalPage = totalPageD.intValue();
+        //Bquttons for page navigation
+        //Buttons for first page adn next page
+        if (MainFrame.page.equals(1)) {
+            first.setEnabled(false);
+            previous.setEnabled(false);
+        } else {
+            first.setEnabled(true);
+            previous.setEnabled(true);
+        }
+        //Buittons for last apge and next page
+        if (MainFrame.page.equals(MainFrame.totalPage)) {
+            last.setEnabled(false);
+            next.setEnabled(false);
+        } else {
+            last.setEnabled(true);
+            next.setEnabled(true);
+        }
+
+        if (MainFrame.page > MainFrame.totalPage) {
+            MainFrame.page = 1;
+        }
+        //New instance of table for client table model
+        productTableModel = new DataProviderTableJobOffers();
+        //Popialte table
         productTableModel.setList(DataProviderTableJobOffers.getSpecificCompanyJobOffers(MainFrame.page, MainFrame.rowCountPerPage,currentIdComp));
-
+        //Set model
         jTable.setModel(productTableModel);
-
+        status.setText("Page " + MainFrame.page + " for " + MainFrame.totalPage);//Page position count
+        totalData.setText(("Row count " + MainFrame.totalData));//Row count
+        //Resizes jtables columns
         TableUtility.autoResizeColumn(jTable);
+
+
+
+//        //TODO MAKE IT INTO PAGING
+//
+//       // countApplicationForSelectedJobOffer(jobofferId);
+//
+//         productTableModel = new DataProviderTableJobOffers();
+//        productTableModel.setList(DataProviderTableJobOffers.getSpecificCompanyJobOffers(MainFrame.page, MainFrame.rowCountPerPage,currentIdComp));
+//
+//        jTable.setModel(productTableModel);
+//
+//        TableUtility.autoResizeColumn(jTable);
     }
 
     public static void initPagination(JTable jTable
@@ -209,26 +261,7 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
 
     }
 
-    public static int countApplicationForSelectedJobOffer(int jobOfferId) {
-        //Counts applications for the selected job offer
-        int counter = 0;
-        try {
-            PreparedStatement preparedStatement;
-            //  DataProvider.getConnection().setAutoCommit(false);  //count_job_offers
-            preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers_by_offer_id(?)}");
-            preparedStatement.setInt(1, jobOfferId);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                counter = rs.getInt("COUNT(`job_offer_id`)");
-            }
-            //  DataProvider.getConnection().commit();
-            // DataProvider.getConnection().setAutoCommit(true);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return counter;
 
-    }
 
     public static List<JobOffer> getListProduct() {
         return DataProviderTableJobOffers.listProduct;
