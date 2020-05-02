@@ -75,7 +75,6 @@ public class DataProviderCreateNewCompany extends DataProvider {
             JOptionPane.showMessageDialog(null, "Username is taken", "Registration Error", 2);
         }
 
-
     }
 
     public static void removeCurrentCompany() {

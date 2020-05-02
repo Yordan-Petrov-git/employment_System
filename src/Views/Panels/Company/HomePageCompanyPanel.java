@@ -2,6 +2,7 @@ package Views.Panels.Company;
 
 import DataProvider.DataProviderCreateNewCompany;
 import DataProvider.DataProviderCreateNewJobOffer;
+import DataProvider.DataProviderCreateNewUser;
 import DataProvider.DataProviderTableJobOffers;
 import Helpers.TableUtils.TableUtility;
 import Views.MainFrame;
@@ -10,8 +11,6 @@ import javax.swing.*;
 
 public class HomePageCompanyPanel extends JPanel {
 
-    //TODO FIX ABSTRACT TABLE MODEL LOADING ON REFRESH
-
     public MainFrame jFrame;
     private JButton jButtonLogOut;
     private JButton jButtonViewApplication;
@@ -19,14 +18,21 @@ public class HomePageCompanyPanel extends JPanel {
     private JButton jButtonCreateNewJobOffer;
     private JTable jTableJobOffers;
     public JComboBox<String> jComboBoxPage;
+    private JLabel jLabelStatus;
+
 
     public DataProviderTableJobOffers productTableModel;
-
-    public static int id = (int) DataProviderCreateNewCompany.getCurrentCompany().getId();
+    public static int idOfOSelectedJobOffer;
     public Integer index;
 
     public HomePageCompanyPanel(MainFrame jFrame) {
         this.jFrame = jFrame;
+
+        String loginDetails = "Welcome" +
+                " : " +
+                DataProviderCreateNewCompany.getCurrentCompany().getCompanyName();
+        jLabelStatus = new JLabel(loginDetails);
+        add(jLabelStatus);
 
         jTableJobOffers = new JTable(productTableModel);
         JScrollPane pane = new JScrollPane();
@@ -38,7 +44,7 @@ public class HomePageCompanyPanel extends JPanel {
         jButtonViewApplication.addActionListener(e -> {
 
             index = this.jTableJobOffers.getSelectedRow();
-            id = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
+            idOfOSelectedJobOffer = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
             MainFrame.router.removePanel(jFrame);
             MainFrame.router.viewJobOfersCompany(jFrame);
 
@@ -49,15 +55,10 @@ public class HomePageCompanyPanel extends JPanel {
         jButtonDeleteSelectedApplication = new JButton("Delete offer");
         jButtonDeleteSelectedApplication.addActionListener(e -> {
 
-            //TODO FIX TABLE UPDATE ON DELETE
-
             index = this.jTableJobOffers.getSelectedRow();
-            id = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
-            //delete offer
+            idOfOSelectedJobOffer = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
+//            //delete offer
             deleteJobOffer();
-
-            refreshTable();
-
 
         });
         add(jButtonDeleteSelectedApplication);
@@ -74,6 +75,7 @@ public class HomePageCompanyPanel extends JPanel {
 
         jButtonLogOut = new JButton("Logout");
         jButtonLogOut.addActionListener(e -> {
+
             DataProviderCreateNewCompany.removeCurrentCompany();
             // DataProviderCreateNewUser.removeCurrentCompany();
             MainFrame.router.removePanel(jFrame);
@@ -83,20 +85,16 @@ public class HomePageCompanyPanel extends JPanel {
         add(jButtonLogOut);
 
         refreshTable();
-
-        System.out.println(DataProviderCreateNewCompany.getCurrentCompany().getCompanyName());
-
     }
 
     public void refreshTable() {
 
-        DataProviderTableJobOffers.loadJobOffersInTable(jTableJobOffers, id);
+        DataProviderTableJobOffers.loadJobOffersInTable(jTableJobOffers, (int) DataProviderCreateNewCompany.getCurrentCompany().getId());
     }
 
     public void deleteJobOffer() {
-        DataProviderCreateNewJobOffer.deleteJobOffer(id);
-
-        MainFrame.dataProviderTableJobOffers.delete(index);//ATTEMPT TO REFRESH TABLE
+        DataProviderCreateNewJobOffer.deleteJobOffer(idOfOSelectedJobOffer);
+        refreshTable();
     }
 
 }

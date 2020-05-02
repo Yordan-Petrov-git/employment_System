@@ -93,7 +93,7 @@ public class LoginPanel extends JPanel {
         if (LoginDataProvider.logonUser(username, password)) {
 
             LoginDataProvider.getUserForCurrentLoggedInUserInfo(username);//gets current user details by username
-            System.out.println();
+
             MainFrame.router.removePanel(jFrame);
             MainFrame.router.showHomepageUserPanel(jFrame);
 

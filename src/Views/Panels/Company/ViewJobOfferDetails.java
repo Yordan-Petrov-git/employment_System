@@ -114,7 +114,7 @@ public class ViewJobOfferDetails extends JPanel {
 
         DataProviderTablesUsers.initPagingUsersApplied(jTableUsersAppllied
                 , jButtonLast, jButtonNext, jButtonPrevious, jButtonFirst
-                , jLabelStatus, jLabelTotalData, jComboBoxPage, userTableModel, HomePageCompanyPanel.id);
+                , jLabelStatus, jLabelTotalData, jComboBoxPage, userTableModel, HomePageCompanyPanel.idOfOSelectedJobOffer);
     }
 
 
