@@ -68,18 +68,6 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
         //Resizes jtables columns
         TableUtility.autoResizeColumn(jTable);
 
-
-
-//        //TODO MAKE IT INTO PAGING
-//
-//       // countApplicationForSelectedJobOffer(jobofferId);
-//
-//         productTableModel = new DataProviderTableJobOffers();
-//        productTableModel.setList(DataProviderTableJobOffers.getSpecificCompanyJobOffers(MainFrame.page, MainFrame.rowCountPerPage,currentIdComp));
-//
-//        jTable.setModel(productTableModel);
-//
-//        TableUtility.autoResizeColumn(jTable);
     }
 
     public static void initPagination(JTable jTable
