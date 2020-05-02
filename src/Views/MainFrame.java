@@ -1,6 +1,7 @@
 package Views;
 
 import DataProvider.DataProviderTableJobOffers;
+import DataProvider.DataProviderTablesUsers;
 import DataProvider.LoginDataProvider;
 import Router.Router;
 
@@ -11,6 +12,7 @@ public class MainFrame extends JFrame {
 
     public static LoginDataProvider loginDataProvider = new LoginDataProvider();
     public static DataProviderTableJobOffers dataProviderTableJobOffers = new DataProviderTableJobOffers();
+    public static DataProviderTablesUsers dataProviderTablesUsers = new DataProviderTablesUsers();
     public static Router router = new Router();
 
     public static LoginEnum loginAs;
@@ -31,7 +33,8 @@ public class MainFrame extends JFrame {
         router.showHomepagePanel(this);
     }
 
-    public static void resetPagingCounters() {
+    public  void resetPagingCounters() {
+        //Resets the paging counter for the pages
         page = 1;
         rowCountPerPage = 10;
         totalPage = 1;

@@ -18,15 +18,19 @@ public class HomePageUsersPanel extends JPanel {
     private JButton jButtonSearch;
     public JButton jButtonLogout;
     private JLabel jLabelStatus;
+    //--------------------------
+    //========Paging==========
     private JLabel jLabelTotalData;
     private JButton jButtonLast;
     private JButton jButtonNext;
     private JButton jButtonPrevious;
     private JButton jButtonFirst;
-
+    public JComboBox<String> jComboBoxPage;
+    //-------------------------
+    //=========Table model======
     public DataProviderTableJobOffers productTableModel;
 
-    public JComboBox<String> jComboBoxPage;
+
 
     public static int index;
     public static int id;

@@ -18,8 +18,12 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
 
     public static void loadJobOffersInTable(JTable jTable,
                                             int currentIdComp) {
+        //TODO MAKE IT INTO PAGING
+
+       // countApplicationForSelectedJobOffer(jobofferId);
+
         DataProviderTableJobOffers productTableModel = new DataProviderTableJobOffers();
-        productTableModel.setList(DataProviderTableJobOffers.getSpecificCompanyJobOffers(currentIdComp));
+        productTableModel.setList(DataProviderTableJobOffers.getSpecificCompanyJobOffers(MainFrame.page, MainFrame.rowCountPerPage,currentIdComp));
 
         jTable.setModel(productTableModel);
 
@@ -141,15 +145,18 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
     }
 
 
-    public static List<JobOffer> getSpecificCompanyJobOffers(int companyId) {
+    public static List<JobOffer> getSpecificCompanyJobOffers(int page, int pageSize,int companyId) {
         List<JobOffer> jobOffersById = new ArrayList<JobOffer>();
         if (countId(companyId) == 0) {
             return jobOffersById;
         }
         try {
             PreparedStatement preparedStatement;
-            preparedStatement = DataProvider.getConnection().prepareCall("{call select_all_offers_offer_id(?)}");
-            preparedStatement.setInt(1, companyId);
+            preparedStatement = DataProvider.getConnection().prepareCall("{call select_all_job_offers_for_paging_by_company_id(?,?,?)}");
+            preparedStatement.setInt(1, pageSize * (page - 1));
+            preparedStatement.setInt(2, pageSize);
+            preparedStatement.setInt(3, companyId);
+
             ResultSet resultSet = preparedStatement.executeQuery();
             JobOffer jobOffer;
 
@@ -192,6 +199,27 @@ public class DataProviderTableJobOffers extends AbstractTableModel {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 counter = rs.getInt("count(job_offer_id)");
+            }
+            //  DataProvider.getConnection().commit();
+            // DataProvider.getConnection().setAutoCommit(true);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return counter;
+
+    }
+
+    public static int countApplicationForSelectedJobOffer(int jobOfferId) {
+        //Counts applications for the selected job offer
+        int counter = 0;
+        try {
+            PreparedStatement preparedStatement;
+            //  DataProvider.getConnection().setAutoCommit(false);  //count_job_offers
+            preparedStatement = DataProvider.getConnection().prepareCall("{call count_job_offers_by_offer_id(?)}");
+            preparedStatement.setInt(1, jobOfferId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                counter = rs.getInt("COUNT(`job_offer_id`)");
             }
             //  DataProvider.getConnection().commit();
             // DataProvider.getConnection().setAutoCommit(true);

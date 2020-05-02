@@ -24,7 +24,7 @@ public class Router extends JPanel {
         //Remove all elements from the panel
         mainFrame.getContentPane().removeAll();
         mainFrame.getContentPane().repaint();
-        mainFrame.resetPagingCounters();
+        mainFrame.resetPagingCounters();//Resets paging counters for the tables
     }
 
     public void showRegistrationPanel(MainFrame mainFrame) {
