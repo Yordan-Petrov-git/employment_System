@@ -2,7 +2,6 @@ package Views.Panels.Company;
 
 import DataProvider.DataProviderCreateNewCompany;
 import DataProvider.DataProviderCreateNewJobOffer;
-import DataProvider.DataProviderCreateNewUser;
 import DataProvider.DataProviderTableJobOffers;
 import Helpers.TableUtils.TableUtility;
 import Views.MainFrame;
@@ -128,7 +127,7 @@ public class HomePageCompanyPanel extends JPanel {
             index = this.jTableJobOffers.getSelectedRow();
             idOfOSelectedJobOffer = Integer.parseInt(this.jTableJobOffers.getValueAt(index, 7).toString());
             MainFrame.router.removePanel(jFrame);
-            MainFrame.router.viewJobOfersCompany(jFrame);
+            MainFrame.router.viewJobOffersCompany(jFrame);
 
         });
         add(jButtonViewApplication);

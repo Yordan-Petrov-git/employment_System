@@ -1,11 +1,7 @@
 package Helpers.TableUtils;
 
-import DataProvider.DataProviderTableJobOffers;
-import Views.MainFrame;
-
 import java.util.Enumeration;
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 

@@ -35,7 +35,7 @@ public class LoginPanel extends JPanel {
         add(jPasswordField);
 
         jButtonShowPassword = new JToggleButton("");
-        jButtonShowPassword.setIcon(new ImageIcon(new javax.swing.ImageIcon(GuiUtils.class.getResource("/Icons/pass_off.png")).getImage().getScaledInstance(25, 30, Image.SCALE_SMOOTH)));
+        jButtonShowPassword.setIcon(new ImageIcon(new javax.swing.ImageIcon(GuiUtils.class.getResource("/Resources/Icons/pass_off.png")).getImage().getScaledInstance(25, 30, Image.SCALE_SMOOTH)));
         jButtonShowPassword.addActionListener(e -> {
             // reveal password
 

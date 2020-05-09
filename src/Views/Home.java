@@ -38,9 +38,7 @@ public class Home extends JPanel {
 
         jTableJobOffers = new JTable();
         JScrollPane pane = new JScrollPane();
-        // MainFrame.dataProviderTableJobOffers.model = new DefaultTableModel();
         pane.setViewportView(jTableJobOffers);
-        TableUtility.autoResizeColumn(jTableJobOffers);
         add(pane);
 
         jComboBoxPage = new JComboBox<String>();
@@ -148,6 +146,7 @@ public class Home extends JPanel {
         MainFrame.router.showLoginPanel(jFrame);
 
     }
+
 
 
 }

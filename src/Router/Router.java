@@ -62,7 +62,7 @@ public class Router extends JPanel {
     }
 
     public void showHomePageCompanyPanel(MainFrame mainFrame) {
-        //Homepage user
+
         HomePageCompanyPanel homePage = new HomePageCompanyPanel(mainFrame);
         homePage.setSize(800, 600);
         mainFrame.add(homePage);
@@ -70,7 +70,7 @@ public class Router extends JPanel {
     }
 
     public void applyForOffer(MainFrame mainFrame) {
-        //Homepage company
+
         ApplyForOffer applyForOffer = new ApplyForOffer(mainFrame);
         applyForOffer.setSize(800, 600);
         mainFrame.add(applyForOffer);
@@ -78,7 +78,7 @@ public class Router extends JPanel {
     }
 
     public void createNewJobOffer(MainFrame mainFrame) {
-        //Homepage company
+
         CreateNewJobOffer createNewJobOffer = new CreateNewJobOffer(mainFrame);
         createNewJobOffer.setSize(800, 600);
         mainFrame.add(createNewJobOffer);
@@ -87,21 +87,14 @@ public class Router extends JPanel {
 
 
 
-    public void viewJobOfersCompany(MainFrame mainFrame) {
-        //Homepage company
+    public void viewJobOffersCompany(MainFrame mainFrame) {
+
         ViewJobOfferDetails viewJobOfferDetails = new ViewJobOfferDetails(mainFrame);
         viewJobOfferDetails.setSize(800, 600);
         mainFrame.add(viewJobOfferDetails);
         mainFrame.getContentPane().validate();
     }
 
-    public void editSelectedJobOffer(MainFrame mainFrame) {
-        //Homepage company
-        ManageJobOffer manageSelectedJobOffer = new ManageJobOffer(mainFrame);
-        manageSelectedJobOffer.setSize(800, 600);
-        mainFrame.add(manageSelectedJobOffer);
-        mainFrame.getContentPane().validate();
-    }
 
 
 
